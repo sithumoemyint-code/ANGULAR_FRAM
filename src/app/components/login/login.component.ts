@@ -76,8 +76,10 @@ export class LoginComponent implements OnInit {
           '87834uu43iuwr89uf8ae237ei23u2id392803ioiu2398'
         );
         this.loading = false;
-        this.router.navigate(['admin/management-package']);
+        this.router.navigate(['admin/app-statistic']);
       } else {
+        this.loading = false;
+
         this.showErrorMessage = 'Message error show';
       }
 
@@ -123,7 +125,7 @@ export class LoginComponent implements OnInit {
       //       this.showErrorMessage = '';
       //       this.authService.saveTokens(response.result.accessToken);
       //       this.loading = false;
-      //       this.router.navigate(['admin/management-package']);
+      //       this.router.navigate(['admin/app-statistic']);
       //     } else if (response.errorCode === '218') {
       //       this.loading = false;
       //       this.showErrorMessage = response.message;

@@ -18,12 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    CustomSidenavComponent,
-    SubMenuComponent,
-    // PermissionDirective
-  ],
+  declarations: [AdminComponent, CustomSidenavComponent, SubMenuComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

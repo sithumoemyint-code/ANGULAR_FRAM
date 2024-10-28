@@ -1,7 +1,5 @@
 import { Component, computed, Input, OnInit, signal } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { buildMenuItems, menuItem } from '../../service/menu-items';
-import { MenuTranslationService } from '../../service/menu-translation.service';
+import { menuItem } from '../../service/menu-items';
 
 export type MenuItem = {
   icon: string;
@@ -25,47 +23,13 @@ export class CustomSidenavComponent implements OnInit {
   public menuItems: MenuItem[] = [];
   public menuItem = signal<MenuItem[]>([]);
 
-  constructor(
-    private cookieService: CookieService,
-    private menuTranslationService: MenuTranslationService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.getPermissionMenuList();
-
-    this.menuTranslationService.onLanguageChange().subscribe(() => {
-      this.getPermissionMenuList();
-    });
   }
 
   public getPermissionMenuList() {
-    // const groupPermissionCookieValue =
-    //   this.cookieService.get('groupPermission');
-    // const groupPermission = groupPermissionCookieValue
-    //   ? JSON.parse(groupPermissionCookieValue)
-    //   : [];
-
-    // const hasAdminManagement = groupPermission.some(
-    //   (item: any) => item.name === 'Admin Management'
-    // );
-
-    // const updatedGroupPermission = hasAdminManagement
-    //   ? groupPermission.filter((item: any) => item.name !== 'Role Management')
-    //   : groupPermission;
-
-    // this.menuTranslationService
-    //   .getTranslatedMenuItems()
-    //   .subscribe((translations) => {
-    //     const groupPermissionMenu = buildMenuItems(translations).filter(
-    //       (menuItem: any) =>
-    //         updatedGroupPermission.some(
-    //           (permissionItem: any) =>
-    //             permissionItem.name === menuItem.permission
-    //         )
-    //     );
-    //     this.menuItem.set(groupPermissionMenu);
-    //   });
-
     this.menuItem.set(menuItem);
   }
 
