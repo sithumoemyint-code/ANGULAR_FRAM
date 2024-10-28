@@ -1,0 +1,159 @@
+<div class="p-2" [formGroup]="createForm">
+  <div class="p-4 flex justify-between items-center bg-[#FFFFFF] w-full">
+    <p class="text-[#F8AA00] text-[18px]">
+      {{ "UI_MANAGEMENT" | translate }}
+      <span class="text-[#000000] text-[18px]"
+        >> {{ "BANNER_MANAGEMENT" | translate }}</span
+      >
+    </p>
+    <div></div>
+  </div>
+  <div class="w-full grid grid-cols-3 gap-3 p-2 mt-8">
+    <div class="relative flex justify-center items-center p-4">
+      <img src="assets/image/iphone.png" alt="" />
+      <div
+        class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+      >
+        <img
+          *ngIf="!imageUrl"
+          src="assets/image/banner-sample.png"
+          alt="Banner Sample"
+          class=""
+        />
+        <img
+          *ngIf="imageUrl"
+          [src]="imageUrl"
+          alt="Banner Sample"
+          class="w-[220px] h-[90px]"
+        />
+      </div>
+    </div>
+    <div class="col-span-2">
+      <p class="text-[#454F63] text-[22px] font-bold px-1">
+        {{ "IMAGE" | translate }}
+      </p>
+      <div class="flex justify-start items-center space-x-3 mt-4">
+        <button
+          (click)="imageUpload.click()"
+          class="bg-[#F7AA00] text-white px-4 py-2 rounded-full"
+        >
+          <div class="flex justify-center items-center gap-2">
+            <img src="assets/icons/cloudicon.png" alt="" class="w-[21px]" />
+            <p class="text-[16px]">{{ "UPLOAD" | translate }}</p>
+          </div>
+        </button>
+
+        <p class="text-[#454F63CC] text-[16px] text-center">
+          {{ "CHOOSE_IMG_TXT" | translate }}
+        </p>
+        <input
+          #imageUpload
+          type="file"
+          class="hidden"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          formControlName="imageUrl"
+        />
+      </div>
+      <div
+        *ngIf="createForm.get('imageUrl')?.invalid"
+        class="text-red-500 text-[13px] mt-1"
+      >
+        {{ "REQUIRED_CUSTOM" | translate }}
+      </div>
+      <div class="grid grid-cols-2 gap-5 mt-4">
+        <div class="p-1">
+          <app-input
+            [label]="'CREATE_NEWSL_TITLE' | translate"
+            inputId="title"
+            formControlName="title"
+          ></app-input>
+        </div>
+        <div></div>
+        <div class="p-1">
+          <p class="text-[#454F63] text-[22px] font-bold pb-4">
+            {{ "TIME" | translate }}
+          </p>
+          <app-input
+            [label]="'START_DATE_L' | translate"
+            inputId="date"
+            formControlName="fromTime"
+            type="date"
+          ></app-input>
+        </div>
+        <div class="p-1 mt-12">
+          <app-input
+            [label]="'END_DATE_L' | translate"
+            label="End Date"
+            inputId="date"
+            formControlName="toTime"
+            type="date"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'PRIORITY_L' | translate"
+            inputId="priority"
+            formControlName="priority"
+            type="text"
+          ></app-input>
+        </div>
+        <div></div>
+        <div class="p-1">
+          <p class="text-[#454F63] text-[22px] font-bold mb-3">
+            {{ "ACTION_L" | translate }}
+          </p>
+
+          <app-select
+            (change)="changeRouteType()"
+            [label]="'TYPE' | translate"
+            selectId="test"
+            [options]="selectStatus"
+            formControlName="routeType"
+            controlName="status"
+          ></app-select>
+        </div>
+        <div class="p-1 mt-11" *ngIf="vl != 'NONE'">
+          <app-input
+            [label]="'ROUTE_TO' | translate"
+            inputId="routeType"
+            formControlName="routeTo"
+            (click)="onInputClick()"
+            (input)="onInput()"
+          ></app-input>
+          <ul *ngIf="filteredOptions.length > 0" class="suggestions">
+            <li
+              *ngFor="let option of filteredOptions"
+              (click)="selectOption(option)"
+            >
+              {{ option.deeplink }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center items-center p-4 space-x-8 mt-20">
+    <button
+      (click)="routeToBack()"
+      class="bg-[#C4C4C4] text-white px-4 py-2 rounded-full"
+    >
+      {{ "CANCEL" | translate }}
+    </button>
+    <button
+      *ngIf="!isEdit"
+      (click)="onCreateBanner()"
+      class="bg-[#F8AA00] text-white px-4 py-2 rounded-full"
+    >
+      {{ "CREATE" | translate }}
+    </button>
+
+    <button
+      *ngIf="isEdit"
+      (click)="onUpdateBanner()"
+      class="bg-[#F8AA00] text-white px-4 py-2 rounded-full"
+    >
+      {{ "UPDATE" | translate }}
+    </button>
+  </div>
+</div>

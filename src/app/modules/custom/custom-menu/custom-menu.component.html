@@ -1,0 +1,26 @@
+<div class="NgxEditor__Seperator"></div>
+<div
+  class="NgxEditor__MenuItem NgxEditor__MenuItem--Text"
+  (mousedown)="onClick($event)"
+  [ngClass]="{
+    'NgxEditor__MenuItem--Active': isActive,
+  }"
+  #editorElement
+>
+  <div class="flex items-center">
+    <img
+      src="assets/icons/imageuploadicon.png"
+      alt="uploadimageicon"
+      class="w-[32px] hover:bg-gray-100 px-1 py-1"
+      title="Insert Image"
+    />
+  </div>
+</div>
+
+<input
+  type="file"
+  #fileInput
+  accept="image/*"
+  style="display: none"
+  (change)="onImageUpload($event)"
+/>

@@ -1,0 +1,112 @@
+<div class="p-6 overflow-auto">
+  <div class="flex justify-end">
+    <button (click)="close()">
+      <mat-icon matListItemIcon class="cursor-pointer mx-5">close</mat-icon>
+    </button>
+  </div>
+  <h1 class="mb-10 text-center text-[24px] font-bold">
+    {{ "DETAIL_NEWS_POST" | translate }}
+  </h1>
+  <div *ngIf="apiData">
+    <div>
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">
+            {{ "CREATEDAT" | translate }}:
+          </p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <p>
+            {{ apiData.createdAt }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">{{ "STATUS" | translate }}:</p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <p class="text-[16px]">
+            <span
+              class="border px-3 py-1 rounded-md"
+              [ngClass]="{
+            'bg-[#FFE8DB] text-[#F16212]': apiData.status === 'INACTIVE',
+            'bg-[#D8FFDC] text-[#18B427]': apiData.status === 'ACTIVE',
+          }"
+            >
+              {{ apiData.status }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">
+            {{ "CREATE_NEWSL_TITLE" | translate }}:
+          </p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <p class="text-[16px]">
+            {{ currentLang === "vi" ? apiData.title.vi : apiData.title.en }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">{{ "IMAGE" | translate }}:</p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <img
+            [src]="
+              currentLang === 'vi' ? apiData.imageUrl.vi : apiData.imageUrl.en
+            "
+            alt="News Image"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">
+            {{ "CREATE_NEWSL_DESCRIPTION" | translate }}:
+          </p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <p>
+            {{
+              currentLang === "vi"
+                ? apiData.description.vi
+                : apiData.description.en
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 py-4 border-b">
+        <div class="flex justify-start">
+          <p class="text-[16px] text-gray-400">
+            {{ "CREATE_NEWSL_CONTENT" | translate }}:
+          </p>
+        </div>
+        <div class="flex justify-start items-center col-span-2">
+          <p
+            [innerHTML]="
+              currentLang === 'vi' ? apiData.content.vi : apiData.content.en
+            "
+          ></p>
+        </div>
+      </div>
+      <div class="flex justify-center my-4">
+        <button
+          class="border rounded-3xl px-4 py-2 bg-[#F8AA00] text-white"
+          (click)="close()"
+        >
+          {{ "CLOSE" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="overflow-auto">
+  <div class="flex justify-end mt-6">
+    <button (click)="closeEditReqContracts()">
+      <mat-icon matListItemIcon class="cursor-pointer mx-5">close</mat-icon>
+    </button>
+  </div>
+  <div class="flex justify-center items-center gap-4">
+    <img src="assets/icons/contractid.png" alt="" class="w-[38px]" />
+    <p class="text-[20px] font-bold">
+      {{ "REQUEST_CONTRACTS" | translate }}
+    </p>
+  </div>
+
+  <div *ngIf="viewDetailContract.packageDetails">
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "PACKAGE" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{
+          currentLang === "vi"
+            ? viewDetailContract.packageDetails.name?.vi
+            : viewDetailContract.packageDetails.name?.en
+        }}
+      </p>
+    </div>
+  </div>
+  <div *ngIf="viewDetailContract">
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "STATUS" | translate }}:</p>
+      <div class="text-[16px] space-y-3 text-end">
+        <span
+          class="rounded-3xl py-1 px-4"
+          [ngClass]="{
+            'bg-[#D8FFDC] text-[#18B427]': viewDetailContract.status === 'COMPLETE',
+            'bg-[#D8EEFF] text-[#0E9EF0]': viewDetailContract.status === 'IN_PROGRESS',
+            'bg-[#FFF7DA] text-[#E0AF00]': viewDetailContract.status === 'PENDING',
+          }"
+        >
+          {{
+            (viewDetailContract.status === "COMPLETE"
+              ? "STATUS_COMPLETE"
+              : viewDetailContract.status === "IN_PROGRESS"
+              ? "STATUS_IN_PROGRESS"
+              : "STATUS_PENDING"
+            ) | translate
+          }}
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "CUSTOMER" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.customerName }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "ASSIGNSALE" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.assignAccountFullName }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">
+        {{ "INVEST_AMOUNT" | translate }}:
+      </p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.investAmount }} VND
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="viewDetailContract.packageDetails">
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "TERM" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.packageDetails.term }} months
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">
+        {{ "INTEREST_PERIOD" | translate }}:
+      </p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.packageDetails.paymentPeriod }} months
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">
+        {{ "INTEREST_RATE" | translate }}:
+      </p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.packageDetails.interestRate }}%
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "BONUS_RATE" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.packageDetails.bonusRate }}%
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="viewDetailContract">
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "CREATEDAT" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.createdAt }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "STARTAT" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.fromTime }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "ENDAT" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{ viewDetailContract.toTime }}
+      </p>
+    </div>
+  </div>
+  <div *ngIf="viewDetailContract.packageDetails">
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "SERVICE" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{
+          currentLang === "vi"
+            ? viewDetailContract.packageDetails.service?.vi
+            : viewDetailContract.packageDetails.service?.en
+        }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+      <p class="text-[16px] text-gray-400">{{ "GIFT" | translate }}:</p>
+      <p class="text-[16px] space-y-3 text-end">
+        {{
+          currentLang === "vi"
+            ? viewDetailContract.packageDetails.gift?.vi
+            : viewDetailContract.packageDetails.gift?.en
+        }}
+      </p>
+    </div>
+
+    <div *ngIf="viewDetailContract">
+      <div class="mx-8 my-4">
+        <h2 class="font-bold text-gray-500">{{ "NOTE" | translate }}:</h2>
+        <textarea
+          disabled
+          type="text"
+          class="w-full h-[100px] focus:outline-none border border-gray-300 text-[16px] text-gray-500 rounded-lg p-2"
+        >
+ {{ viewDetailContract.note }}
+            </textarea
+        >
+        <div class="flex justify-end my-4">
+          <button
+            class="border rounded-3xl px-4 py-2 bg-[#F8AA00] text-white"
+            (click)="closeEditReqContracts()"
+          >
+            {{ "CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

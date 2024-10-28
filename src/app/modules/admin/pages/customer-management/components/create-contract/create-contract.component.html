@@ -1,0 +1,456 @@
+<div class="overflow-x-auto">
+  <div class="p-8 mx-6">
+    <div class="flex justify-end items-center mt-1">
+      <button (click)="close()">
+        <mat-icon class="mat-18">close</mat-icon>
+      </button>
+    </div>
+    <h1 class="font-bold text-[20px] flex justify-center">
+      {{ "CREATE_CONTRACT_CI" | translate }}
+    </h1>
+    <h2 class="font-bold text-[20px] mt-8">
+      {{ "PERSONAL_INFO" | translate }}
+    </h2>
+
+    <div class="mt-4">
+      <form [formGroup]="createForm">
+        <div class="my-4">
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <app-input
+                [label]="'CUSTOMER_NAME' | translate"
+                inputId="customerName"
+                formControlName="customerName"
+                [isDisabled]="true"
+              ></app-input>
+            </div>
+
+            <div>
+              <app-input
+                [label]="'PHONE_NO' | translate"
+                inputId="phoneNumber"
+                formControlName="phoneNumber"
+                [isDisabled]="true"
+              ></app-input>
+            </div>
+
+            <div>
+              <app-input
+                [label]="'E_MAIL' | translate"
+                inputId="email"
+                formControlName="email"
+                [isDisabled]="true"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-[20px] font-bold mt-4">
+          {{ "CREATE_CONTRACT" | translate }}
+        </h2>
+
+        <h3 class="font-semibold text-[16px] my-4">
+          {{ "INVESTMENT" | translate }}
+        </h3>
+
+        <div class="p-1" formGroupName="packageName">
+          <app-select
+            label="Package"
+            selectId="package"
+            [options]="packages"
+            [formControlName]="currentLang === 'vi' ? 'vi' : 'en'"
+            controlName="package"
+          ></app-select>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-1">
+            <div class="autocomplete-container">
+              <p class="text-[#4E535D] text-sm mb-1">
+                {{ "SIGNATORYF" | translate
+                }}<span class="text-red-500">*</span>
+              </p>
+
+              <input
+                type="text"
+                class="appearance-none border border-[#454F6380] rounded-lg w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [ngClass]="{
+                  'border-red-500':
+                    createForm.get('signatoryId')?.invalid &&
+                    (createForm.get('signatoryId')?.touched ||
+                      createForm.get('signatoryId')?.dirty)
+                }"
+                [formControl]="editControl"
+                formControlName="signatoryId"
+                (focus)="editSuggestions = true"
+                (input)="onInputChange($event)"
+                (blur)="hideSuggestions()"
+                inputId="signatoryId"
+              />
+
+              <ul *ngIf="editSuggestions && editDataSuggestions.length > 0">
+                <li
+                  *ngFor="let suggestion of editDataSuggestions"
+                  (mousedown)="selectSuggestion(suggestion)"
+                >
+                  {{ suggestion }}
+                </li>
+              </ul>
+              <div *ngIf="inputValue && editDataSuggestions.length === 0">
+                <p class="text-red-600 text-[12.5px] mt-1">
+                  {{ "NO_Search" | translate }}
+                </p>
+              </div>
+              <!-- Error message -->
+              <div
+                *ngIf="
+                  createForm.get('signatoryId')?.invalid &&
+                  (createForm.get('signatoryId')?.touched ||
+                    createForm.get('signatoryId')?.dirty)
+                "
+                class="text-red-600 text-[12.5px] mt-1"
+              >
+                {{ "REQUIRED_CUSTOM" | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="p-1">
+            <app-input
+              [label]="'CONTRACT_CODE' | translate"
+              inputId="contractCode"
+              formControlName="contractCode"
+              type="text"
+            ></app-input>
+          </div>
+          <div class="p-1"></div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-1">
+            <app-input
+              [label]="'INVEST_AMOUNT' | translate"
+              inputId="investAmount"
+              formControlName="investAmount"
+              (input)="onInput($event)"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-select
+              [label]="'CURRENCY' | translate"
+              inputId="currency"
+              [options]="currency"
+              formControlName="currency"
+              controlName="currency"
+            ></app-select>
+          </div>
+          <div class="p-1">
+            <app-select
+              [label]="'STATUS' | translate"
+              inputId="status"
+              [options]="status"
+              formControlName="status"
+              controlName="status"
+            ></app-select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-1">
+            <app-input
+              [label]="'INVEST_PERIOD' | translate"
+              inputId="term"
+              formControlName="term"
+              [isDisabled]="true"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-input
+              [label]="'INTEREST_PERIOD' | translate"
+              inputId="interestPaymentPeriod"
+              formControlName="interestPaymentPeriod"
+              type="text"
+              [isDisabled]="true"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-input
+              [label]="'INTEREST_RATE' | translate"
+              inputId="interestRate"
+              formControlName="interestRate"
+              type="text"
+              [isDisabled]="true"
+            ></app-input>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-1">
+            <app-input
+              [label]="'BONUS_RATE' | translate"
+              inputId="bonusRate"
+              formControlName="bonusRate"
+              type="text"
+              [isDisabled]="true"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-input
+              [label]="'START_DATE' | translate"
+              inputId="fromTime"
+              formControlName="fromTime"
+              type="date"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-input
+              [label]="'END_DATE' | translate"
+              inputId="toTime"
+              formControlName="toTime"
+              type="date"
+              [isDisabled]="true"
+            ></app-input>
+          </div>
+        </div>
+
+        <h3 class="font-semibold text-md my-4">
+          {{ "INTEREST_PERIOD" | translate }}
+        </h3>
+
+        <table class="w-full">
+          <thead class="h-20 text-[14px] border">
+            <tr class="text-[#565D6D]">
+              <th class="text-center px-4 border">
+                {{ "PAYMENT_PERIOD" | translate }}
+              </th>
+              <th class="text-center px-4 border">
+                {{ "STATUS" | translate }}
+              </th>
+              <th class="text-center px-4 border">
+                {{ "INTEREST_PAY_AMOUNT" | translate }}
+              </th>
+              <th class="text-center px-4 border">{{ "NOTE" | translate }}</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="interestPaymentHistories">
+            <tr
+              *ngFor="let detail of paymentDetails.controls; let i = index"
+              [formGroupName]="i"
+              class="border h-16"
+            >
+              <!-- <td class="text-center text-[#687489] text-sm px-4 border">
+                <app-input
+                  inputId="paymentPeriodTime{{ i }}"
+                  formControlName="paymentPeriodTime"
+                  type="date"
+                ></app-input>
+              </td> -->
+              <td class="text-center text-[#687489] text-sm px-4 border">
+                <ng-container *ngIf="isLoading; else inputTemplate">
+                  <div class="skeleton-loader"></div>
+                </ng-container>
+
+                <ng-template #inputTemplate>
+                  <app-input
+                    inputId="paymentPeriodTime{{ i }}"
+                    formControlName="paymentPeriodTime"
+                    type="date"
+                  ></app-input>
+                </ng-template>
+              </td>
+
+              <!-- <td class="text-center text-[#687489] text-sm px-4 border">
+                <app-select
+                  selectId="statusPeriod{{ i }}"
+                  [options]="statusPeriod"
+                  formControlName="status"
+                ></app-select>
+              </td> -->
+
+              <td class="text-center text-[#687489] text-sm px-4 border">
+                <ng-container *ngIf="isLoading; else selectTemplate">
+                  <div class="skeleton-loader"></div>
+                </ng-container>
+
+                <ng-template #selectTemplate>
+                  <app-select
+                    selectId="statusPeriod{{ i }}"
+                    [options]="statusPeriod"
+                    formControlName="status"
+                  ></app-select>
+                </ng-template>
+              </td>
+
+              <!-- <td class="text-center text-[#687489] text-sm px-4 border">
+                <app-input
+                  inputId="interestPaymentAmount{{ i }}"
+                  formControlName="interestPaymentAmount"
+                ></app-input>
+              </td> -->
+
+              <td class="text-center text-[#687489] text-sm px-4 border">
+                <ng-container *ngIf="isLoading; else interestPaymentAmount">
+                  <div class="skeleton-loader"></div>
+                </ng-container>
+
+                <ng-template #interestPaymentAmount>
+                  <app-input
+                    inputId="interestPaymentAmount{{ i }}"
+                    formControlName="interestPaymentAmount"
+                    (input)="onInterestPaymentInput($event, i)"
+                  ></app-input>
+                </ng-template>
+              </td>
+              <td class="text-center text-[#687489] text-sm px-4 border">
+                <app-input
+                  inputId="note{{ i }}"
+                  formControlName="note"
+                ></app-input>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="text-right">
+                <div class="flex justify-end items-center">
+                  <button
+                    (click)="addPaymentDetail()"
+                    class="bg-[#F8AA00] rounded-full flex justify-center items-center -mt-3"
+                  >
+                    <mat-icon class="mat-18" style="color: white">add</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="font-semibold text-md mt-5">
+          {{ "SETTLEMENT" | translate }}
+        </h3>
+
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="p-1">
+            <app-input
+              [label]="'SETTLEMENT_AMOUNT' | translate"
+              inputId="settlementAmount"
+              formControlName="settlementAmount"
+              (input)="onSettlementAmountInput($event)"
+              type="text"
+            ></app-input>
+          </div>
+          <div class="p-1" formGroupName="gift">
+            <app-input
+              [label]="'GIFT' | translate"
+              inputId="gift"
+              formControlName="en"
+              type="text"
+            ></app-input>
+          </div>
+          <div class="p-1">
+            <app-input
+              [label]="'SETTLEMENT_DATE' | translate"
+              inputId="settlementDate"
+              formControlName="settlementDate"
+              type="date"
+            ></app-input>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-1">
+            <app-input
+              [label]="'REASON' | translate"
+              inputId="reason"
+              formControlName="reason"
+              type="text"
+            ></app-input>
+          </div>
+          <div class="p-1"></div>
+        </div>
+
+        <div class="mt-6 p-1">
+          <p class="py-2 text-[16px] font-semibold">
+            {{ "UPLOAD_FILES" | translate }}
+          </p>
+          <button
+            (click)="fileInput.click()"
+            class="flex gap-3 bg-[#235884] px-4 py-2 rounded-xl text-white"
+          >
+            <img src="assets/icons/upload-icon.png" alt="" class="w-[24px]" />
+            <p class="text-[16px]">{{ "UPLOAD_FILESB" | translate }}</p>
+          </button>
+          <input
+            type="file"
+            formControlName="files"
+            #fileInput
+            (change)="onFileChange($event)"
+            multiple
+            class="hidden"
+          />
+
+          <table
+            *ngIf="files.length > 0"
+            class="mt-4 w-[350px] text-left border-collapse border border-gray-300"
+          >
+            <thead>
+              <tr class="text-[12px] text-center">
+                <th class="border border-gray-300 px-4 py-2">No</th>
+                <th class="border border-gray-300 px-4 py-2">File Name</th>
+                <th class="border border-gray-300 px-4 py-2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let file of files; let i = index"
+                class="text-[12px] text-center"
+              >
+                <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                  <a
+                    href="#"
+                    (click)="downloadFile(file); $event.preventDefault()"
+                    >{{ file }}</a
+                  >
+                </td>
+                <td class="border border-gray-300 px-4 py-2">
+                  <div class="flex justify-center items-center">
+                    <button
+                      (click)="removeFile(i)"
+                      class="text-red-500 hover:text-red-700"
+                    >
+                      <mat-icon
+                        matListItemIcon
+                        class="cursor-pointer"
+                        style="color: #989898"
+                        >delete</mat-icon
+                      >
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-5 flex justify-center space-x-5">
+          <div class="p-1">
+            <button
+              type="button"
+              (click)="close()"
+              class="text-white bg-gray-400 px-3 py-2 rounded-full"
+            >
+              {{ "CANCEL" | translate }}
+            </button>
+          </div>
+          <div class="p-1">
+            <button
+              class="text-white bg-yellow-400 px-3 py-2 rounded-full"
+              (click)="create()"
+            >
+              {{ "CREATE" | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

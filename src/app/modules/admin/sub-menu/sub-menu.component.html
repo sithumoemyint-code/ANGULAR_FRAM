@@ -1,0 +1,55 @@
+<div
+  mat-list-item
+  class="menu-item flex py-4 px-3 justify-between"
+  [routerLink]="item.route"
+  routerLinkActive="selected-menu-item"
+  #rla="routerLinkActive"
+  (click)="toggleNested(item)"
+  role="button"
+  tabindex="0"
+>
+  <div class="flex items-center">
+    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+    <div
+      matListItemTitle
+      *ngIf="!sideNavCollapsed()"
+      class="px-2 flex items-center"
+    >
+      <span>
+        {{ item.label }}
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="!sideNavCollapsed()">
+    <div matListItemAvatar *ngIf="item.subItems">
+      <mat-icon *ngIf="nestedMenuOpen(); else expandMoreIcon"
+        >expand_less</mat-icon
+      >
+      <ng-template #expandMoreIcon>
+        <mat-icon>expand_more</mat-icon>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="item.subItems && nestedMenuOpen()">
+  <a
+    mat-list-item
+    [class.menu-item]="!sideNavCollapsed()"
+    [class.menu-item-small]="sideNavCollapsed()"
+    *ngFor="let subItems of item.subItems"
+    [routerLink]="item.route + '/' + subItems.route"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [ngClass]="{ 'active-item': rla.isActive }"
+  >
+    <mat-icon matListItemIcon class="mr-4" style="color: white">{{
+      subItems.icon
+    }}</mat-icon>
+
+    <span style="color: white" matListItemTitle *ngIf="!sideNavCollapsed()">
+      {{ subItems.label }}
+    </span>
+  </a>
+</div>

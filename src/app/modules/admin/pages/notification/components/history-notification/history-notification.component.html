@@ -1,0 +1,227 @@
+<div class="p-2">
+  <div class="p-4 flex justify-start items-center bg-[#FFFFFF] w-full">
+    <h1 class="text-[18px]">
+      <span class="text-[#F8AA00]">{{ "NOTIFICATION" | translate }}</span> >
+      {{ "HISTORY_NOTIFICATION" | translate }}
+    </h1>
+  </div>
+  <div class="bg-[#FFFFFF] rounded-2xl shadow-lg p-6 mt-4">
+    <form [formGroup]="searchForm" (ngSubmit)="getHistory()">
+      <div class="grid grid-cols-3 gap-5">
+        <div class="p-1">
+          <app-input
+            [label]="'CUS' | translate"
+            inputId="input"
+            formControlName="input"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-select
+            [label]="'STATUS' | translate"
+            selectId="test"
+            [options]="status"
+            formControlName="status"
+            controlName="status"
+          ></app-select>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'RECEIVED_DATE' | translate"
+            inputId="fromDate"
+            formControlName="fromDate"
+            type="date"
+          ></app-input>
+        </div>
+
+        <div
+          class="p-1 flex justify-end items-center space-x-6 mt-2 col-span-3"
+        >
+          <button
+            (click)="resetValue()"
+            type="reset"
+            class="text-[#F7AA00] border border-[#F7AA00] px-4 py-2 rounded-2xl"
+          >
+            <div class="flex justify-center items-center space-x-1">
+              <img
+                src="assets/icons/refresh-icon.png"
+                alt=""
+                class="w-[18px]"
+              />
+              <p>{{ "RESET" | translate }}</p>
+            </div>
+          </button>
+          <button
+            type="submit"
+            class="bg-[#F7AA00] text-white px-4 py-2 rounded-2xl"
+          >
+            <div class="flex justify-center items-center space-x-1">
+              <img src="assets/icons/search.png" alt="" class="w-[18px]" />
+              <p>{{ "Search" | translate }}</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ng-container *ngIf="data.length; else emptyResult">
+    <div class="mt-8">
+      <table class="w-full">
+        <thead class="bg-[#E7EEF4] h-20 uppercase text-[#565D6D]">
+          <tr>
+            <th class="text-center px-4">{{ "NO" | translate }}</th>
+            <th class="text-center px-4">{{ "FULL_NAME" | translate }}</th>
+            <th class="text-center px-4">{{ "phoneNumber" | translate }}</th>
+            <th class="text-center px-4">{{ "EMAIL" | translate }}</th>
+            <th class="text-center px-4">{{ "CONTENTC" | translate }}</th>
+            <th class="text-center px-4">{{ "RECEIVED_TIME" | translate }}</th>
+            <th class="text-center px-4">{{ "NEWST_STATUS" | translate }}</th>
+            <th class="text-center px-4">{{ "ACTION" | translate }}</th>
+          </tr>
+        </thead>
+        <tbody class="text-[14px] text-[#687489]">
+          <tr *ngFor="let res of data; let i = index" class="border-b">
+            <td class="text-center px-4 py-4">{{ offset * size + (i + 1) }}</td>
+            <td class="text-center px-4 py-4">{{ res.receiverName }}</td>
+            <td class="text-center px-4 py-4">{{ res.receiverPhoneNo }}</td>
+            <td class="text-center px-4 py-4">{{ res.receiverMail }}</td>
+            <td class="text-center px-4 py-4 max-w-sm">
+              {{ res.content[currentLang] || res.content.vi }}
+            </td>
+            <td class="text-center px-4 py-4">{{ res.sentAt }}</td>
+            <td class="text-center px-4 py-4">
+              <button
+                class="rounded-full px-5 py-2 cursor-default"
+                [ngClass]="{
+                  'bg-green-200 text-green-500': res.status === 'COMPLETED',
+                  'bg-red-200 text-red-500': res.status !== 'COMPLETED'
+                }"
+              >
+                {{ res.status }}
+              </button>
+            </td>
+
+            <td class="text-center px-4 py-4">
+              <div class="flex justify-center items-center space-x-4">
+                <button (click)="onDetail(res)">
+                  <img
+                    src="assets/icons/info-circle-icon.png"
+                    alt=""
+                    class="w-[20px]"
+                  />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-paginator
+      [offset]="offset"
+      [totalOffset]="totalOffset"
+      (change)="getHistory($event)"
+    ></app-paginator>
+  </ng-container>
+
+  <div *ngIf="loading">
+    <div class="py-16">
+      <span class="flex justify-center">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </span>
+    </div>
+  </div>
+
+  <ng-template #emptyResult>
+    <h1 class="flex justify-center text-xl font-bold mt-10">
+      {{ "NO_DATA" | translate }}
+    </h1>
+  </ng-template>
+</div>
+
+<ng-template #detailModal>
+  <div class="p-8 overflow-y-auto max-h-screen">
+    <div class="flex justify-start items-center p-4">
+      <p class="font-bold text-xl">{{ "NOTI_DETAIL" | translate }}</p>
+    </div>
+    <div class="flex flex-col p-2 space-y-5">
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p
+          class="text-[#4E535D] text-[16px] font-semibold flex justify-start items-start"
+        >
+          {{ "TYPE" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.messageType.name }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "CREATE_NEWSL_CONTENT" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.content[currentLang] || detail.content.vi }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "RECEIVER" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.receiverName }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "phonenumber" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.receiverPhoneNo }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "email" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.receiverMail }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "RECEIVED_TIMES" | translate }}
+        </p>
+        <p class="text-start text-[16px] max-w-sm">
+          {{ detail.sentAt }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 p-2 border-b-2 border-[#E2E2E2]">
+        <p class="text-[#4E535D] text-[16px] font-semibold">
+          {{ "STATUS" | translate }}
+        </p>
+        <p class="text-start text-[16px] mb-3 max-w-sm">
+          <span
+            class="rounded-2xl px-4 py-2"
+            [ngClass]="{
+              'bg-green-200 text-green-500': detail.status === 'COMPLETED',
+              'bg-red-200 text-red-500': detail.status !== 'COMPLETED'
+            }"
+            >{{ detail.status }}</span
+          >
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-end items-center p-2">
+      <button
+        class="bg-[#F7AA00] text-white px-5 py-2 rounded-3xl"
+        (click)="close()"
+      >
+        <p class="text-[16px]">{{ "CLOSE" | translate }}</p>
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,27 @@
+<div class="dvs-form-control" *ngIf="control">
+  <label 
+    [for]="textAreaId" 
+    [ngClass]="labelClass !== '' ? labelClass : 'text-[#4E535D] text-sm mb-1'" 
+    *ngIf="label" 
+    [class.required]="isRequired"
+  >
+    {{ label }}
+  </label>
+  <textarea 
+    [id]="textAreaId" 
+    [name]="textAreaId" 
+    [placeholder]="placeholder"
+    rows="10" 
+    cols="50" 
+    placeholder="Enter your feedback here..."
+    class="shadow appearance-none border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    [class.border-red-500]="control.touched && control.invalid"
+    [formControl]="control"
+  ></textarea>
+
+  <ul *ngIf="control.touched && control.invalid"  class="dvs-validation-errors">
+    <li *ngFor="let error of control.errors | keyvalue">
+      {{ errorMessages[error.key] || error.key }}
+    </li>
+  </ul>
+</div>

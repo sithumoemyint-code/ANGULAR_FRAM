@@ -1,0 +1,300 @@
+<div class="bg-white p-4 flex justify-between">
+  <h1 class="text-[18px] flex items-center justify-center">
+    <span class="text-[#F8AA00] px-2">
+      {{ "CONTRACT" | translate }}
+    </span>
+    >
+    <span class="px-2">{{ "CONTRACT_LIST" | translate }}</span>
+  </h1>
+
+  <div class="mx-12">
+    <button
+      *appHasPermission="{
+        permission: 'CREATE',
+        pageComponent: 'Contract Management'
+      }"
+      (click)="onCreateNewContract()"
+      class="rounded-3xl border border-[#235884] px-2 py-1 hover:cursor-pointer"
+    >
+      <div class="flex justify-center items-center space-x-1">
+        <img src="assets/icons/plus.png" alt="create-icon" class="w-[18px]" />
+        <p>{{ "CONTRACT_LIST_CREATE" | translate }}</p>
+      </div>
+    </button>
+  </div>
+</div>
+
+<div class="m-6">
+  <div class="shadow-md py-4 border border-gray-100 rounded-md">
+    <form action="" [formGroup]="contractListForm">
+      <div class="grid grid-cols-3 gap-4 mx-8">
+        <div class="p-1">
+          <app-input
+            [label]="'CONTRACT_SEARCH' | translate"
+            inputId="userNamePhoneEmail"
+            formControlName="userNamePhoneEmail"
+            (keydown)="onKeyDown($event)"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'CONTRACT_CODE' | translate"
+            inputId="contractCode"
+            formControlName="contractCode"
+            (keydown)="onKeyDown($event)"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'AMOUNT_FROM' | translate"
+            inputId="fromAmount"
+            formControlName="fromAmount"
+            (keydown)="onKeyDown($event)"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'AMOUNT_TO' | translate"
+            inputId="toAmount"
+            formControlName="toAmount"
+            (keydown)="onKeyDown($event)"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'FROM_DATE' | translate"
+            inputId="fromTime"
+            formControlName="fromTime"
+            type="date"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'TO_DATE' | translate"
+            label="To Date"
+            inputId="toTime"
+            formControlName="toTime"
+            type="date"
+          ></app-input>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mx-8">
+        <div class="p-1 my-4">
+          <app-select
+            [label]="'STATUS' | translate"
+            selectId="status"
+            [options]="selectStatus"
+            formControlName="status"
+            controlName="status"
+            (keydown)="onKeyDown($event)"
+          ></app-select>
+        </div>
+        <div class="col-span-2 my-4">
+          <div class="p-1 flex justify-end items-center space-x-4 mt-4">
+            <button
+              class="text-[#F7AA00] border border-[#F7AA00] px-4 py-2 rounded-3xl"
+              (click)="reset()"
+            >
+              <div class="flex justify-center items-center space-x-1">
+                <img
+                  src="assets/icons/refresh-icon.png"
+                  alt=""
+                  class="w-[18px]"
+                />
+                <p>{{ "RESET" | translate }}</p>
+              </div>
+            </button>
+            <button
+              class="bg-[#F7AA00] text-white px-4 py-2 rounded-3xl"
+              (click)="searchList()"
+            >
+              <div class="flex justify-center items-center space-x-1">
+                <img src="assets/icons/search.png" alt="" class="w-[18px]" />
+                <p>{{ "SEARCH" | translate }}</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="mx-7">
+  <div class="flex justify-end mx-8">
+    <button
+      class="border rounded-3xl px-3 py-2 bg-[#235884] text-white"
+      (click)="export()"
+    >
+      <div class="flex justify-center items-center space-x-1">
+        <img src="assets/icons/download.png" alt="" class="w-[20px]" />
+        <p>{{ "EXPORT" | translate }}</p>
+      </div>
+    </button>
+  </div>
+</div>
+
+<div
+  class="m-6 bg-white"
+  [class.overflow-y-auto]="searchContractList.length > 0"
+  [class.overflow-hidden]="searchContractList.length === 0"
+>
+  <table style="width: 200%">
+    <thead class="bg-[#E7EEF4] h-20 text-[16px] text-[#565D6D] uppercase">
+      <tr>
+        <th class="text-center fixed px-4">{{ "NO" | translate }}</th>
+        <th class="text-center px-4 fixed">{{ "FULL_NAME" | translate }}</th>
+        <th class="text-center px-4 fixed">{{ "PHONE_NUMBER" | translate }}</th>
+        <th class="text-center px-4">{{ "EMAIL" | translate }}</th>
+        <th class="text-center px-4">{{ "CONTRACT_CODET" | translate }}</th>
+        <th class="text-center px-4">{{ "SIGNATORY" | translate }}</th>
+        <th class="text-center px-4">{{ "AMOUNT" | translate }}</th>
+        <th class="text-center px-4">{{ "NEWST_CREATED_AT" | translate }}</th>
+        <th class="text-center px-4">{{ "CREATED_BY" | translate }}</th>
+        <th class="text-center px-4">{{ "START_DATE" | translate }}</th>
+        <th class="text-center px-4">{{ "END_DATE" | translate }}</th>
+        <th class="text-center px-4">{{ "NEWST_STATUS" | translate }}</th>
+        <th class="text-center px-4">{{ "ACTION" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="searchContractList.length > 0; else noData">
+      <tr
+        class="border-b h-16"
+        *ngFor="let data of searchContractList; let i = index"
+      >
+        <td class="text-center text-[#687489] text-sm fixed px-4">
+          {{ offset * size + (i + 1) }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4 fixed">
+          {{ data.customerName }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4 fixed">
+          {{ data.phoneNumber }}
+        </td>
+        <td
+          class="text-center text-[#687489] text-sm px-4"
+          style="word-wrap: break-word; overflow-wrap: break-word"
+        >
+          {{ data.email }}
+        </td>
+
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.contractCode }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.signatoryFullName }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ formatCurrency(data.investAmount) }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.createdAt }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.createdBy }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.fromTime }}
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          {{ data.toTime }}
+        </td>
+        <td class="text-center text-sm px-4">
+          <div
+            class="rounded-3xl py-1 px-2"
+            [ngClass]="{
+                'bg-[#D8FFDC] text-[#18B427]': data.status === 'COMPLETE',
+                'bg-[#FFE8DB] text-[#F16212]': data.status === 'CANCEL',
+                'bg-[#FFF7DA] text-[#E0AF00]': data.status === 'PENDING',
+                'bg-[#D8EEFF] text-[#0E9EF0]': data.status === 'ACTIVE',
+                'bg-[#e5e1f6] text-[#9f8df9]': data.status === 'END',
+              }"
+          >
+            {{
+              (data.status === "COMPLETE"
+                ? "STATUS_COMPLETE"
+                : data.status === "CANCEL"
+                ? "STATUS_CANCEL"
+                : data.status === "ACTIVE"
+                ? "STATUS_ACTIVE"
+                : data.status === "END"
+                ? "STATUS_END"
+                : "STATUS_PENDING"
+              ) | translate
+            }}
+          </div>
+        </td>
+        <td class="text-center text-[#687489] text-sm px-4">
+          <div class="flex justify-center items-center gap-2">
+            <button (click)="infoNewContract(data)">
+              <img
+                src="assets/icons/info-circle-icon.png"
+                alt="edit-icon"
+                class="w-[18px]"
+                title="Detail"
+              />
+            </button>
+            <button
+              (click)="editNewContract(data.id)"
+              title="Edit"
+              *appHasPermission="{
+                permission: 'EDIT',
+                pageComponent: 'Contract Management'
+              }"
+            >
+              <img
+                src="assets/icons/edit-icon.png"
+                alt="edit-icon"
+                class="w-[18px]"
+              />
+            </button>
+            <button
+              (click)="delete(data.id)"
+              title="Delete"
+              *appHasPermission="{
+                permission: 'DELETE',
+                pageComponent: 'Contract Management'
+              }"
+            >
+              <img
+                src="assets/icons/trash-icon.png"
+                alt="trash-icon"
+                class="w-[18px]"
+                title="delete"
+              />
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noData>
+  <tr>
+    <td colspan="7" class="py-16">
+      <div
+        *ngIf="!isLoading"
+        class="flex items-start justify-center w-full gap-2"
+      >
+        <mat-icon style="color: rgb(200, 198, 198)">error</mat-icon>
+
+        <p>{{ "NO_SEARCH_RESULT" | translate }}</p>
+      </div>
+      <div *ngIf="isLoading">
+        <span class="flex justify-center">
+          <mat-spinner [diameter]="30"></mat-spinner>
+        </span>
+      </div>
+    </td>
+  </tr>
+</ng-template>
+<app-paginator
+  [offset]="offset"
+  [totalOffset]="totalOffset"
+  (change)="searchList($event)"
+></app-paginator>

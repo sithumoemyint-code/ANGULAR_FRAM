@@ -1,0 +1,21 @@
+.dvs-form-control {
+  label {
+    &.required {
+      &:after {
+        content: "*";
+        color: red;
+      }
+    }
+  }
+
+  .dvs-validation-errors {
+    margin: 0;
+  
+    li {
+      margin-top: 4px;
+      color: red;
+      font-size: 0.8rem;
+    }
+  }  
+}
+

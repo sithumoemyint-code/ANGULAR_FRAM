@@ -1,0 +1,8 @@
+:host * {
+  transition: all 300ms ease-in-out;
+}
+
+.selected-menu-item {
+  background-color: #235884;
+  color: white;
+}

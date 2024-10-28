@@ -1,0 +1,147 @@
+<div class="py-6 px-12">
+  <h1 class="flex justify-center font-bold text-lg">
+    {{ "CREATE_NEW_CUS" | translate }}
+  </h1>
+
+  <div class="mt-10">
+    <h2 class="font-semibold">{{ "PERSONAL_ACC" | translate }}</h2>
+
+    <form [formGroup]="createForm">
+      <div class="grid grid-cols-3 gap-5">
+        <div class="p-1">
+          <app-input
+            [label]="'FULL_NAME_L' | translate"
+            inputId="fullName"
+            formControlName="fullName"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'PHONE_NO' | translate"
+            inputId="phoneNumber"
+            formControlName="phoneNumber"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'E_MAIL' | translate"
+            inputId="email"
+            formControlName="email"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'BIRTHDAY_L' | translate"
+            selectId="birthDay"
+            formControlName="birthDay"
+            type="date"
+            [max]="today"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-select
+            [label]="'STATUS' | translate"
+            selectId="status"
+            [options]="selectStatus"
+            formControlName="status"
+          ></app-select>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'ADDRESS' | translate"
+            selectId="address"
+            formControlName="address"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-select
+            [label]="'GENDER' | translate"
+            selectId="gender"
+            [options]="genderOptions"
+            formControlName="gender"
+          ></app-select>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'ZALO_ACC' | translate"
+            selectId="zaloAccount"
+            formControlName="zaloAccount"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'FB_ACC' | translate"
+            selectId="facebookAccount"
+            formControlName="facebookAccount"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <app-input
+            [label]="'NOTE_L' | translate"
+            selectId="note"
+            formControlName="note"
+          ></app-input>
+        </div>
+        <div class="p-1">
+          <div class="autocomplete-container">
+            <div class="flex">
+              <p class="text-[#4E535D] text-sm mb-1">
+                {{ "REF_NAME" | translate }}
+              </p>
+              <span class="text-red-500 ml-1">*</span>
+            </div>
+
+            <input
+              type="text"
+              class="appearance-none border border-[#454F6380] rounded-lg w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              [formControl]="editControl"
+              (focus)="editSuggestions = true"
+              (blur)="hideSuggestions()"
+              formControlName="referenceAccountId"
+              inputId="referenceAccountId"
+              [ngClass]="{
+                'border-red-500':
+                  createForm.get('referenceAccountId')?.invalid &&
+                  (createForm.get('referenceAccountId')?.touched ||
+                    createForm.get('referenceAccountId')?.dirty)
+              }"
+            />
+            <ul *ngIf="editSuggestions && editDataSuggestions.length > 0">
+              <li
+                *ngFor="let suggestion of editDataSuggestions"
+                (mousedown)="selectSuggestion(suggestion)"
+              >
+                {{ suggestion }}
+              </li>
+            </ul>
+            <div
+              *ngIf="
+                createForm.get('referenceAccountId')?.invalid &&
+                (createForm.get('referenceAccountId')?.touched ||
+                  createForm.get('referenceAccountId')?.dirty)
+              "
+              class="text-red-600 text-[12.5px] mt-1"
+            >
+              {{ "REQUIRED_CUSTOM" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-7 flex justify-center space-x-5">
+        <button
+          (click)="close()"
+          class="px-3 py-2 bg-gray-400 text-white rounded-full"
+        >
+          {{ "CANCEL" | translate }}
+        </button>
+        <button
+          (click)="createCustomer()"
+          class="px-3 py-2 bg-yellow-500 text-white rounded-full"
+        >
+          {{ "CREATE" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.dvs-form-control {
+  label {
+    &.required {
+      &:after {
+        content: "*";
+        color: red;
+      }
+    }
+  }
+  input.pw {
+    -webkit-text-security: disc;
+  }
+}
+
+.dvs-validation-errors {
+  margin: 0;
+
+  li {
+    margin-top: 4px;
+    color: red;
+    font-size: 0.8rem;
+  }
+}
+
+.disabled-input {
+  color: #C5C5C5; 
+  border: 1px solid #C5C5C5; 
+  cursor: not-allowed;
+  caret-color: transparent;
+
+}

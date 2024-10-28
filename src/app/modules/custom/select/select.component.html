@@ -1,0 +1,28 @@
+<div class="dvs-form-control" *ngIf="control">
+  <label
+    [for]="selectId"
+    class="text-[#4E535D] text-sm"
+    *ngIf="label"
+    [class.required]="isRequired"
+  >
+    {{ label }}
+  </label>
+  <select
+    [id]="selectId"
+    [formControl]="control"
+    [ngClass]="{ 'invalid-border': control.touched && control.invalid }"
+  >
+    <option value="" disabled selected *ngIf="placeholder !== ''">
+      {{ placeholder }}
+    </option>
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <ul *ngIf="control.touched && control.invalid" class="dvs-validation-errors">
+    <li *ngFor="let error of control.errors | keyvalue">
+      {{ errorMessages[error.key] || error.key }}
+    </li>
+  </ul>
+</div>

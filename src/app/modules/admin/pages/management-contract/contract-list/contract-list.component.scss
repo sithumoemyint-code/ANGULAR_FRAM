@@ -1,0 +1,34 @@
+thead th,
+tbody td {
+    max-width: 130px;
+    gap: none;
+}
+
+.fixed {
+    position: sticky;
+    z-index: 5;
+    background-color: #E7EEF4;
+}
+
+.fixed:nth-child(1) {
+    left: 0;
+    width: 90px;
+
+}
+
+.fixed:nth-child(2) {
+    left: 90px;
+}
+
+.fixed:nth-child(3) {
+    left: 310px;
+}
+
+tbody td.fixed {
+    background-color: white;
+
+}
+
+
+
+  

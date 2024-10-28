@@ -1,0 +1,33 @@
+<div class="p-8">
+  <div class="flex">
+    <div class="w-1/12">
+      <img
+        [src]="
+          data.type === 'SUCCESS'
+            ? 'assets/icons/success-icon.png'
+            : 'assets/icons/confirm-icon.png'
+        "
+        width="50px"
+        height="50px"
+        alt=""
+      />
+    </div>
+    <div class="w-11/12 pl-2">
+      <p class="font-bold text-xl text-black">
+        <!-- {{ data.type === "SUCCESS" ? "Success" : "Error" }} -->
+        {{ ("SUCCESS" === data.type ? "SUCCESS" : "ERROR") | translate }}
+      </p>
+      <p class="text-[#454F63] font-medium text-lg pt-2">
+        {{ data.des }}
+      </p>
+    </div>
+  </div>
+  <div class="flex justify-end pt-10">
+    <button
+      (click)="close()"
+      class="px-4 py-2 text-white rounded-3xl ml-4 flex gap-2 bg-[#F8AA00]"
+    >
+      {{ "OK" | translate }}
+    </button>
+  </div>
+</div>

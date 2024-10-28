@@ -1,0 +1,571 @@
+{
+  "MANAGE_NEWS": "Manage News",
+  "NEWSB_CREATE": "Create",
+  "NEWSL_TITLE": "Title",
+  "STATUS": "Status",
+  "NO": "NO",
+  "NEWST_IMAGE": "IMAGE",
+  "NEWST_STATUS": "STATUS",
+  "NEWST_TITLE": "TITLE",
+  "NEWST_CREATED_AT": "CREATED AT",
+  "ACTION": "ACTION",
+  "CREATE_NEWST": "Create News Post",
+  "CREATE_NEWST_DETAIL": "News Detail",
+  "CREATE_NEWSL_LANGUAGE": "Choose Language",
+  "CREATE_NEWSL_TITLE": "Title",
+  "CREATE_NEWSL_DESCRIPTION": "Description",
+  "CREATE_NEWSL_CONTENT": "Content",
+  "EDIT_NEWST": "Edit News Post",
+  "UPLOAD_IMAGE": "Upload Image",
+  "ADDMORE": "Add More",
+  "CANCEL": "Cancel",
+  "CREATE": "Create",
+  "RESET": "Reset",
+  "SEARCH": "Search",
+  "CLOSE": "Close",
+  "CONFIRM": "Confirm",
+  "OK": "Ok",
+  "CONFIRM_ACTION": "Confirm Action",
+  "CONTRACT": "Manage Contract",
+  "CONTRACT_LIST": "Contract List",
+  "CONTRACT_LIST_CREATE": "Create New Contract",
+  "CONTRACT_SEARCH": "Username/ Email/ PhoneNumber",
+  "CONTRACT_CODE": "Contract Code",
+  "AMOUNT_FROM": "Amount From",
+  "AMOUNT_TO": "Amount To",
+  "FROM_DATE": "From Date (Creation Date)",
+  "TO_DATE": "To Date (Creation Date)",
+  "EXPORT": "Export",
+  "FULL_NAME": "FULL NAME",
+  "EMAIL": "EMAIL",
+  "email": "Email",
+  "phonenumber": "Phone Number",
+  "PHONE_NUMBER": "PHONE NUMBER",
+  "CONTRACT_CODET": "CONTRACT CODE",
+  "SIGNATORY": "CUSTOMER CARE",
+  "AMOUNT": "AMOUNT",
+  "CREATED_BY": "CREATED BY",
+  "START_DATE": "START DATE",
+  "END_DATE": "END DATE",
+  "NO_SEARCH_RESULT": "No search result",
+  "PACKAGE": "Package",
+  "CUSTOMER_NAME": "Customer Name",
+  "SIGNATORYF": "Customer Care",
+  "REQUIRED_CUSTOM": "This field is required",
+  "INVEST_AMOUNT": "Investment Amount",
+  "CURRENCY": "Currency",
+  "INVEST_PERIOD": "Investment Period",
+  "INTEREST_PERIOD": "Interest Payment Period",
+  "INTEREST_RATE": "Interest Rate",
+  "BONUS_RATE": "Bonus Interest Rate",
+  "PAYMENT_PERIOD": "Payment Period",
+  "INTEREST_PAY_AMOUNT": "Interest Payment Amount",
+  "NOTE": "Note",
+  "SETTLEMENT": "Settlement",
+  "SETTLEMENT_AMOUNT": "Settlement Amount",
+  "GIFT": "Gift",
+  "SETTLEMENT_DATE": "Settlement Date",
+  "REASON": "Reason",
+  "UPLOAD_FILES": "Upload Files (Images, PDF, Docx, Excel)",
+  "UPLOAD_FILESB": "Upload File",
+  "SAVE": "Save",
+  "EDIT_NEW_CONTRACT": "Edit New Contract",
+  "REQUEST_CONTRACT": "Request Contracts",
+  "ASSIGN_SALE": "ASSIGN SALE",
+  "INVEST_AMOUNTT": "INVEST AMOUNT",
+  "REQUEST_AT": "REQUESTED AT",
+  "ACCOUNT_DETAIL": "Account Detail",
+  "PERSONAL_INFO": "Personal Information",
+  "DOB": "  Date of Birth:",
+  "GENDER": "  Gender:",
+  "GENDER_ADMIN": "  Gender",
+  "PHONE_NO": "  Phone Number:",
+  "PHONE_NOL": "Phone Number",
+  "E_MAIL": "  Email:",
+  "E_MAILL": "  Email",
+  "ADDRESS": "  Address:",
+  "CONTRACT_HISTORY": " Contract History:",
+  "CREATE_CONTRACT_CI": " Create New Contract from Customer Information",
+  "CREATE_CONTRACT": "Create Contract",
+  "INVESTMENT": "Investment",
+  "REQUEST_CONTRACTS": "Request Contract",
+  "CUSTOMER": "Customer",
+  "ASSIGNSALE": "Assign Sale",
+  "TERM": "Term",
+  "CREATEDAT": "Created At",
+  "STARTAT": "Start At",
+  "ENDAT": "End At",
+  "SERVICE": "Service",
+  "CONTRACT_SIGN": "Contract Signatory",
+  "TOTAL_W_MONEY": "Total Withdraw Money",
+  "TOTAL_R_MONEY": "Total Remaining Money",
+  "TOTAL_AMOUNT": "Total Amount",
+  "INTEREST_HISTORY": "Interest Payment History",
+  "CANCEL_REQ": "Cancel Request",
+  "APPROVE": "Approve",
+  "CONTRACT_C_REQ": "Cancel Contract Request",
+  "REASON_L": "Please enter reason type",
+  "VIEW_C_DETAIL": "View Contract Detail",
+  "NO_CONTRACT": "Currently you have no contracts",
+  "PACKAGE_NAME": "Package Name",
+  "MANAGE_PACKAGE": "Manage Package",
+  "PACKAGE_NAME_T": "PACKAGE NAME",
+  "INTEREST_RATE_T": "INTEREST RATE",
+  "SERVICE_T": "SERVICE",
+  "START_DATE_T": "START DATE",
+  "END_DATE_T": "END DATE",
+  "TERM_T": "TERMS",
+  "CREATE_NEW_PACKAGE": "Create New Package",
+  "EDIT_NEW_PACKAGE": "Edit New Package",
+  "TERM_L": "Term (Months)",
+  "BONUS_RATE_L": "Bonus Rate (Optional)",
+  "PACKAGE_NAME_EN": "Package Name (English)",
+  "PACKAGE_NAME_VI": "Package Name (Vietnamese)",
+  "DESCRIPTION_NAME_EN": "Description (English)",
+  "DESCRIPTION_NAME_VI": "Description (Vietnamese)",
+  "SERVICE_EN": "Service (English)",
+  "SERVICE_VI": "Service (Vietnamese)",
+  "GIFT_EN": "Gift (English)",
+  "GIFT_VI": "Gift (Vietnamese)",
+  "PACKAGE_DETAIL": "Package Detail",
+  "START_DATE_L": "Start Date",
+  "END_DATE_L": "End Date",
+  "UPDATE": "Update",
+  "WIDTH_OPTION": "Withdraw Option",
+  "UI_MANAGEMENT": "UI Management",
+  "BANNER_MANAGEMENT": "Banner Management",
+  "BANNER_NAME": "Banner Name",
+  "PRIORITY": "PRIORITY",
+  "IMAGE": "Image",
+  "UPLOAD": "Upload",
+  "CHOOSE_IMG_TXT": "Choose an image with dimension: 1300x500 JPG/PNG",
+  "TIME": "Time",
+  "PRIORITY_L": "Priority",
+  "ACTION_L": "Action",
+  "TYPE": "Type",
+  "TYPEC": "TYPE",
+  "ROUTE_TO": "Route To",
+  "CUSTOMER_ACC": "Customer Account",
+  "NEW_CUSTOMER": "New Manual Customer",
+  "CONTENT": "Content",
+  "BIRTHDAY": "BIRTHDAY",
+  "ADDRESS_T": "ADDRESS",
+  "UPDATED_AT": "UPDATED AT",
+  "CREATE_NEW_CUS": "Create New Customer Account",
+  "PERSONAL_ACC": "Personal Account",
+  "FULL_NAME_L": "Full Name",
+  "BIRTHDAY_L": "Birthday",
+  "ZALO_ACC": "Zalo Account",
+  "FB_ACC": "Facebook Account",
+  "NOTE_L": "Note (Optional)",
+  "REF_NAME": "Reference Name",
+  "CREATED_BY_L": "Created By",
+  "UPDATE_CUS_ACC": "Update New Customer Account",
+  "MAKE_CONT": "Make Contract",
+  "VIEW_DETAIL": "View Detail",
+  "EDIT": "Edit",
+  "DELETE": "Delete",
+  "ADMIN": "Admins",
+  "ROLE": "Content",
+  "ADD_NEW": "Add New",
+  "ROLEL": "ROLE",
+  "ROLELL": "Role",
+  "PERMISSION": "PERMISSION",
+  "PERMISSION_L": "Permission",
+  "PERMISSION_ACCESS": "Permission Access",
+  "NAME": "Name",
+  "NAMEL": "NAME",
+  "MALE": "MALE",
+  "FEMALE": "FEMALE",
+  "ACC_INFO": "Account Information",
+  "ADMIN_ACC": "Admin Account",
+  "EMAILL": "Email",
+  "NOTIFICATION": "Notification",
+  "ICON": "Icon",
+  "EDIT_NOTIFICATION_ICON": "Edit Notification Icon",
+  "ROUTE_TYPE": "ROUTE TYPE",
+  "ROUTE_TYPE_S": "Route Type",
+  "START_AT": "START AT",
+  "ICON_C": "ICON",
+  "NOTI_MESSAGE_DETAIL": "Notification Message Detail",
+  "SCHEDULAR": "Schedular",
+  "PROCESS_TIME": "Process Time",
+  "CREATE_MESSAGE_TEMPLATE": "Create Message Template",
+  "MESSAGE": "Message",
+  "MESSAGEC": "MESSAGE",
+  "HOUR": "Hours",
+  "MINUTE": "Minutes",
+  "PERIOD": "Period",
+  "FILE": "Files",
+  "FILE_NAME": "File Name",
+  "UPDATE_MESSAGE_TEMPLATE": "Update Message Template",
+  "COMMON_NOTIFICATION": "Common Notification",
+  "EDIT_COMMON_NOTIFICATION": "Edit Common Notification",
+  "NOTI_DETAIL": "Notification Detail",
+  "UPDATEDAT": "Updated At",
+  "HISTORY_NOTIFICATION": "History Notification",
+  "CUS": "Customer Name or Phonenumber",
+  "phoneNumber": "PHONENUMBER",
+  "RECEIVERC": "RECEIVER",
+  "RECEIVER": "Receiver",
+  "RECEIVED_DATE": "Received Date",
+  "CONTENTC": "CONTENT",
+  "RECEIVED_TIME": "RECEIVED TIME",
+  "RECEIVED_TIMES": "Received Time",
+  "NO_DATA": "There is no data",
+  "CHANGE_IMAGE": "Change Image",
+  "Variables": "Variables",
+  "NOTI_TITLE": "Title (Vietnamese)",
+  "NOTI_CONTENT": "Content (Vietnamese)",
+
+  "CONFIRMATION_NSTATUS": {
+    "CHANGE_STATUS": "Would you like to change the status?"
+  },
+  "NOTIFICATION_NSTATUS": {
+    "STATUS_CHANGED_SUCCESS": "You changed the status successfully!",
+    "STATUS_CHANGE_FAIL": "Something went wrong!",
+    "NO_PACKAGE": "Don't have any package to create contract!"
+  },
+
+  "CONFIRMATION_NDELTE": {
+    "DELETE": "Are you sure you would like to delete this news?"
+  },
+  "NOTIFICATION_NDELETE": {
+    "DELETE_SUCCESS": "Your news deleted successfully!",
+    "DELETE_FAIL": "Something went wrong!."
+  },
+
+  "NOTIFICATION_CCREATE": {
+    "CREATE_SUCCESS": "You created new customer account successfully!",
+    "CREATE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_NCREATE": {
+    "CREATE": "Are you sure you would like to create this news post?"
+  },
+  "NOTIFICATION_NCREATE": {
+    "CREATE_SUCCESS": "Your created news successfully!",
+    "CREATE_FAIL": "Something went wrong!."
+  },
+
+  "CONFIRMATION_NEDIT": {
+    "EDIT": "Are you sure you would like to save the changes?"
+  },
+  "NOTIFICATION_NEDIT": {
+    "EDIT_SUCCESS": "Your saved the changes successfully!",
+    "EDIT_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_CDELTE": {
+    "DELETE": "Are you sure you would like to delete this contract request?"
+  },
+  "NOTIFICATION_CDELETE": {
+    "DELETE_SUCCESS": "You deleted contract request successfully!",
+    "DELETE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_CEDIT": {
+    "EDIT": "Are you sure you would like to save this contract request?",
+    "CANCEL_EDIT_REQUEST": "Are you sure you would like to cancel this contract request?"
+  },
+  "NOTIFICATION_CEDIT": {
+    "EDIT_SUCCESS": "You edited contract request successfully!",
+    "EDIT_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_CLDELTE": {
+    "DELETE": "Are you sure you would like to delete this contract?"
+  },
+  "NOTIFICATION_CLDELETE": {
+    "DELETE_SUCCESS": "You deleted contract successfully!",
+    "DELETE_FAIL": "Something went wrong!"
+  },
+  "CONFIRMATION_CLEDIT": {
+    "EDIT": "Are you sure you would like to edit this contract?"
+  },
+  "NOTIFICATION_CLEDIT": {
+    "EDIT_SUCCESS": "Your edited contract successfully!",
+    "EDIT_FAIL": "Something went wrong!"
+  },
+  "CONFIRMATION_CLAPPROVE": {
+    "APPROVE": "Are you sure you would like to approve this contract?"
+  },
+  "NOTIFICATION_CLAPPROVE": {
+    "APPROVE_SUCCESS": "You approved this contract successfully!",
+    "APPROVE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_CLCANCEL": {
+    "CANCEL": "Are you sure you would like to cancel this contract?"
+  },
+  "NOTIFICATION_CLCANCEL": {
+    "CANCEL_SUCCESS": "You cancelled this contract successfully!",
+    "CANCEL_FAIL": "Something went wrong with cancel for this contract!"
+  },
+
+  "NOTIFICATION_CLEXPORT": {
+    "EXPORT_SUCCESS": "You downloaded file successfully!",
+    "EXPORT_FAIL": "Something went wrong with download file!",
+    "EXPORT_ERROR": "Something went wrong!"
+  },
+
+  "CONFIRMATION_BDELTE": {
+    "DELETE": "Are you sure you would like to delete this banner?"
+  },
+  "NOTIFICATION_BDELETE": {
+    "DELETE_SUCCESS": "Your deleted banner successfully!",
+    "DELETE_FAIL": "Something went wrong with the delete banner!"
+  },
+
+  "CONFIRMATION_BSTATUS": {
+    "STATUS": "Are you sure you would like to change status?"
+  },
+  "NOTIFICATION_BSTATUS": {
+    "STATUS_SUCCESS": "Your status changed successfully!",
+    "STATUS_FAIL": "Something went wrong with change status!"
+  },
+
+  "CONFIRMATION_BCREATE": {
+    "CREATE": "Are you sure you would like to create new banner?"
+  },
+  "NOTIFICATION_BCREATE": {
+    "CREATE_SUCCESS": "You created new banner successfully!",
+    "CREATE_FAIL": "Something went wrong with the create banner!",
+    "TIME_INVALID": "The start date must be earlier than the end date."
+  },
+
+  "CONFIRMATION_BUPDATE": {
+    "UPDATE": "Would you like to save changes?"
+  },
+  "NOTIFICATION_BUPDATE": {
+    "UPDATE_SUCCESS": "You saved the changes successfully!",
+    "UPDATE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_PUPDATE": {
+    "UPDATE": "Are you sure you would like to save changes?"
+  },
+  "NOTIFICATION_PUPDATE": {
+    "UPDATE_SUCCESS": "You updated package successfully!",
+    "UPDATE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_PCREATE": {
+    "CREATE": "Are you sure you would like to create a new package?"
+  },
+  "NOTIFICATION_PCREATE": {
+    "CREATE_SUCCESS": "You created package successfully!",
+    "CREATE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_PDELTE": {
+    "DELETE": "Are you sure you would like to delete this package?"
+  },
+  "NOTIFICATION_PDELETE": {
+    "DELETE_SUCCESS": "Your deleted package successfully!",
+    "DELETE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_PSTATUS": {
+    "STATUS": "Are you sure you would like to change status?"
+  },
+  "NOTIFICATION_PSTATUS": {
+    "STATUS_SUCCESS": "You changed package status successfully!",
+    "STATUS_FAIL": "Something went wrong with change status!"
+  },
+
+  "CONFIRMATION_ACCDELTE": {
+    "DELETE": "Are you sure you would like to delete this account?"
+  },
+  "NOTIFICATION_ACCDELETE": {
+    "DELETE_SUCCESS": "You deleted account successfully!",
+    "DELETE_FAIL": "Something went wrong!"
+  },
+
+  "CONFIRMATION_ACCSUPDATE": {
+    "UPDATE": "Are you sure you would like to save changes?"
+  },
+  "NOTIFICATION_ACCSUPDATE": {
+    "UPDATE_SUCCESS": "You updated the customer account successfully!",
+    "UPDATE_FAIL": "Something went wrong with the update customer account!"
+  },
+
+  "CONFIRMATION_ACCSTATUS": {
+    "STATUS_LOCK": "Are you sure you would like to Lock this account?",
+    "STATUS_ACTIVE": "Are you sure you would like to Active this account?"
+  },
+  "NOTIFICATION_ACCSTATUS": {
+    "STATUS_SUCCESS": "You changed status successfully!"
+  },
+
+  "CONFIRMATION_ACCCREATE": {
+    "CREATE": "Your password is your {phoneNumber}. Do you want to create a new account?",
+    "CREATE_T": "System will sent password to your email. Do you want to create new account?"
+  },
+  "NOTIFICATION_ACCCREATE": {
+    "CREATE_SUCCESS": "You created new customer account successfully!",
+    "CREATE_FAIL": "Something went wrong with the create banner!"
+  },
+
+  "NOTIFICATION_ICON": {
+    "UPDATE_SUCCESS": "You updated the icon successfully!",
+    "UPDATE_FAIL": "Something went wrong with the update icon!"
+  },
+  "CONFIRMATION_ICON": {
+    "UPDATE": "Would you like to save change?"
+  },
+
+  "CONFIRMATION_CLCREATE": {
+    "CREATE": "Are you sure you would like to create this contract?"
+  },
+  "NOTIFICATION_CLCREATE": {
+    "CREATE_SUCCESS": "You created contract successfully!",
+    "CREATE_FAIL": "Something went wrong!"
+  },
+  "NOTIFICATION_NOTI_DELETE": {
+    "CONFIRM_DELETE": "Are you sure you would like to delete this notification?",
+    "SUCCESS_DELETE": "You deleted this notification successfully!",
+    "RUNNING_ERROR": "Notification is running! Cannot cancel",
+    "FAIL": "Something went wrong!"
+  },
+  "NOTIFICATION_NOTI_UPDATE": {
+    "CONFIRM_UPDATE": "Are you sure you would like to save the changes?",
+    "SUCCESS_UPDATE": "You updated notification successfully!",
+    "FAIL": "Something went wrong!"
+  },
+  "NOTIFICATION_NOTI_CREATE": {
+    "CONFIRM_CREATE": "Are you sure you would like to create new message template?",
+    "SUCCESS_CREATE": "You have created notification successfully!",
+    "FAIL": "Something went wrong!"
+  },
+  "NOTI_EXCEL": {
+    "EXCEL_FILE_ALLOW": "Only Excel files are allowed!"
+  },
+  "CONFIRM_SWITCH_COMMOM": {
+    "CONFIRM": "Are you sure you would like to change the status?"
+  },
+  "NOTIFICATION_COMMON": {
+    "CONFIRM": "Are you sure you would like to edit common notification?",
+    "SUCCESS": "You updated common notification successfully!",
+    "FAIL": "Something went wrong!"
+  },
+
+  "SIDE_NAV_BAR": {
+    "ADMINS": "Admins",
+    "ROLE": "Role",
+    "ADMIN_ACCOUNT": "Admin account",
+    "UI_MANAGEMENT": "UI Management",
+    "BANNER_MANAGEMENT": "Banner Management",
+    "NOTIFICATION": "Notification",
+    "ICON": "Icon",
+    "COMMON_NOTIFICATION": "Common Notification",
+    "HISTORY_NOTIFICATION": "History Notification",
+    "MANAGEMENT_CUSTOMER_ACCOUNT": "Management Customer Account",
+    "MANAGEMENT_CONTRACT": "Management Contract",
+    "REQUEST_CONTRACTS": "Request Contracts",
+    "CONTRACT_LIST": "Contract List",
+    "MANAGEMENT_PACKAGE": "Management Package",
+    "MANAGEMENT_NEWS": "Management News",
+    "NEWS": "News",
+    "FEEDBACKS_SUGGESTIONS": "Feedbacks & Suggestions",
+    "CONTACT_INFORMATION": "Contact Information",
+    "USER_FEEDBACKS": "User Feedbacks"
+  },
+  "CREATE_ADMINISTRATOR_ACCOUNT": "Create Administrator Account",
+  "UPDATE_ADMINISTRATOR_ACCOUNT": "Update Role",
+  "FEEDBACKS_SUGGESTIONS": "Feedbacks Suggestions",
+  "CONTACT_INFORMATION": "Contact Information",
+  "ROUTE": "ROUTE",
+  "CREATE_NEW_ICON": "Create New Contact Information",
+  "THIS_FILED_IS_REQUIRED": "This field is required",
+  "FEEDBACK_AND_SUGGESTIONS": "Feedbacks and Suggestions",
+  "USER_FEEDBACKS": "User Feedbacks",
+  "CREATED_DATE": "Created Date",
+  "DOWNLOAD": "Download",
+  "REQUEST_EMAIL": "REQUEST EMAIL",
+  "FEEDBACK_DETAIL": "Feedback Detail",
+  "PROCESS": "Process",
+  "ADD_NOTE": "Add Note",
+
+  "ERROR_MESSAGES": {
+    "REQUIRED": "This field is required",
+    "PATTERN": "Only numbers are allowed"
+  },
+  "GIFTLIFE_CONTENT": " GIFTLIFE CONTENT MANAGEMENT SYSTEM",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Login",
+  "LOGIN_REQUIRE_FIELD": "This field is required. Please provide a valid username.",
+  "BTN_LOGIN": " Log in",
+
+  "DETAIL_NEWS_POST": "Detail News Post",
+  "OLD_PASSWORD": "Old Password",
+  "NEW_PASSWORD": "New Password",
+  "CONFIRM_NEW_PASSWORD": "Confirm New Password",
+  "CHANGE_PASSWORD": "Change Password",
+  "NO_FILES": "No files have been uploaded.",
+  "ALL": "All",
+  "ENTER_USERNAME": "Enter username",
+  "ENTER_YOUR_PASSWORD": "Enter your password",
+  "NO_Search": "No search result found!",
+  "no_image": "No Image",
+  "COMMONE": {
+    "ARE_YOU": "Are you sure you would like to",
+
+    "EDIT": "edit",
+    "CREATE": "create",
+    "ADMINISTRATOR": {
+      "THIS_ADMINISTRATOR": "this administrator role?",
+      "THIS_ACCOUNT": "this administrator account?",
+      "THIS_CONTACT": "this contact information?"
+    },
+    "YOU_CREATED": "You created the administrator role",
+    "SUCCESSFULLY": "successfully!",
+    "DELETE_ROLE": "Are you sure you would like to delete this role?",
+    "DELETE_ROLE_SUCCESSFULLY": "You deleted the role successfully!",
+    "YOU_CREATED_ACCOUNT": "You created the administrator account",
+    "ROLE_DROPDOWN": "Something went wrong with role dropdown!",
+    "STATUS_DROPDOWN": "Something went wrong in status dropdown!",
+    "STATUS_CHANGES": "Something went wrong with status change!",
+    "SOMETHING_WRONG": "Something went wrong!",
+    "DELETE_ACCOUNT": "You deleted the account successfully!",
+    "STATUS_SUCCESSFULLY": "You change the STATUS successfully!",
+    "DELETE_CONTACT": "Are you sure you would like to delete this contact information?",
+    "SURE_DELETE_CONTACT": "Are you sure you would like to delete this contact information?",
+    "DELETE_CONTACT_SUCCESS": "You deleted the contact information successfully!",
+    "SURE_CREATE_CONTACT": "Are you sure you would like to create this contact information?",
+    "UPDATE_IMAGE_FAIL": "Something went wrong during upload image!",
+    "CREATED_CONTACT": "You created the contact information",
+    "SURE_FEEDBACK": "Are you sure you would like to proceed this feedback?",
+    "FEEDBACK_SUCCESSFULLY": "You created the feedback successfully!"
+  },
+
+  "DOWNLOAD_EXCEL": "Download Excel",
+  "DOWNLOAD_EXCEL_FILE": "Download Excel File",
+  "Uploaded_Files": "Uploaded Files",
+  "ROUTEE": "ROUTE",
+  "Detail_fb": "ROUTE",
+  "SUCCESS": "Success",
+  "ERROR": "Error",
+  "LOGOUT": "Logout",
+  "CONFIRM_CREATE_PASSWORD": "Are you sure you would like to create new password?",
+  "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
+  "CREATE_PASS": "Create",
+  "CONFIRM_ACTION_PASS": "Confirm Action",
+  "ERROR_PASS": "Error",
+  "STATUS_COMPLETE": "Complete",
+  "STATUS_IN_PROGRESS": "In Progress",
+  "STATUS_PENDING": "Pending",
+  "STATUS_ACTIVE": "Active",
+  "STATUS_END": "End",
+  "STATUS_CANCEL": "Cancel",
+  "STATUS_ALL": "All",
+  "STATUS_INACTIVE": "Inactive",
+  "STATUS_PAID": "Paid",
+  "CHOOSE_IMG_TXT2": "Choose an image with dimension: 200x350 JPG/PNG",
+  "STATUS_PREPARING_DATA": "Preparing Data",
+  "STATUS_RUNNING": "Running",
+  "VIET": "Vietnamese",
+  "ENG": "English",
+  "DOWNLOAD_EXCEL_SUCCESS": "You download excel file successfully."
+}

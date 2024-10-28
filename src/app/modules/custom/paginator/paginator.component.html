@@ -1,0 +1,39 @@
+<div class="flex flex-row justify-center border-t bg-gray-50 space-x-4 py-2">
+  <button
+    mat-icon-button
+    (click)="changePage(0)"
+    [disabled]="offset <= 0"
+    [class.disabled]="offset <= 0"
+    class="pt-1"
+  >
+    <mat-icon>keyboard_double_arrow_left</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="prevPage()"
+    [disabled]="offset <= 0"
+    [class.disabled]="offset <= 0"
+    class="pt-1"
+  >
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <div class="p-2">Page {{ currentPage }} of {{ totalPage }}</div>
+  <button
+    mat-icon-button
+    (click)="nextPage()"
+    [disabled]="offset >= totalOffset"
+    [class.disabled]="offset >= totalOffset"
+    class="pt-1"
+  >
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="changePage(totalOffset)"
+    [disabled]="offset >= totalOffset"
+    [class.disabled]="offset >= totalOffset"
+    class="pt-1"
+  >
+    <mat-icon>keyboard_double_arrow_right</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,82 @@
+<form class="m-12" [formGroup]="createRole">
+  <h1 class="flex justify-center pb-8 text-[20px] font-bold">
+    {{ headerTitle }}
+  </h1>
+  <div class="grid grid-cols-2 gap-4 py-3">
+    <div>
+      <app-input
+        [label]="'ROLE' | translate"
+        inputId="roleName"
+        formControlName="roleName"
+      ></app-input>
+    </div>
+    <div>
+      <ng-container *ngIf="menuItem().length; else emptyResult">
+        <app-tree-view
+          [menuItem]="menuItem()"
+          [accessRole]="accessRole"
+          (accessRoleChange)="onAccessRoleChange($event)"
+          [editArray]="editArray"
+        ></app-tree-view>
+      </ng-container>
+      <ng-template #emptyResult>
+        <app-loading [condition]="'input'"></app-loading>
+      </ng-template>
+    </div>
+  </div>
+  <div class="mt-4 mb-4">
+    <p class="text-[14px] font-bold text-[#6C6C6C]">
+      {{ "PERMISSION_ACCESS" | translate }}
+    </p>
+  </div>
+  <div class="flex">
+    <div class="w-10/12">
+      <div class="flex gap-2 flex-wrap">
+        <div *ngIf="accessRole.length <= 0; else elseAccess">
+          <div
+            class="border border-[#235884] w-auto p-1 rounded-full flex items-center"
+          >
+            <p class="text-[#235884] text-sm px-2">
+              {{ "ALL" | translate }}
+            </p>
+          </div>
+        </div>
+        <ng-template #elseAccess>
+          <div
+            *ngFor="let role of accessRole"
+            class="border border-[#235884] p-1 w-auto rounded-full flex items-center justify-center gap-2"
+          >
+            <p class="text-[#235884] text-[14px] mx-1">{{ role }}</p>
+            <mat-icon
+              style="
+                font-size: 20px;
+                color: #235884;
+                padding-top: 2px;
+                cursor: pointer;
+              "
+              (click)="removeRole(role)"
+              >cancel</mat-icon
+            >
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="w-2/12"></div>
+  </div>
+  <div class="flex justify-center gap-6 pt-5">
+    <button
+      (click)="close()"
+      class="px-4 py-2 text-white bg-[#C4C4C4] rounded-full text-[16px]"
+    >
+      {{ "CLOSE" | translate }}
+    </button>
+    <button
+      (click)="createAdminRole()"
+      class="text-white px-4 py-2 rounded-full text-[16px]"
+      [ngClass]="menuItem().length ? 'bg-[#F8AA00]' : 'bg-[#999]'"
+      [disabled]="!menuItem().length"
+    >
+      {{ btnText }}
+    </button>
+  </div>
+</form>

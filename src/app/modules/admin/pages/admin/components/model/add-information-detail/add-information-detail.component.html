@@ -1,0 +1,81 @@
+<div class="p-8 mx-6">
+  <p class="font-bold text-[20px]">{{ "ACC_INFO" | translate }}</p>
+
+  <div class="py-8">
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-[16px] font-bold">
+        {{ "NAME" | translate }}
+      </p>
+      <p class="text-[16px] font-medium text-black">{{ data.fullName }}</p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-[16px] font-bold">
+        {{ "E_MAILL" | translate }}
+      </p>
+      <p class="text-[16px] font-medium text-black">{{ data.email }}</p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-[16px] font-bold">
+        {{ "PHONE_NOL" | translate }}
+      </p>
+      <p class="text-[16px] font-medium text-black">
+        {{ changeFrontNumber(data.phoneNumber) }}
+      </p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-[16px] font-bold">
+        {{ "CREATED_BY_L" | translate }}
+      </p>
+      <p class="text-[16px] font-medium text-black">
+        {{ changeFrontNumber(data.createdBy) }}
+      </p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-[16px] font-bold">
+        {{ "STATUS" | translate }}
+      </p>
+      <div class="flex">
+        <span
+          class="text-xs text-white rounded-xl py-1"
+          [ngClass]="
+            data.status === 'ACTIVE'
+              ? 'bg-green-500  px-4  '
+              : 'bg-[#A0A2A9]  px-2  '
+          "
+        >
+          <ng-container *ngIf="data.status === 'ACTIVE'; else elseStatus">
+            ACTIVE
+          </ng-container>
+          <ng-template #elseStatus> INACTIVE </ng-template>
+        </span>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-base font-bold">
+        {{ "GENDER_ADMIN" | translate }}
+      </p>
+      <p class="text-base font-medium text-black">{{ data.gender }}</p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-base font-bold">
+        {{ "ROLELL" | translate }}
+      </p>
+      <p class="text-base font-medium text-black">{{ data.role }}</p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-3">
+      <p class="text-[#4E535D] text-base font-bold">
+        {{ "CREATEDAT" | translate }}
+      </p>
+      <p class="text-base font-medium text-black">{{ data.createdAt }}</p>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button
+      (click)="close()"
+      class="px-4 py-2 text-white bg-[#F8AA00] rounded-full"
+    >
+      {{ "CLOSE" | translate }}
+    </button>
+  </div>
+</div>

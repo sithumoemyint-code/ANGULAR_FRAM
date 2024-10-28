@@ -1,0 +1,114 @@
+<!-- <mat-toolbar class="mat-elevation-z3 flex justify-between ">
+  <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="flex items-center">
+    <button mat-icon-button [matMenuTriggerFor]="logout">
+      <span class="material-icons">account_circle</span>
+    </button>
+    <div>
+      <span class="text-base">{{ username }}</span>
+    </div>
+  </div>
+
+  <mat-menu #logout="matMenu">
+    <button mat-menu-item (click)="logOut()">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        "
+      >
+        <span class="material-icons" style="margin-right: 8px">logout</span>
+        Logout
+      </div>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-custom-sidenav [collapsed]="collapsed()" />
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    opened
+    mode="side"
+    class="sidenav"
+    [style.width]="sidenavWidth()"
+  >
+    <app-custom-sidenav [collapsed]="collapsed()" />
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <mat-toolbar class="mat-elevation-z3 flex justify-between toolbar">
+      <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon style="color: #235884">menu</mat-icon>
+      </button>
+
+      <div class="flex items-center">
+        <div class="flex justify-end items-center switch">
+          <input
+            id="language-toggle"
+            class="check-toggle check-toggle-round-flat"
+            type="checkbox"
+            [checked]="currentLang === 'en'"
+            (change)="switchLanguage()"
+          />
+          <label for="language-toggle"></label>
+          <span class="on">VI</span>
+          <span class="off">EN</span>
+        </div>
+
+        <button mat-icon-button [matMenuTriggerFor]="logout">
+          <span class="material-icons" style="color: #376e9a"
+            >account_circle</span
+          >
+        </button>
+        <div>
+          <span class="text-base">{{ username }}</span>
+        </div>
+      </div>
+
+      <mat-menu #logout="matMenu">
+        <button mat-menu-item (click)="changePassword()">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+            "
+          >
+            <span class="material-icons" style="margin-right: 8px">edit</span>
+            {{ "CHANGE_PASSWORD" | translate }}
+          </div>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+            "
+          >
+            <span class="material-icons" style="margin-right: 8px">logout</span>
+            {{ "LOGOUT" | translate }}
+          </div>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,28 @@
+.switch {
+    width: 40px;
+    height: 20px;
+    background-color: #A0A2A9;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .switch.checked {
+    background-color: #22c55e;
+  }
+  
+  .toggle {
+    width: 17px;
+    height: 17px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s ease;
+  }
+  
+  .switch.checked .toggle {
+    left: 21px;
+  }

@@ -1,0 +1,99 @@
+.background-container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  background-size: cover;
+  background-position: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+
+  > span {
+    position: absolute;
+    top: 6px;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+    width: 50%;
+    text-align: center;
+
+    &.on {
+      left: 0;
+      padding-left: 2px;
+      color: #235884;
+    }
+
+    &.off {
+      right: 0;
+      padding-right: 2px;
+      color: #F7AA00;
+    }
+  }
+}
+
+input.check-toggle-round-flat {
+  & + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 2px;
+    width: 70px;
+    height: 30px;
+    background-color: #235884;
+    border-radius: 70px;
+
+    &:before,
+    &:after {
+      display: block;
+      position: absolute;
+      content: "";
+    }
+
+    &:before {
+      top: 1.5px;
+      left: 1.5px;
+      bottom: 1px;
+      right: 1px;
+      background-color: whitesmoke;
+      border-radius: 60px;
+    }
+
+    &:after {
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      width: 30px;
+      background-color:  #c1dbf1;
+      border-radius: 52px;
+      transition: margin 0.2s;
+    }
+  }
+
+  &:checked {
+    & ~ .off {
+      color: #235884;
+    }
+
+    & ~ .on {
+      color: #F7AA00;
+    }
+
+    & + label {
+      &:after {
+        margin-left: 32px;
+      }
+    }
+  }
+
+  &.check-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+}

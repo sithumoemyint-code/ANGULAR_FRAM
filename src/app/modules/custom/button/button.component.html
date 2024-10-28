@@ -1,0 +1,6 @@
+<button [ngClass]="customClass" class="mr-10">
+  <span *ngIf="hasIcon" class="material-icons mr-2"
+    ><ng-content select="[icon]"></ng-content
+  ></span>
+  <ng-content class="flex items-center"></ng-content>
+</button>

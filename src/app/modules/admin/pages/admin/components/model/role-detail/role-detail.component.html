@@ -1,0 +1,33 @@
+<div class="py-6 px-8">
+  <p class="font-bold text-[20px]">{{ "ROLE" | translate }}</p>
+
+  <div class="py-8">
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] pb-5">
+      <p class="text-[#4E535D] text-base font-bold">{{ "ROLE" | translate }}</p>
+      <p class="text-base font-medium text-black">{{ data.name }}</p>
+    </div>
+    <div class="grid grid-cols-2 border-b-[1px] border-[#E2E2E2] py-5">
+      <p class="text-[#4E535D] text-base font-bold">
+        {{ "PERMISSION" | translate }}
+      </p>
+      <p class="text-base font-medium text-black">
+        <!-- {{ data.permissions.join(", ") }} -->
+        <ng-container
+          *ngFor="let permission of data.permissions; let last = last"
+        >
+          {{ permission[currentLang] || permission.vi
+          }}<span *ngIf="!last">, </span>
+        </ng-container>
+      </p>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button
+      (click)="close()"
+      class="px-4 py-2 text-white bg-[#F8AA00] rounded-3xl text-[16px]"
+    >
+      {{ "CLOSE" | translate }}
+    </button>
+  </div>
+</div>

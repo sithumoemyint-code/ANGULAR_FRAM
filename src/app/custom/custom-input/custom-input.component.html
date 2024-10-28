@@ -1,0 +1,29 @@
+<div class="mb-3">
+  <label class="block text-gray-500 text-sm font-bold mb-1" [for]="label">
+    {{ label }}
+  </label>
+  <input
+    [id]="label"
+    [attr.type]="hideTypeAttribute ? null : type"
+    (input)="onChange($any($event.target).value)"
+    (blur)="onTouched(); blur.emit()"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    class="appearance-none border border-[#454F6380] rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    [class.border-red-600]="
+      controlDir.control?.touched && controlDir.control?.invalid
+    "
+    [ngClass]="{ pw: hideTypeAttribute }"
+    autocomplete="off"
+  />
+  <div
+    class="mt-1 text-sm"
+    [ngClass]="{
+      'text-red-500':
+        controlDir.control?.touched && controlDir.control?.invalid,
+      hidden: !(controlDir.control?.touched && controlDir.control?.invalid)
+    }"
+  >
+    {{ errorMessage }}
+  </div>
+</div>

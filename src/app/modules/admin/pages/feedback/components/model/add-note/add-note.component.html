@@ -1,0 +1,27 @@
+<div class="p-4">
+  <p class="font-bold text-xl">{{'ADD_NOTE' | translate}}</p>
+
+  <form class="py-8" [formGroup]="noteForm" >
+    <app-text-area
+      [textAreaId]="'noteId'"
+      [placeholder]="'Add note... '"
+      formControlName="note"
+    ></app-text-area>
+
+    <div class="flex justify-end pt-8">
+      <button
+        (click)="close()"
+        class="px-3 py-3 text-white bg-[#C4C4C4] rounded-3xl"
+      >
+        {{'CLOSE' | translate}}
+      </button>
+      <button
+        (click)="create()"
+        class="px-3 py-3 text-white  rounded-3xl ml-4 flex gap-2 bg-[#F8AA00]"
+      >
+        {{'CREATE' | translate}}
+      </button>
+    </div>
+  </form>
+  
+</div>

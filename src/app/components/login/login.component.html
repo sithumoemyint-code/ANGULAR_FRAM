@@ -1,0 +1,73 @@
+<div class="background-container">
+  <div class="pt-5 flex justify-end px-10">
+    <div></div>
+    <div class="flex justify-end items-center switch">
+      <input
+        id="language-toggle"
+        class="check-toggle check-toggle-round-flat"
+        type="checkbox"
+        [checked]="currentLang === 'en'"
+        (change)="switchLanguage()"
+      />
+      <label for="language-toggle"></label>
+      <span class="on">VI</span>
+      <span class="off">EN</span>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center flex-col">
+    <img
+      src="/assets/image/Vector.png"
+      width="6%"
+      height="6%"
+      alt=""
+      class="mt-10"
+    />
+    <p class="text-white text-2xl font-bold mt-8 mb-5">
+      {{ "GIFTLIFE_CONTENT" | translate }}
+    </p>
+
+    <div class="w-[550px] rounded-2xl bg-white mt-2 px-28">
+      <p class="pt-8 text-xl font-bold text-center">
+        {{ "LOGIN" | translate }}
+      </p>
+      <p
+        *ngIf="showErrorMessage !== ''"
+        class="text-[#E40105] text-sm text-center py-4"
+      >
+        {{ showErrorMessage }}
+      </p>
+      <form [formGroup]="form" (submit)="onSubmit()" novalidate class="mb-8">
+        <app-custom-input
+          formControlName="username"
+          [placeholder]="'ENTER_USERNAME' | translate"
+          type="text"
+          [label]="'USERNAME' | translate"
+          [errorMessage]="'LOGIN_REQUIRE_FIELD' | translate"
+        ></app-custom-input>
+
+        <app-custom-input
+          formControlName="password"
+          [placeholder]="'ENTER_YOUR_PASSWORD' | translate"
+          type="password"
+          [hideTypeAttribute]="true"
+          [label]="'PASSWORD' | translate"
+          [errorMessage]="'ERROR_MESSAGES.REQUIRED' | translate"
+        ></app-custom-input>
+        <button
+          type="submit"
+          class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
+          [ngClass]="
+            !isFormValid() || loading ? 'bg-[#999]' : 'bg-[#F8AA00] text-white'
+          "
+          [disabled]="!isFormValid() || loading"
+        >
+          <span *ngIf="loading"
+            ><mat-spinner [diameter]="20"></mat-spinner
+          ></span>
+          {{ "BTN_LOGIN" | translate }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

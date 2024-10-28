@@ -1,0 +1,571 @@
+{
+  "MANAGE_NEWS": "Quản lý Tin tức",
+  "NEWSB_CREATE": "Tạo mới",
+  "NEWSL_TITLE": "Tiêu đề",
+  "STATUS": "Trạng thái",
+  "NO": "STT",
+  "NEWST_IMAGE": "Hình ảnh",
+  "NEWST_STATUS": "Trạng thái",
+  "NEWST_TITLE": "Tiêu đề",
+  "NEWST_CREATED_AT": "Ngày tạo",
+  "ACTION": "Hành động",
+  "CREATE_NEWST": "Tạo bài viết",
+  "CREATE_NEWST_DETAIL": "Chi tiết",
+  "CREATE_NEWSL_LANGUAGE": "Chọn Ngôn ngữ",
+  "CREATE_NEWSL_TITLE": "Tiêu đề",
+  "CREATE_NEWSL_DESCRIPTION": "Mô tả",
+  "CREATE_NEWSL_CONTENT": "Nội dung",
+  "EDIT_NEWST": "Chỉnh sửa bài viết",
+  "UPLOAD_IMAGE": "Tải lên hình ảnh",
+  "ADDMORE": "Thêm nữa",
+  "CANCEL": "Hủy",
+  "CREATE": "Tạo mới",
+  "RESET": "Đặt lại",
+  "SEARCH": "Tìm kiếm",
+  "CLOSE": "Đóng",
+  "CONFIRM": "Xác nhận",
+  "OK": "Đồng ý",
+  "CONFIRM_ACTION": "Xác nhận Hành động",
+  "CONTRACT": "Quản lý Hợp đồng",
+  "CONTRACT_LIST": "Danh sách Hợp đồng",
+  "CONTRACT_LIST_CREATE": "Tạo Hợp đồng Mới",
+  "CONTRACT_SEARCH": "Tên người dùng/ Email/ Số điện thoại",
+  "CONTRACT_CODE": "Mã Hợp đồng",
+  "AMOUNT_FROM": "Số tiền Từ",
+  "AMOUNT_TO": "Số tiền Đến",
+  "FROM_DATE": "Từ ngày (Ngày tạo)",
+  "TO_DATE": "Đến ngày (Ngày tạo)",
+  "EXPORT": "Xuất",
+  "FULL_NAME": "Họ và Tên",
+  "EMAIL": "EMAIL",
+  "email": "Email",
+  "phonenumber": "Số điện thoại",
+  "PHONE_NUMBER": "Số điện thoại",
+  "CONTRACT_CODET": "Mã Hợp đồng",
+  "SIGNATORY": "Chăm Sóc Khách Hàng",
+  "AMOUNT": "Số tiền",
+  "CREATED_BY": "Người tạo",
+  "START_DATE": "Ngày bắt đầu",
+  "END_DATE": "Ngày kết thúc",
+  "NO_SEARCH_RESULT": "Không có kết quả tìm kiếm",
+  "PACKAGE": "Gói",
+  "CUSTOMER_NAME": "Tên khách hàng",
+  "SIGNATORYF": "Chăm Sóc Khách Hàng",
+  "REQUIRED_CUSTOM": "Trường này là bắt buộc",
+  "INVEST_AMOUNT": "Số tiền đầu tư",
+  "CURRENCY": "Loại tiền tệ",
+  "INVEST_PERIOD": "Thời gian đầu tư",
+  "INTEREST_PERIOD": "Chu kỳ trả lãi",
+  "INTEREST_RATE": "Lãi suất",
+  "BONUS_RATE": "Lãi suất thưởng",
+  "PAYMENT_PERIOD": "Chu kỳ thanh toán",
+  "INTEREST_PAY_AMOUNT": "Số tiền lãi phải trả",
+  "NOTE": "Ghi chú",
+  "SETTLEMENT": "Thanh toán",
+  "SETTLEMENT_AMOUNT": "Số tiền thanh toán",
+  "GIFT": "Quà tặng",
+  "SETTLEMENT_DATE": "Ngày thanh toán",
+  "REASON": "Lý do",
+  "UPLOAD_FILES": "Tải lên Tệp (Hình ảnh, PDF, Docx, Excel)",
+  "UPLOAD_FILESB": "Tải lên Tệp",
+  "SAVE": "Lưu",
+  "EDIT_NEW_CONTRACT": "Chỉnh sửa Hợp đồng Mới",
+  "REQUEST_CONTRACT": "Yêu cầu Hợp đồng",
+  "ASSIGN_SALE": "Phân công Bán hàng",
+  "INVEST_AMOUNTT": "Số tiền đầu tư",
+  "REQUEST_AT": "Yêu cầu vào",
+  "ACCOUNT_DETAIL": "Chi tiết Tài khoản",
+  "PERSONAL_INFO": "Thông tin Cá nhân",
+  "DOB": "Ngày sinh:",
+  "GENDER": "Giới tính:",
+  "GENDER_ADMIN": "Giới tính",
+  "PHONE_NO": "Số điện thoại:",
+  "PHONE_NOL": "Số điện thoại",
+  "E_MAIL": "Email:",
+  "E_MAILL": "Email",
+  "ADDRESS": "Địa chỉ:",
+  "CONTRACT_HISTORY": "Lịch sử Hợp đồng:",
+  "CREATE_CONTRACT_CI": "Tạo Hợp đồng Mới từ Thông tin Khách hàng",
+  "CREATE_CONTRACT": "Tạo Hợp đồng",
+  "INVESTMENT": "Đầu tư",
+  "REQUEST_CONTRACTS": "Yêu cầu Hợp đồng",
+  "CUSTOMER": "Khách hàng",
+  "ASSIGNSALE": "Phân công Bán hàng",
+  "TERM": "Thời hạn",
+  "CREATEDAT": "Tạo vào",
+  "STARTAT": "Bắt đầu vào",
+  "ENDAT": "Kết thúc vào",
+  "SERVICE": "Dịch vụ",
+  "CONTRACT_SIGN": "Người ký Hợp đồng",
+  "TOTAL_W_MONEY": "Tổng số tiền rút",
+  "TOTAL_R_MONEY": "Tổng số tiền còn lại",
+  "TOTAL_AMOUNT": "Tổng số tiền",
+  "INTEREST_HISTORY": "Lịch sử Trả lãi",
+  "CANCEL_REQ": "Hủy yêu cầu",
+  "APPROVE": "Phê duyệt",
+  "CONTRACT_C_REQ": "Yêu cầu Hủy Hợp đồng",
+  "REASON_L": "Vui lòng nhập lý do",
+  "VIEW_C_DETAIL": "Xem Chi tiết Hợp đồng",
+  "NO_CONTRACT": "Hiện tại bạn không có hợp đồng nào",
+  "PACKAGE_NAME": "Tên Gói",
+  "MANAGE_PACKAGE": "Quản lý Gói",
+  "PACKAGE_NAME_T": "TÊN GÓI",
+  "INTEREST_RATE_T": "LÃI SUẤT",
+  "SERVICE_T": "DỊCH VỤ",
+  "START_DATE_T": "NGÀY BẮT ĐẦU",
+  "END_DATE_T": "NGÀY KẾT THÚC",
+  "TERM_T": "THỜI HẠN",
+  "CREATE_NEW_PACKAGE": "Tạo Gói Mới",
+  "EDIT_NEW_PACKAGE": "Chỉnh sửa Gói Mới",
+  "TERM_L": "Thời hạn (Tháng)",
+  "BONUS_RATE_L": "Lãi suất thưởng (Tùy chọn)",
+  "PACKAGE_NAME_EN": "Tên Gói (Tiếng Anh)",
+  "PACKAGE_NAME_VI": "Tên Gói (Tiếng Việt)",
+  "DESCRIPTION_NAME_EN": "Mô tả (Tiếng Anh)",
+  "DESCRIPTION_NAME_VI": "Mô tả (Tiếng Việt)",
+  "SERVICE_EN": "Dịch vụ (Tiếng Anh)",
+  "SERVICE_VI": "Dịch vụ (Tiếng Việt)",
+  "GIFT_EN": "Quà tặng (Tiếng Anh)",
+  "GIFT_VI": "Quà tặng (Tiếng Việt)",
+  "PACKAGE_DETAIL": "Chi tiết Gói",
+  "START_DATE_L": "Ngày Bắt đầu",
+  "END_DATE_L": "Ngày Kết thúc",
+  "UPDATE": "Cập nhật",
+  "WIDTH_OPTION": "Tùy chọn Rút tiền",
+  "UI_MANAGEMENT": "Quản lý Giao diện",
+  "BANNER_MANAGEMENT": "Quản lý Banner",
+  "BANNER_NAME": "Tên Banner",
+  "PRIORITY": "Thứ tự ưu tiên",
+  "IMAGE": "Ảnh",
+  "UPLOAD": "Tải lên",
+  "CHOOSE_IMG_TXT": "Chọn ảnh có kích thước: 1300x500 JPG/PNG",
+  "TIME": "Thời gian",
+  "PRIORITY_L": "Độ ưu tiên",
+  "ACTION_L": "Hành động",
+  "TYPE": "Kiểu",
+  "ROUTE_TO": "Đường dẫn",
+  "CUSTOMER_ACC": "Tài khoản khách hàng",
+  "NEW_CUSTOMER": "Tạo mới thủ công",
+  "CONTENT": "Địa chỉ",
+  "BIRTHDAY": "Ngày sinh nhật",
+  "ADDRESS_T": "Địa chỉ",
+  "UPDATED_AT": "Thời gian chỉnh sửa",
+  "CREATE_NEW_CUS": "Tạo tài khoản",
+  "PERSONAL_ACC": "Thông tin cá nhân",
+  "FULL_NAME_L": "Tên",
+  "BIRTHDAY_L": "Ngày sinh",
+  "ZALO_ACC": "Tài khoản Zalo",
+  "FB_ACC": "Tài khoản Facebook",
+  "NOTE_L": "Ghi chú (Tùy chọn)",
+  "REF_NAME": "Người giới thiệu",
+  "CREATED_BY_L": "Tạo bởi",
+  "UPDATE_CUS_ACC": "Cập nhật tài khoản",
+  "MAKE_CONT": "Tạo hợp đồng",
+  "VIEW_DETAIL": "Xem chi tiết",
+  "EDIT": "Chỉnh sửa",
+  "DELETE": "Xóa",
+  "ADMIN": "Quản trị viên",
+  "ROLE": "Nội dung",
+  "ADD_NEW": "Tạo mới",
+  "ROLEL": "Vai trò",
+  "ROLELL": "Vai trò",
+  "PERMISSION": "Quyền",
+  "PERMISSION_L": "Quyền",
+  "PERMISSION_ACCESS": "Quyền truy cập",
+  "NAME": "Tên",
+  "NAMEL": "TÊN",
+  "MALE": "NAM",
+  "FEMALE": "NỮ",
+  "ACC_INFO": "Thông tin tài khoản",
+  "ADMIN_ACC": "Thông tin quản trị viên",
+  "EMAILL": "Email",
+  "NOTIFICATION": "Thông báo",
+  "ICON": "Biểu tượng",
+  "TYPEC": "LOẠI",
+  "ROUTE_TYPE": "LOẠI TUYẾN",
+  "ROUTE_TYPE_S": "Loại tuyến",
+  "START_AT": "BẮT ĐẦU TẠI",
+  "ICON_C": "BIỂU TƯỢNG",
+  "NOTI_MESSAGE_DETAIL": "Chi tiết Thông báo",
+  "SCHEDULAR": "Lịch biểu",
+  "PROCESS_TIME": "Thời gian Xử lý",
+  "CREATE_MESSAGE_TEMPLATE": "Tạo Mẫu tin nhắn",
+  "MESSAGE": "Tin nhắn",
+  "MESSAGEC": "TIN NHẮN",
+  "HOUR": "Giờ",
+  "MINUTE": "Phút",
+  "PERIOD": "Kỳ",
+  "FILE": "Tệp",
+  "FILE_NAME": "Tên tệp",
+  "UPDATE_MESSAGE_TEMPLATE": "Cập nhật Mẫu tin nhắn",
+  "COMMON_NOTIFICATION": "Thông báo Chung",
+  "EDIT_COMMON_NOTIFICATION": "Chỉnh sửa",
+  "NOTI_DETAIL": "Chi tiết Thông báo",
+  "UPDATEDAT": "Cập nhật lúc",
+  "HISTORY_NOTIFICATION": "Lịch sử Thông báo",
+  "CUS": "Tên khách hàng hoặc số điện thoại",
+  "phoneNumber": "SỐ ĐIỆN THOẠI",
+  "RECEIVERC": "NGƯỜI NHẬN",
+  "RECEIVER": "Người nhận",
+  "RECEIVED_DATE": "Ngày nhận",
+  "CONTENTC": "NỘI DUNG",
+  "RECEIVED_TIME": "THỜI GIAN NHẬN",
+  "RECEIVED_TIMES": "Thời gian Nhận",
+  "NO_DATA": "Không có dữ liệu",
+  "CHANGE_IMAGE": "Thay đổi Hình ảnh",
+  "EDIT_NOTIFICATION_ICON": "Chỉnh sửa icon thông báo",
+  "Variables": "Biến",
+  "NOTI_TITLE": "Tiêu đề (Việt Nam)",
+  "NOTI_CONTENT": "Nội dung (Việt Nam)",
+
+  "CONFIRMATION_NSTATUS": {
+    "CHANGE_STATUS": "Bạn có chắc chắn muốn thay đổi trạng thái không?"
+  },
+  "NOTIFICATION_NSTATUS": {
+    "STATUS_CHANGED_SUCCESS": "Bạn đã thay đổi trạng thái thành công",
+    "STATUS_CHANGE_FAIL": "Bạn không thể thay đổi trạng thái",
+    "NO_PACKAGE": "Không có gói nào để tạo hợp đồng!"
+  },
+
+  "CONFIRMATION_NDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa bài viết này không?"
+  },
+  "NOTIFICATION_NDELETE": {
+    "DELETE_SUCCESS": "Xóa bài viết thành công",
+    "DELETE_FAIL": "Bạn không thể xóa bài viết"
+  },
+
+  "CONFIRMATION_NCREATE": {
+    "CREATE": "Bạn có muốn tạo bài viết này hay không?"
+  },
+
+  "NOTIFICATION_NCREATE": {
+    "CREATE_SUCCESS": "Bài viết tin tức của bạn đã được tạo thành công.",
+    "CREATE_FAIL": "Có lỗi xảy ra khi tạo bài viết tin tức."
+  },
+
+  "CONFIRMATION_NEDIT": {
+    "EDIT": "Bạn có chắc chắn muốn chỉnh sửa bài viết tin tức này không?"
+  },
+  "NOTIFICATION_NEDIT": {
+    "EDIT_SUCCESS": "Bài viết tin tức của bạn đã được chỉnh sửa thành công.",
+    "EDIT_FAIL": "Có lỗi xảy ra khi chỉnh sửa bài viết tin tức."
+  },
+
+  "CONFIRMATION_CDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa hợp đồng yêu cầu này không?"
+  },
+  "NOTIFICATION_CDELETE": {
+    "DELETE_SUCCESS": "Hợp đồng yêu cầu của bạn đã được xóa thành công.",
+    "DELETE_FAIL": "Có lỗi xảy ra khi xóa hợp đồng yêu cầu."
+  },
+
+  "CONFIRMATION_CEDIT": {
+    "EDIT": "Bạn có chắc chắn muốn chỉnh sửa hợp đồng yêu cầu này không?",
+    "CANCEL_EDIT_REQUEST": "Bạn có chắc chắn muốn hủy chỉnh sửa hợp đồng yêu cầu này không?"
+  },
+  "NOTIFICATION_CEDIT": {
+    "EDIT_SUCCESS": "Hợp đồng yêu cầu của bạn đã được chỉnh sửa thành công.",
+    "EDIT_FAIL": "Có lỗi xảy ra khi chỉnh sửa hợp đồng yêu cầu."
+  },
+
+  "CONFIRMATION_CLDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa hợp đồng này không?"
+  },
+  "NOTIFICATION_CLDELETE": {
+    "DELETE_SUCCESS": "Hợp đồng của bạn đã được xóa thành công.",
+    "DELETE_FAIL": "Có lỗi xảy ra khi xóa hợp đồng."
+  },
+
+  "CONFIRMATION_CLEDIT": {
+    "EDIT": "Bạn có chắc chắn muốn chỉnh sửa hợp đồng này không?"
+  },
+  "NOTIFICATION_CLEDIT": {
+    "EDIT_SUCCESS": "Hợp đồng yêu cầu của bạn đã được chỉnh sửa thành công.",
+    "EDIT_FAIL": "Có lỗi xảy ra khi chỉnh sửa hợp đồng yêu cầu."
+  },
+
+  "CONFIRMATION_CLCREATE": {
+    "CREATE": "Bạn có chắc chắn muốn tạo hợp đồng này không?"
+  },
+  "NOTIFICATION_CLCREATE": {
+    "CREATE_SUCCESS": "Hợp đồng của bạn đã được tạo thành công.",
+    "CREATE_FAIL": "Có lỗi xảy ra khi tạo hợp đồng."
+  },
+
+  "CONFIRMATION_CLAPPROVE": {
+    "APPROVE": "Bạn có chắc chắn muốn phê duyệt hợp đồng này không?"
+  },
+  "NOTIFICATION_CLAPPROVE": {
+    "APPROVE_SUCCESS": "Bạn đã phê duyệt hợp đồng thành công.",
+    "APPROVE_FAIL": "Có lỗi xảy ra khi phê duyệt hợp đồng."
+  },
+
+  "CONFIRMATION_CLCANCEL": {
+    "CANCEL": "Bạn có chắc chắn muốn hủy hợp đồng này không?"
+  },
+  "NOTIFICATION_CLCANCEL": {
+    "CANCEL_SUCCESS": "Bạn đã hủy hợp đồng thành công.",
+    "CANCEL_FAIL": "Có lỗi xảy ra khi hủy hợp đồng."
+  },
+
+  "NOTIFICATION_CLEXPORT": {
+    "EXPORT_SUCCESS": "Bạn đã tải xuống tệp excel thành công.",
+    "EXPORT_FAIL": "Có lỗi xảy ra khi tải xuống tệp.",
+    "EXPORT_ERROR": "Đã có lỗi xảy ra!"
+  },
+
+  "CONFIRMATION_BDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa banner này không?"
+  },
+  "NOTIFICATION_BDELETE": {
+    "DELETE_SUCCESS": "Banner của bạn đã được xóa thành công.",
+    "DELETE_FAIL": "Có lỗi xảy ra khi xóa banner."
+  },
+
+  "CONFIRMATION_BSTATUS": {
+    "STATUS": "Bạn có chắc chắn muốn thay đổi trạng thái của banner này không?"
+  },
+  "NOTIFICATION_BSTATUS": {
+    "STATUS_SUCCESS": "Bạn đã thay đổi trạng thái banner thành công.",
+    "STATUS_FAIL": "Có lỗi xảy ra khi thay đổi trạng thái."
+  },
+
+  "CONFIRMATION_BCREATE": {
+    "CREATE": "Bạn có chắc chắn muốn tạo banner này không?"
+  },
+  "NOTIFICATION_BCREATE": {
+    "CREATE_SUCCESS": "Banner của bạn đã được tạo thành công.",
+    "CREATE_FAIL": "Có lỗi xảy ra khi tạo banner.",
+    "TIME_INVALID": "Ngày bắt đầu phải bé hơn người kết thúc"
+  },
+
+  "CONFIRMATION_BUPDATE": {
+    "UPDATE": "Bạn có chắc chắn muốn cập nhật banner này không?"
+  },
+  "NOTIFICATION_BUPDATE": {
+    "UPDATE_SUCCESS": "Banner của bạn đã được cập nhật thành công.",
+    "UPDATE_FAIL": "Có lỗi xảy ra khi cập nhật banner."
+  },
+
+  "CONFIRMATION_PUPDATE": {
+    "UPDATE": "Bạn có chắc chắn muốn lưu các thay đổi không?"
+  },
+  "NOTIFICATION_PUPDATE": {
+    "UPDATE_SUCCESS": "Gói dịch vụ của bạn đã được cập nhật thành công.",
+    "UPDATE_FAIL": "Có lỗi xảy ra khi cập nhật gói dịch vụ."
+  },
+
+  "CONFIRMATION_PCREATE": {
+    "CREATE": "Bạn có chắc chắn muốn tạo gói dịch vụ mới không?"
+  },
+  "NOTIFICATION_PCREATE": {
+    "CREATE_SUCCESS": "Gói dịch vụ của bạn đã được tạo thành công.",
+    "CREATE_FAIL": "Có lỗi xảy ra khi tạo gói dịch vụ."
+  },
+
+  "CONFIRMATION_PDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa gói dịch vụ này không?"
+  },
+  "NOTIFICATION_PDELETE": {
+    "DELETE_SUCCESS": "Gói dịch vụ của bạn đã được xóa thành công.",
+    "DELETE_FAIL": "Có lỗi xảy ra khi xóa gói dịch vụ."
+  },
+
+  "CONFIRMATION_PSTATUS": {
+    "STATUS": "Bạn có chắc chắn muốn thay đổi trạng thái của gói dịch vụ này không?"
+  },
+  "NOTIFICATION_PSTATUS": {
+    "STATUS_SUCCESS": "Bạn đã thay đổi trạng thái của gói dịch vụ thành công.",
+    "STATUS_FAIL": "Có lỗi xảy ra khi thay đổi trạng thái."
+  },
+
+  "CONFIRMATION_ACCSUPDATE": {
+    "UPDATE": "Bạn có chắc chắn muốn lưu các thay đổi không?"
+  },
+  "NOTIFICATION_ACCSUPDATE": {
+    "UPDATE_SUCCESS": "Tài khoản khách hàng của bạn đã được cập nhật thành công.",
+    "UPDATE_FAIL": "Có lỗi xảy ra khi cập nhật tài khoản khách hàng."
+  },
+
+  "CONFIRMATION_ACCSTATUS": {
+    "STATUS_LOCK": "Bạn có chắc chắn muốn vô hiệu hóa tài khoản này không?",
+    "STATUS_ACTIVE": "Bạn có chắc chắn muốn kích hoạt tài khoản này không?"
+  },
+
+  "NOTIFICATION_ACCSTATUS": {
+    "STATUS_SUCCESS": "Bạn đã thay đổi trạng thái thành công."
+  },
+
+  "CONFIRMATION_ACCDELTE": {
+    "DELETE": "Bạn có chắc chắn muốn xóa tài khoản này không?"
+  },
+  "NOTIFICATION_ACCDELETE": {
+    "DELETE_SUCCESS": "Tài khoản của bạn đã được xóa thành công.",
+    "DELETE_FAIL": "Có lỗi xảy ra khi xóa tài khoản."
+  },
+
+  "CONFIRMATION_ACCCREATE": {
+    "CREATE": "Mật khẩu của bạn là số điện thoại. Bạn có muốn tạo tài khoản mới không?",
+    "CREATE_T": "Mật khẩu của bạn là số điện thoại. Bạn có muốn tạo tài khoản mới không?"
+  },
+  "NOTIFICATION_ACCCREATE": {
+    "CREATE_SUCCESS": "Banner của bạn đã được tạo thành công.",
+    "CREATE_FAIL": "Có lỗi xảy ra khi tạo banner."
+  },
+  "NOTIFICATION_ICON": {
+    "UPDATE_SUCCESS": "Biểu tượng của bạn đã được cập nhật thành công!",
+    "UPDATE_FAIL": "Có lỗi xảy ra khi cập nhật biểu tượng."
+  },
+  "CONFIRMATION_ICON": {
+    "UPDATE": "Bạn có chắc chắn muốn cập nhật biểu tượng này không?"
+  },
+
+  "SIDE_NAV_BAR": {
+    "ADMINS": "Quản trị viên",
+    "ROLE": "Vai trò",
+    "ADMIN_ACCOUNT": "Tài khoản quản trị viên",
+    "UI_MANAGEMENT": "Quản lý giao diện",
+    "BANNER_MANAGEMENT": "Quản lý banner",
+    "NOTIFICATION": "Thông báo",
+    "ICON": "Biểu tượng",
+    "COMMON_NOTIFICATION": "Thông báo chung",
+    "HISTORY_NOTIFICATION": "Lịch sử thông báo",
+    "MANAGEMENT_CUSTOMER_ACCOUNT": "Quản lý tài khoản khách hàng",
+    "MANAGEMENT_CONTRACT": "Quản lý hợp đồng",
+    "REQUEST_CONTRACTS": "Hợp đồng yêu cầu",
+    "CONTRACT_LIST": "Danh sách hợp đồng",
+    "MANAGEMENT_PACKAGE": "Quản lý gói dịch vụ",
+    "MANAGEMENT_NEWS": "Quản lý tin tức",
+    "NEWS": "Tin tức",
+    "FEEDBACKS_SUGGESTIONS": "Phản hồi & Đề xuất",
+    "CONTACT_INFORMATION": "Thông tin liên hệ",
+    "USER_FEEDBACKS": "Phản hồi người dùng"
+  },
+  "CREATE_ADMINISTRATOR_ACCOUNT": "Tạo tài khoản Quản trị viên",
+  "UPDATE_ADMINISTRATOR_ACCOUNT": "Cập nhật tài khoản admin",
+  "FEEDBACKS_SUGGESTIONS": "Phản hồi & Gợi ý",
+  "CONTACT_INFORMATION": "Thông tin Liên hệ",
+  "ROUTE": "LỘ TRÌNH",
+  "CREATE_NEW_ICON": "Tạo mới thông tin liên hệ",
+  "THIS_FILED_IS_REQUIRED": "Trường này là bắt buộc",
+  "FEEDBACK_AND_SUGGESTIONS": "Phản hồi và Gợi ý",
+  "USER_FEEDBACKS": "Phản hồi từ Người dùng",
+  "CREATED_DATE": "Ngày Tạo",
+  "DOWNLOAD": "Tải xuống",
+  "REQUEST_EMAIL": "YÊU CẦU EMAIL",
+  "FEEDBACK_DETAIL": "Chi tiết Phản hồi",
+  "PROCESS": "Xử lý",
+  "ADD_NOTE": "Thêm Ghi chú",
+  "NOTIFICATION_NOTI_DELETE": {
+    "CONFIRM_DELETE": "Bạn có chắc chắn muốn xóa thông báo này không?",
+    "SUCCESS_DELETE": "Bạn đã xóa thông báo này thành công.",
+    "RUNNING_ERROR": "Thông báo đang chạy! Không thể hủy",
+    "FAIL": "Đã xảy ra lỗi!"
+  },
+  "NOTIFICATION_NOTI_UPDATE": {
+    "CONFIRM_UPDATE": "Bạn có chắc chắn muốn cập nhật thông báo này không?",
+    "SUCCESS_UPDATE": "Bạn đã cập nhật thông báo thành công!",
+    "FAIL": "Đã xảy ra lỗi!"
+  },
+  "NOTIFICATION_NOTI_CREATE": {
+    "CONFIRM_CREATE": "Bạn có chắc chắn muốn tạo mẫu tin nhắn mới không?",
+    "SUCCESS_CREATE": "Bạn đã tạo thông báo thành công!",
+    "FAIL": "Đã xảy ra lỗi!"
+  },
+  "NOTI_EXCEL": {
+    "EXCEL_FILE_ALLOW": "Chỉ cho phép tệp Excel."
+  },
+  "CONFIRM_SWITCH_COMMOM": {
+    "CONFIRM": "Bạn có muốn thay đổi trạng thái không?"
+  },
+  "NOTIFICATION_COMMON": {
+    "CONFIRM": "Bạn có chắc chắn muốn chỉnh sửa thông báo chung không?",
+    "SUCCESS": "Bạn đã cập nhật thông báo chung thành công!",
+    "FAIL": "Đã xảy ra lỗi!"
+  },
+  "ERROR_MESSAGES": {
+    "REQUIRED": "Trường này là bắt buộc",
+    "PATTERN": "Chỉ cho phép nhập số"
+  },
+  "NOTIFICATION_CCREATE": {
+    "CREATE_SUCCESS": "Tài khoản khách hàng của bạn đã được tạo thành công!",
+    "CREATE_FAIL": "Bạn không thể xóa bài viết!"
+  },
+  "GIFTLIFE_CONTENT": "HỆ THỐNG QUẢN LÝ NỘI DUNG GIFTLIFE",
+  "USERNAME": "Tài khoản",
+  "PASSWORD": "Mật khẩu",
+  "LOGIN": "ĐĂNG NHẬP",
+  "LOGIN_REQUIRE_FIELD": "Trường này là bắt buộc. Vui lòng cung cấp tên người dùng hợp lệ.",
+  "BTN_LOGIN": "Đăng nhập",
+  "DETAIL_NEWS_POST": "Detail News Post",
+  "OLD_PASSWORD": "Mật khẩu cũ",
+  "NEW_PASSWORD": "Mật khẩu mới",
+  "CONFIRM_NEW_PASSWORD": "Xác nhận mật khẩu mới",
+  "CHANGE_PASSWORD": "Thay đổi mật khẩu",
+  "NO_FILES": "Không có tệp nào được tải lên.",
+  "ALL": "Tất cả",
+  "ENTER_USERNAME": "Nhập tài khoản",
+  "ENTER_YOUR_PASSWORD": "Nhập mật khẩu",
+  "NO_Search": "Không tìm thấy kết quả nào!",
+  "no_image": "Không có hình ảnh",
+
+  "COMMONE": {
+    "ARE_YOU": "Bạn có chắc chắn muốn",
+    "EDIT": "chỉnh sửa",
+    "CREATE": "tạo mới",
+    "ADMINISTRATOR": {
+      "THIS_ADMINISTRATOR": "vai trò quản trị viên?",
+      "THIS_ACCOUNT": "tài khoản quản trị viên này?",
+      "THIS_CONTACT": "Thông tin liên hệ này?"
+    },
+    "YOU_CREATED": "Bạn đã tạo vai trò quản trị viên",
+    "SUCCESSFULLY": "thành công!",
+    "DELETE_ROLE": "Bạn có chắc chắn muốn xóa vai trò này không?",
+    "DELETE_ROLE_SUCCESSFULLY": "Bạn đã xóa vai trò thành công!",
+    "YOU_CREATED_ACCOUNT": "Bạn đã tạo tài khoản quản trị viên",
+    "ROLE_DROPDOWN": "Đã xảy ra sự cố với danh sách vai trò!",
+    "STATUS_DROPDOWN": "Đã xảy ra sự cố trong danh sách thả xuống trạng thái!",
+    "STATUS_CHANGES": "Đã xảy ra sự cố với việc thay đổi trạng thái!",
+    "SOMETHING_WRONG": "Có gì đó sai!",
+    "DELETE_ACCOUNT": "Bạn đã xóa tài khoản thành công!",
+    "STATUS_SUCCESSFULLY": "Bạn đã thay đổi TRẠNG THÁI thành công!",
+    "DELETE_CONTACT": "Bạn có chắc chắn muốn xóa thông tin liên hệ này không?",
+    "SURE_DELETE_CONTACT": "Bạn có chắc chắn muốn xóa thông tin liên hệ này không?",
+    "DELETE_CONTACT_SUCCESS": "Bạn đã xóa thông tin liên lạc thành công!",
+    "SURE_CREATE_CONTACT": "Bạn có chắc chắn muốn tạo thông tin liên lạc này không?",
+    "UPDATE_IMAGE_FAIL": "Có gì đó sai sót trong quá trình tải lên hình ảnh!",
+    "CREATED_CONTACT": "Bạn đã tạo thông tin liên hệ.",
+    "SURE_FEEDBACK": "Bạn có chắc chắn muốn tiếp tục phản hồi này không?",
+    "FEEDBACK_SUCCESSFULLY": "Bạn đã tạo phản hồi thành công!"
+  },
+
+  "DOWNLOAD_EXCEL": "Tải xuống",
+  "DOWNLOAD_EXCEL_FILE": "Tải xuống",
+  "Uploaded_Files": "Tệp đã tải lên",
+  "ROUTEE": "Nội dung",
+  "Detail_fb": "Nội dung",
+  "SUCCESS": "Thành công",
+  "ERROR": "Lỗi",
+  "LOGOUT": "Đăng xuất",
+  "CONFIRM_CREATE_PASSWORD": "Bạn có chắc chắn muốn tạo mật khẩu mới không?",
+  "PASSWORDS_DO_NOT_MATCH": "Mật khẩu không khớp",
+  "CREATE_PASS": "Xác nhận",
+  "CONFIRM_ACTION_PASS": "Thay đổi mật khẩu",
+  "ERROR_PASS": "Thay đổi mật khẩu không thành công",
+  "STATUS_COMPLETE": "Hoàn thành",
+  "STATUS_IN_PROGRESS": "Đang xử lý",
+  "STATUS_PENDING": "Đang chờ",
+  "STATUS_ACTIVE": "Đang hoạt động",
+  "STATUS_END": "Kết thúc",
+  "STATUS_CANCEL": "Hủy",
+  "STATUS_ALL": "Tất cả",
+  "STATUS_INACTIVE": "Không hoạt động",
+  "STATUS_PAID": "đã thanh toán",
+  "CHOOSE_IMG_TXT2": "Chọn ảnh có kích thước: 200x350 JPG/PNG",
+  "STATUS_PREPARING_DATA": "Chuẩn bị dữ liệu",
+  "STATUS_RUNNING": "Đang chạy",
+  "VIET": "Tiếng Việt",
+  "ENG": "Tiếng Anh",
+  "DOWNLOAD_EXCEL_SUCCESS": "Bạn đã tải xuống tệp excel thành công."
+}

@@ -1,0 +1,85 @@
+<div class="flex flex-col">
+  <label class="text-[#4E535D] text-sm mb-1">
+    {{ "PERMISSION_ACCESS" | translate }}
+  </label>
+  <button mat-button [matMenuTriggerFor]="logout">
+    <div
+      class="shadow cursor-pointer appearance-none border rounded w-full py-2.5 text-left px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline overflow-hidden whitespace-nowrap text-overflow-ellipsis"
+    >
+      <span
+        class="text-sm"
+        *ngIf="accessRole.length <= 0; else elseShowSelected"
+      >
+        {{ "ALL" | translate }}
+      </span>
+
+      <ng-template #elseShowSelected>
+        <span class="text-sm">
+          {{ accessRole.join(", ") }}
+        </span>
+      </ng-template>
+    </div>
+  </button>
+
+  <mat-menu #logout="matMenu">
+    <div class="w-[275px] h-[300px]" (click)="$event.stopPropagation()">
+      <div
+        class="px-4 py-2 text-sm cursor-pointer"
+        [ngClass]="{ ' bg-[#235884] text-white': 'All' === selectLabel }"
+        (click)="toggleNested({ label: 'All' })"
+      >
+        {{ "ALL" | translate }}
+      </div>
+      <div *ngFor="let item of menuItem">
+        <div
+          mat-list-item
+          class="menu-item flex py-2 px-2 justify-between border-t-[1px] border-[#CDD5E0] transition-colors duration-500"
+          routerLinkActive="selected-menu-item"
+          (click)="toggleNested(item)"
+          [ngClass]="{
+            'selected-menu-item bg-[#235884]': item.label === selectLabel
+          }"
+          role="button"
+          tabindex="0"
+        >
+          <div class="flex items-center">
+            <div matListItemTitle class="px-2 flex items-center">
+              <span
+                class="text-sm"
+                [ngClass]="{ 'text-white': item.label === selectLabel }"
+              >
+                {{ item.label }}
+              </span>
+            </div>
+          </div>
+          <div matListItemAvatar *ngIf="item.subItems">
+            <mat-icon
+              class="text-white"
+              *ngIf="item.label === selectLabel; else expandMoreIcon"
+              >expand_less</mat-icon
+            >
+            <ng-template #expandMoreIcon>
+              <mat-icon>expand_more</mat-icon>
+            </ng-template>
+          </div>
+        </div>
+
+        <div *ngIf="item.subItems && item.label === selectLabel">
+          <div
+            *ngFor="let subItems of item.subItems"
+            class="px-8 py-2 cursor-pointer border-t-[1px] border-[#CDD5E0]"
+          >
+            <input
+              [checked]="accessRole.includes(subItems.label)"
+              type="checkbox"
+              (change)="onToggle(subItems.label)"
+            />
+            <span class="text-black text-sm">
+              {{ subItems.label }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-menu>
+</div>

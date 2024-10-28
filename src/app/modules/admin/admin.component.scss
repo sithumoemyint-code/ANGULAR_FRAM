@@ -1,0 +1,151 @@
+// mat-toolbar {
+//   position: relative;
+//   z-index: 5;
+// }
+
+// mat-sidenav-container {
+//   height: calc(100vh - 64px);
+//   // .content{
+//   //   padding: 24px;
+//   // }
+
+//   mat-sidenav, mat-sidenav-content {
+//     transition: all 500ms ease-in-out;
+//   }
+// }
+
+/* Ensure the toolbar appears under the sidenav */
+mat-toolbar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+mat-sidenav-container.sidenav-container {
+  height: 100vh; /* Full viewport height */
+  position: relative; /* Ensure the sidenav and toolbar position correctly */
+
+  mat-sidenav {
+    z-index: 2; /* Higher z-index so it appears on top of the toolbar */
+    height: 100vh; /* Make the sidenav full height */
+    position: absolute; /* Allow it to float over the content */
+    top: 0; /* Align to the top of the viewport */
+  }
+
+  mat-sidenav-content {
+    margin-left: 0; /* Reset the left margin since sidenav is floating */
+  }
+}
+
+.sidenav {
+  transition: width 500ms ease-in-out; /* Smooth transition for sidenav width */
+}
+
+.content {
+  transition: margin-left 500ms ease-in-out; /* Smooth transition for content margin */
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+
+  > span {
+    position: absolute;
+    top: 0.5px;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    width: 50%;
+    text-align: center;
+
+    &.on {
+      left: 0;
+      padding-left: 2px;
+      color: #235884;
+    }
+
+    &.off {
+      right: 0;
+      padding-right: 2px;
+      color: #f7aa00;
+    }
+  }
+}
+
+input.check-toggle-round-flat {
+  & + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 2px;
+    width: 70px;
+    height: 30px;
+    background-color: #235884;
+    border-radius: 70px;
+
+    &:before,
+    &:after {
+      display: block;
+      position: absolute;
+      content: "";
+    }
+
+    &:before {
+      top: 1.5px;
+      left: 1.5px;
+      bottom: 1.5px;
+      right: 1px;
+      background-color: whitesmoke;
+      border-radius: 60px;
+    }
+
+    &:after {
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      width: 30px;
+      background-color: #c1dbf1;
+      border-radius: 52px;
+      transition: margin 0.2s;
+    }
+  }
+
+  &:checked {
+    & ~ .off {
+      color: #235884;
+    }
+
+    & ~ .on {
+      color: #f7aa00;
+    }
+
+    & + label {
+      &:after {
+        margin-left: 32px;
+      }
+    }
+  }
+
+  &.check-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+}
+
+::ng-deep .mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 12px !important;
+  overflow: hidden !important;
+  --mdc-dialog-container-elevation: 0px !important;
+}

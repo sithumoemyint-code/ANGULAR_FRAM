@@ -1,0 +1,161 @@
+<div class="p-4">
+  <div class="flex justify-between py-4 px-4 bg-white">
+    <h1 class="text-[18px]">
+      <span class="text-[#F8AA00]">{{ "NOTIFICATION" | translate }}</span> >
+      {{ "ICON" | translate }}
+    </h1>
+  </div>
+
+  <div class="overflow-x-auto mt-9">
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr class="bg-[#E7EEF4] text-lg font-bold text-[#565D6D]">
+          <th class="py-4 px-4 text-center">{{ "ICON" | translate }}</th>
+          <th class="py-4 px-4 text-center">{{ "TYPE" | translate }}</th>
+          <th class="py-4 px-4 text-center">
+            {{ "NEWST_CREATED_AT" | translate }}
+          </th>
+          <th class="py-4 px-4 text-center">{{ "UPDATED_AT" | translate }}</th>
+          <th class="py-4 px-4 text-center">{{ "ACTION" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="icon.length; else loading">
+          <tr *ngFor="let item of icon" class="border-t text-gray-400">
+            <td class="py-4 px-4 text-center flex justify-center items-center">
+              <img [src]="item.imgUrl" class="w-[24px] h-[24px]" alt="" />
+            </td>
+            <td class="py-4 px-4 text-center">
+              {{ item.name[currentLang] || item.name.vi }}
+            </td>
+            <td class="py-4 px-4 text-center">{{ item.createdAt }}</td>
+            <td class="py-4 px-4 text-center">{{ item.updatedAt }}</td>
+            <td class="py-4 px-4 flex justify-center space-x-2">
+              <button
+                *appHasPermission="{
+                  permission: 'EDIT',
+                  pageComponent: 'Notification Management'
+                }"
+                (click)="openEdit(item)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2.50001H4.16667C3.72464 2.50001 3.30072 2.6756 2.98816 2.98816C2.67559 3.30072 2.5 3.72464 2.5 4.16667V15.8333C2.5 16.2754 2.67559 16.6993 2.98816 17.0118C3.30072 17.3244 3.72464 17.5 4.16667 17.5H15.8333C16.2754 17.5 16.6993 17.3244 17.0118 17.0118C17.3244 16.6993 17.5 16.2754 17.5 15.8333V10M15.3125 2.18751C15.644 1.85599 16.0937 1.66974 16.5625 1.66974C17.0313 1.66974 17.481 1.85599 17.8125 2.18751C18.144 2.51903 18.3303 2.96866 18.3303 3.43751C18.3303 3.90635 18.144 4.35598 17.8125 4.68751L10.3017 12.1992C10.1038 12.3969 9.85934 12.5416 9.59083 12.62L7.19667 13.32C7.12496 13.3409 7.04895 13.3422 6.97659 13.3236C6.90423 13.3051 6.83819 13.2675 6.78537 13.2146C6.73255 13.1618 6.69491 13.0958 6.67637 13.0234C6.65783 12.9511 6.65909 12.875 6.68 12.8033L7.38 10.4092C7.45877 10.1409 7.60378 9.89672 7.80167 9.69917L15.3125 2.18751Z"
+                    stroke="#6C6C6C"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #loading>
+          <tr>
+            <td colspan="5" class="py-16">
+              <span class="flex justify-center">
+                <mat-spinner [diameter]="30"></mat-spinner>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+    <div *ngIf="icon.length === 0">
+      <h1 class="flex justify-center text-xl font-bold mt-10">
+        {{ "NO_DATA" | translate }}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<ng-template #editModal>
+  <form
+    class="py-12 mx-14 px-14 overflow-y-auto max-h-screen"
+    [formGroup]="createForm"
+  >
+    <h1 class="flex justify-center mb-3 text-xl font-bold">
+      {{ "EDIT_NOTIFICATION_ICON" | translate }}
+    </h1>
+    <div class="mb-6">
+      <label for="name" class="block text-sm font-medium text-gray-700">{{
+        "NAME" | translate
+      }}</label>
+      <input
+        readonly
+        type="text"
+        id="name"
+        placeholder="Please type icon name"
+        formControlName="name"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label for="type" class="block text-sm font-medium text-gray-700">{{
+        "TYPE" | translate
+      }}</label>
+      <select
+        id="messageType"
+        formControlName="messageType"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+      >
+        <option *ngFor="let type of messageType" [value]="type.type">
+          {{ type.type }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-7">
+      <label for="iconUrl" class="block text-sm font-medium text-gray-700 mb-2">
+        {{ "UPLOAD_IMAGE" | translate }}:
+      </label>
+      <input
+        #imageUpload
+        type="file"
+        id="iconUrl"
+        class="hidden"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+      <button
+        (click)="imageUpload.click()"
+        class="items-center flex gap-2 rounded-full bg-[#F7AA00] text-white px-3 py-2"
+      >
+        <img src="assets/icons/cloudicon.png" alt="" class="w-[24px]" />
+        {{ "CHANGE_IMAGE" | translate }}
+      </button>
+      <div *ngIf="imageUrl" class="mt-4 flex justify-center">
+        <img
+          [src]="imageUrl"
+          alt="Selected Image"
+          class="max-w-xs rounded-lg h-20"
+        />
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-4">
+      <button
+        type="reset"
+        (click)="closeCreate()"
+        class="px-4 py-2 text-white bg-[#C4C4C4] rounded-3xl"
+      >
+        {{ "CLOSE" | translate }}
+      </button>
+      <button
+        class="px-4 py-2 text-white bg-[#F7AA00] rounded-3xl ml-4"
+        [disabled]="!createForm.valid"
+        (click)="create()"
+      >
+        {{ "UPDATE" | translate }}
+      </button>
+    </div>
+  </form>
+</ng-template>

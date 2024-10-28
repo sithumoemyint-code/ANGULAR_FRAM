@@ -1,0 +1,37 @@
+<div class="dvs-form-control" *ngIf="control">
+  <label
+    [for]="inputId"
+    [ngClass]="labelClass !== '' ? labelClass : 'text-[#4E535D] text-sm mb-1'"
+    *ngIf="label"
+    [class.required]="isRequired"
+  >
+    {{ label }}
+  </label>
+  <input
+    [required]="isRequired"
+    [ngClass]="{ 'disabled-input': isDisabled }"
+    [attr.readonly]="isDisabled ? true : null"
+    [type]="type"
+    [id]="inputId"
+    class="appearance-none border border-[#454F6380] rounded-lg w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    [formControl]="control"
+    [class.border-red-500]="
+      (control.touched && control.invalid) || showCharError
+    "
+    [placeholder]="placeholder"
+    (input)="onInputChange($event)"
+    [attr.max]="max"
+    [attr.min]="min"
+  />
+
+  <ul *ngIf="control.touched && control.invalid" class="dvs-validation-errors">
+    <li *ngFor="let error of control.errors | keyvalue">
+      <span *ngIf="error.key === 'email'; else elseKey">
+        Must {{ error.key }} format
+      </span>
+      <ng-template #elseKey>
+        {{ errorMessages[error.key] || error.key }}
+      </ng-template>
+    </li>
+  </ul>
+</div>

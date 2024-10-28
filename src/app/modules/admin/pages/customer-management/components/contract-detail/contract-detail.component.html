@@ -1,0 +1,363 @@
+<div class="overflow-y-auto my-6">
+  <div *ngIf="contractHistory">
+    <div class="flex justify-center items-center gap-4">
+      <img src="assets/icons/contractid.png" alt="" class="w-[38px]" />
+      <p class="text-[20px] font-bold">#{{ contractHistory?.contractCode }}</p>
+    </div>
+
+    <div class="mt-4 px-3">
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "PACKAGE" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>
+            {{
+              currentLang === "vi"
+                ? contractHistory.packageName?.vi
+                : contractHistory.packageName?.en
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "STATUS" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <span
+            class="rounded-xl py-1 px-2"
+            [ngClass]="{
+          'bg-[#D8FFDC] text-[#18B427]': contractHistory.status === 'COMPLETE',
+          'bg-[#FFE8DB] text-[#F16212]': contractHistory.status === 'CANCEL',
+          'bg-[#FFF7DA] text-[#E0AF00]': contractHistory.status === 'PENDING',
+          'bg-[#D8EEFF] text-[#0E9EF0]': contractHistory.status === 'ACTIVE',
+          'bg-[#e5e1f6] text-[#9f8df9]': contractHistory.status === 'END',
+          
+        }"
+          >
+            {{
+              (contractHistory.status === "COMPLETE"
+                ? "STATUS_COMPLETE"
+                : contractHistory.status === "CANCEL"
+                ? "STATUS_CANCEL"
+                : contractHistory.status === "ACTIVE"
+                ? "STATUS_ACTIVE"
+                : contractHistory.status === "END"
+                ? "STATUS_END"
+                : "STATUS_PENDING"
+              ) | translate
+            }}
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "CUSTOMER" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.customerName }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "CONTRACT_SIGN" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.signatoryFullName }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "INVEST_AMOUNT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.investAmount }} VND</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "TERM" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.term }} months</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "INTEREST_PERIOD" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.interestPaymentPeriod }} months</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "INTEREST_RATE" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.interestRate }} %</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "BONUS_RATE" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.bonusRate }} %</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "CREATEDAT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.createdAt }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "STARTAT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.fromTime }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "ENDAT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.toTime }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "SERVICE" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>
+            {{
+              currentLang === "vi"
+                ? contractHistory.service?.vi
+                : contractHistory.service?.en
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "GIFT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>
+            {{
+              currentLang === "vi"
+                ? contractHistory.gift?.vi
+                : contractHistory.gift?.en
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "TOTAL_W_MONEY" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.totalWithdrawMoney }} VND</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "TOTAL_R_MONEY" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.totalRemainingMoney }} VND</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mx-8 my-4">
+        <div class="text-[16px] text-gray-400 space-y-3">
+          <p>{{ "TOTAL_AMOUNT" | translate }}:</p>
+        </div>
+        <div class="text-[16px] space-y-3 text-end">
+          <p>{{ contractHistory.totalAmount }} VND</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-8 my-4">
+      <h3 class="text-[16px] font-bold py-4">
+        {{ "INTEREST_HISTORY" | translate }}
+      </h3>
+
+      <div>
+        <table class="w-full border border-[#A9A9A9]">
+          <thead class="bg-[#BCE1FF] h-20 text-[16px]">
+            <tr>
+              <th
+                class="text-center px-4 border border-[#A9A9A9] text-[#565D6D]"
+              >
+                {{ "PAYMENT_PERIOD" | translate }}
+              </th>
+              <th
+                class="text-center px-4 border border-[#A9A9A9] text-[#565D6D]"
+              >
+                {{ "STATUS" | translate }}
+              </th>
+              <th
+                class="text-center px-4 border border-[#A9A9A9] text-[#565D6D]"
+              >
+                {{ "INTEREST_PAY_AMOUNT" | translate }}
+              </th>
+              <th
+                class="text-center px-4 border border-[#A9A9A9] text-[#565D6D]"
+              >
+                {{ "NOTE" | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let history of contractHistory.interestPaymentHistories"
+              class="border-b h-16"
+            >
+              <td class="text-center px-4 border border-[#DEE1E6]">
+                {{ history.paymentPeriodTime }}
+              </td>
+              <td class="text-center px-4 border border-[#DEE1E6]">
+                <div class="px-4">
+                  <p
+                    [ngClass]="{
+                      'text-[#18B427] bg-[#D8FFDC]': history.status === 'PAID',
+                      'bg-[#FFF7DA] text-[#E0AF00]':
+                        history.status === 'PENDING'
+                    }"
+                    class="rounded-full px-4 py-1"
+                  >
+                    {{ history.status | titlecase }}
+                  </p>
+                </div>
+              </td>
+              <td class="text-center px-4 border border-[#DEE1E6]">
+                {{ history.interestPaymentAmount }} VND
+              </td>
+              <td class="text-center px-4 border border-[#DEE1E6]">
+                {{ history.note }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="my-4">
+          <h2 class="font-semibold">{{ "Uploaded_Files" | translate }}</h2>
+        </div>
+        <div
+          class="overflow-y-auto h-[300px] bg-[#eaf1f7] my-4 p-4 rounded-md shadow-md grid-cols-2"
+        >
+          <div *ngIf="contractHistory.files.length > 0; else noFilesMessage">
+            <div
+              class="p-2"
+              *ngFor="let file of contractHistory.files; let i = index"
+            >
+              <div class="p-3 grid grid-cols-4 bg-white rounded-xl shadow-md">
+                <div class="flex items-center justify-center">
+                  <ng-container *ngIf="file.endsWith('.xlsx'); else otherIcons">
+                    <img
+                      src="assets/icons/xlsx.png"
+                      alt="Excel Icon"
+                      class="w-[45px]"
+                    />
+                  </ng-container>
+
+                  <ng-template #otherIcons>
+                    <ng-container
+                      *ngIf="file.endsWith('.png'); else docxPdfTxtIcon"
+                    >
+                      <img
+                        src="assets/icons/png.png"
+                        alt="PNG Icon"
+                        class="w-[45px]"
+                      />
+                    </ng-container>
+
+                    <ng-template #docxPdfTxtIcon>
+                      <ng-container
+                        *ngIf="file.endsWith('.pdf'); else docxIcon"
+                      >
+                        <img
+                          src="assets/icons/pdf.png"
+                          alt="PDF Icon"
+                          class="w-[45px]"
+                        />
+                      </ng-container>
+
+                      <ng-template #docxIcon>
+                        <ng-container
+                          *ngIf="file.endsWith('.docx'); else txtIcon"
+                        >
+                          <img
+                            src="assets/icons/docx.png"
+                            alt="DOCX Icon"
+                            class="w-[45px]"
+                          />
+                        </ng-container>
+
+                        <ng-template #txtIcon>
+                          <ng-container *ngIf="file.endsWith('.txt')">
+                            <img
+                              src="assets/icons/txt.png"
+                              alt="TXT Icon"
+                              class="w-[45px]"
+                            />
+                          </ng-container>
+                        </ng-template>
+                      </ng-template>
+                    </ng-template>
+                  </ng-template>
+                </div>
+                <div class="col-span-2">
+                  <div class="">
+                    <a href="{{ file }}">{{ file.split("/").pop() }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noFilesMessage>
+          <div
+            class="p-4 flex justify-center items-center text-gray-600 h-full"
+          >
+            <p>{{ "NO_FILES" | translate }}</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-4 pt-6 mx-8">
+      <button
+        class="border rounded-3xl px-3 py-2 bg-[#F8AA00] text-white"
+        tabindex="-1"
+        (click)="closeDetail()"
+      >
+        {{ "CLOSE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

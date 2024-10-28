@@ -1,0 +1,941 @@
+<div class="p-4">
+  <div class="flex justify-between py-4 px-4 bg-white">
+    <h1 class="text-[18px] flex items-center">
+      <span class="text-[#F8AA00]">{{ "NOTIFICATION" | translate }}</span> >
+      {{ "NOTIFICATION" | translate }}
+    </h1>
+    <button
+      *appHasPermission="{
+        permission: 'CREATE',
+        pageComponent: 'Notification Management'
+      }"
+      (click)="openCreateModal()"
+      class="border border-[#235884] rounded-full text-[#235884] px-6 py-2 flex items-center"
+    >
+      <span class="material-icons mr-2">add</span>
+      {{ "CREATE" | translate }}
+    </button>
+  </div>
+
+  <div class="bg-[#FFFFFF] rounded-2xl shadow-lg p-6 mt-4">
+    <form (ngSubmit)="getCampaign()" [formGroup]="searchForm">
+      <div class="grid grid-cols-3 gap-5">
+        <div class="p-1">
+          <app-input
+            type="text"
+            [label]="'NEWSL_TITLE' | translate"
+            inputId="title"
+            formControlName="title"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-select
+            [label]="'STATUS' | translate"
+            selectId="status"
+            [options]="dropDownValue"
+            formControlName="status"
+            controlName="status"
+          ></app-select>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'FROM_DATE' | translate"
+            inputId="fromDate"
+            formControlName="fromDate"
+            type="date"
+          ></app-input>
+        </div>
+
+        <div class="p-1">
+          <app-input
+            [label]="'TO_DATE' | translate"
+            inputId="toDate"
+            formControlName="toDate"
+            type="date"
+          ></app-input>
+        </div>
+        <div></div>
+        <div class="p-1 flex justify-center items-center space-x-6 mt-2">
+          <button
+            type="reset"
+            (click)="resetSearch()"
+            class="text-[#F7AA00] border border-[#F7AA00] px-4 py-2 rounded-full"
+          >
+            <div class="flex justify-center items-center space-x-1">
+              <img
+                src="assets/icons/refresh-icon.png"
+                alt=""
+                class="w-[18px]"
+              />
+              <p>{{ "RESET" | translate }}</p>
+            </div>
+          </button>
+          <button
+            (click)="getCampaign()"
+            type="submit"
+            class="bg-[#F7AA00] text-white px-4 py-2 rounded-full"
+          >
+            <div class="flex justify-center items-center space-x-1">
+              <img src="assets/icons/search.png" alt="" class="w-[18px]" />
+              <p>{{ "SEARCH" | translate }}</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="overflow-x-auto mt-9">
+    <table style="width: 150%" class="bg-white">
+      <thead class="uppercase">
+        <tr class="bg-[#E7EEF4] text-lg font-bold text-[#565D6D]">
+          <th class="py-3 px-4 text-center fixed">{{ "NO" | translate }}</th>
+          <th class="py-3 px-4 text-center fixed">
+            {{ "NEWST_TITLE" | translate }}
+          </th>
+          <th class="py-3 px-4 text-center">{{ "ROUTE_TYPE" | translate }}</th>
+          <th class="py-3 px-4 text-center">{{ "ROUTE_TO" | translate }}</th>
+          <th class="py-3 px-4 text-center">{{ "START_AT" | translate }}</th>
+          <th class="py-3 px-4 text-center">
+            {{ "NEWST_STATUS" | translate }}
+          </th>
+          <th class="py-3 px-4 text-center">
+            {{ "NEWST_CREATED_AT" | translate }}
+          </th>
+          <th class="py-3 px-4 text-center">{{ "UPDATED_AT" | translate }}</th>
+          <th class="py-3 px-4 text-center">{{ "ICON_C" | translate }}</th>
+          <th class="py-3 px-4 text-center">{{ "ACTION" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container>
+          <tr
+            *ngFor="let item of campaign; let i = index"
+            class="border-t text-sm text-gray-400"
+          >
+            <td class="py-2 px-4 text-center fixed">
+              {{ offset * size + (i + 1) }}
+            </td>
+            <td class="py-2 px-4 text-center fixed">
+              {{ item.title[currentLang] || item.title.vi }}
+            </td>
+            <td class="py-2 px-4 text-center">{{ item.routeType }}</td>
+            <td class="py-2 px-4 text-center">{{ item.routeTo }}</td>
+            <td class="py-2 px-4 text-center">{{ item.startAt }}</td>
+            <td class="py-2 px-4 text-center">
+              <button
+                class="cursor-default font-bold rounded-full px-3 py-2 w-36"
+                [ngClass]="{
+                  'text-[#E0AF00] bg-[#FFF7DA]':
+                    item.status === 'PENDING' || item.status === 'WAITING',
+                  'text-[#F16212] bg-[#FFE8DB]': item.status === 'CANCELLED',
+                  'text-[#18B427] bg-[#D8FFDC]': item.status === 'COMPLETED',
+                  'text-blue-500 bg-blue-200': item.status === 'RUNNING'
+                }"
+              >
+                {{
+                  (item.status === "PREPARING_DATA"
+                    ? "STATUS_PREPARING_DATA"
+                    : item.status === "PENDING"
+                    ? "STATUS_PENDING"
+                    : item.status === "RUNNING"
+                    ? "STATUS_RUNNING"
+                    : item.status === "COMPLETED"
+                    ? "STATUS_COMPLETE"
+                    : "STATUS_CANCEL"
+                  ) | translate
+                }}
+              </button>
+            </td>
+
+            <td class="py-2 px-4 text-center">{{ item.createdAt }}</td>
+            <td class="py-2 px-4 text-center">{{ item.updatedAt }}</td>
+            <td class="py-2 px-4 text-center flex justify-center">
+              <img [src]="item.iconUrl" class="w-[24px] h-[24px]" alt="" />
+            </td>
+            <td class="py-2 px-4 text-center space-x-2">
+              <button (click)="openDetail(item.id)">
+                <svg
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.5003 13.3337V10.0003M10.5003 6.66699H10.5087M18.8337 10.0003C18.8337 14.6027 15.1027 18.3337 10.5003 18.3337C5.89795 18.3337 2.16699 14.6027 2.16699 10.0003C2.16699 5.39795 5.89795 1.66699 10.5003 1.66699C15.1027 1.66699 18.8337 5.39795 18.8337 10.0003Z"
+                    stroke="#6C6C6C"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                *appHasPermission="{
+                  permission: 'EDIT',
+                  pageComponent: 'Notification Management'
+                }"
+                (click)="openUpdate(item)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2.50001H4.16667C3.72464 2.50001 3.30072 2.6756 2.98816 2.98816C2.67559 3.30072 2.5 3.72464 2.5 4.16667V15.8333C2.5 16.2754 2.67559 16.6993 2.98816 17.0118C3.30072 17.3244 3.72464 17.5 4.16667 17.5H15.8333C16.2754 17.5 16.6993 17.3244 17.0118 17.0118C17.3244 16.6993 17.5 16.2754 17.5 15.8333V10M15.3125 2.18751C15.644 1.85599 16.0937 1.66974 16.5625 1.66974C17.0313 1.66974 17.481 1.85599 17.8125 2.18751C18.144 2.51903 18.3303 2.96866 18.3303 3.43751C18.3303 3.90635 18.144 4.35598 17.8125 4.68751L10.3017 12.1992C10.1038 12.3969 9.85934 12.5416 9.59083 12.62L7.19667 13.32C7.12496 13.3409 7.04895 13.3422 6.97659 13.3236C6.90423 13.3051 6.83819 13.2675 6.78537 13.2146C6.73255 13.1618 6.69491 13.0958 6.67637 13.0234C6.65783 12.9511 6.65909 12.875 6.68 12.8033L7.38 10.4092C7.45877 10.1409 7.60378 9.89672 7.80167 9.69917L15.3125 2.18751Z"
+                    stroke="#6C6C6C"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                *appHasPermission="{
+                  permission: 'DELETE',
+                  pageComponent: 'Notification Management'
+                }"
+                (click)="delete(item.id)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.5 2.5H12.5M2.5 5H17.5M15.8333 5L15.2489 13.7661C15.1612 15.0813 15.1174 15.7389 14.8333 16.2375C14.5833 16.6765 14.206 17.0294 13.7514 17.2497C13.235 17.5 12.5759 17.5 11.2578 17.5H8.74221C7.42409 17.5 6.76503 17.5 6.24861 17.2497C5.79396 17.0294 5.41674 16.6765 5.16665 16.2375C4.88259 15.7389 4.83875 15.0813 4.75107 13.7661L4.16667 5M8.33333 8.75V12.9167M11.6667 8.75V12.9167"
+                    stroke="#6C6C6C"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-template *ngIf="loading">
+          <tr>
+            <td colspan="10" class="py-16">
+              <span class="flex justify-center">
+                <mat-spinner [diameter]="30"></mat-spinner>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+
+    <div *ngIf="campaign.length === 0">
+      <h1 class="flex justify-center py-4 text-xl font-bold mt-10">
+        {{ "NO_DATA" | translate }}
+      </h1>
+    </div>
+  </div>
+
+  <app-paginator
+    [offset]="offset"
+    [totalOffset]="totalOffset"
+    (change)="getCampaign($event)"
+  ></app-paginator>
+</div>
+
+<ng-template #detailModal>
+  <div class="py-6 px-20 overflow-y-auto">
+    <h1 class="font-bold flex justify-center text-xl py-4">
+      {{ "NOTI_MESSAGE_DETAIL" | translate }}
+    </h1>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold py-2">{{ "NEWSL_TITLE" | translate }}</h2>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold"
+            >{{ "NEWSL_TITLE" | translate }} (English)</span
+          >
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold">{{ id.title.en }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold"
+            >{{ "NEWSL_TITLE" | translate }} (Vietnamese)</span
+          >
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold">{{ id.title.vi }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold py-2">
+        {{ "CREATE_NEWSL_CONTENT" | translate }}
+      </h2>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold"
+            >{{ "CREATE_NEWSL_CONTENT" | translate }} (English)</span
+          >
+        </div>
+        <div class="text-start px-8">
+          <span
+            class="font-semibold max-w-56"
+            [innerHTML]="id.content.en"
+          ></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold"
+            >{{ "CREATE_NEWSL_CONTENT" | translate }} (Vietnamese)</span
+          >
+        </div>
+        <div class="text-start px-8">
+          <span
+            class="font-semibold max-w-56"
+            [innerHTML]="id.content.vi"
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold">{{ "ACTION_L" | translate }}</h2>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold">{{
+            "ROUTE_TYPE_S" | translate
+          }}</span>
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold">{{ id.routeType }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold">{{
+            "ROUTE_TO" | translate
+          }}</span>
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold">{{ "SCHEDULAR" | translate }}</h2>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold">{{
+            "PROCESS_TIME" | translate
+          }}</span>
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold">{{ id.startAt }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold">{{
+            "CREATEDAT" | translate
+          }}</span>
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold">{{ id.createdAt }}</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 border-b py-3 gap-8">
+        <div class="flex justify-start items-center">
+          <span class="text-gray-500 font-bold">{{
+            "STATUS" | translate
+          }}</span>
+        </div>
+        <div class="text-start px-8">
+          <span class="font-semibold"
+            ><button
+              class="rounded-full px-3 py-2 cursor-default"
+              [ngClass]="{
+                'text-[#E0AF00] bg-[#FFF7DA]':
+                  id.status === 'PENDING' || id.status === 'WAITING',
+                'text-[#F16212] bg-[#FFE8DB]': id.status === 'CANCELLED',
+                'text-[#18B427] bg-[#D8FFDC]': id.status === 'COMPLETED',
+                'text-blue-500 bg-blue-200': id.status === 'RUNNING'
+              }"
+            >
+              {{ id.status }}
+            </button></span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 flex justify-end">
+      <button
+        (click)="closeDialog()"
+        class="text-white bg-yellow-500 px-4 py-3 rounded-full"
+      >
+        {{ "CLOSE" | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #createModal>
+  <div class="py-12 px-6 overflow-y-auto">
+    <form [formGroup]="createForm">
+      <h1 class="font-bold text-xl flex justify-center">
+        {{ "CREATE_MESSAGE_TEMPLATE" | translate }}
+      </h1>
+
+      <div class="flex flex-col mt-6">
+        <app-select
+          [label]="'TYPE' | translate"
+          selectId="type"
+          [options]="icon"
+          formControlName="type"
+          controlName="type"
+          class="w-72"
+        ></app-select>
+      </div>
+
+      <h2 class="text-lg font-bold mt-4">{{ "MESSAGE" | translate }}</h2>
+
+      <div class="mt-2">
+        <app-select
+          [label]="'CREATE_NEWSL_LANGUAGE' | translate"
+          selectId="language"
+          [options]="selectLang"
+          formControlName="language"
+          controlName="language"
+          (change)="changeLanguage()"
+        ></app-select>
+      </div>
+
+      <div *ngIf="_selectedLanguage === 'vi'" class="mt-2">
+        <label for="titleVi" class="text-gray-500 font-bold">
+          {{ "NOTI_TITLE" | translate }}
+        </label>
+        <input
+          formControlName="titleVi"
+          type="text"
+          class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+        />
+      </div>
+
+      <div *ngIf="_selectedLanguage === 'en'" class="mt-2">
+        <label for="titleEn" class="text-gray-500 font-bold">
+          {{ "NEWSL_TITLE" | translate }} (English)
+        </label>
+        <input
+          formControlName="titleEn"
+          type="text"
+          class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+        />
+      </div>
+
+      <div *ngIf="_selectedLanguage === 'en'" class="mt-2">
+        <label class="text-gray-500 font-bold"
+          >{{ "CREATE_NEWSL_CONTENT" | translate }} (English)</label
+        >
+        <app-text-area formControlName="contentEn"></app-text-area>
+      </div>
+
+      <div *ngIf="_selectedLanguage === 'vi'" class="mt-2">
+        <label class="text-gray-500 font-bold"
+          >{{ "NOTI_CONTENT" | translate }}
+        </label>
+        <app-text-area formControlName="contentVi"></app-text-area>
+      </div>
+
+      <div *ngIf="add" class="border-t mt-3">
+        <div class="mt-2">
+          <app-select
+            [label]="'CREATE_NEWSL_LANGUAGE' | translate"
+            selectId="language"
+            [options]="selectLang"
+            formControlName="secondLanguage"
+            controlName="secondLanguage"
+            (change)="changeLanguage()"
+          ></app-select>
+        </div>
+
+        <div *ngIf="_selectedSecondColumnLanguage === 'vi'" class="mt-2">
+          <label for="titleVi" class="text-gray-500 font-bold">
+            {{ "NEWSL_TITLE" | translate }} (Vietnamese)
+          </label>
+          <input
+            formControlName="titleVi"
+            type="text"
+            class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+          />
+        </div>
+
+        <div *ngIf="_selectedSecondColumnLanguage === 'en'" class="mt-2">
+          <label for="titleEn" class="text-gray-500 font-bold">
+            {{ "NEWSL_TITLE" | translate }} (English)
+          </label>
+          <input
+            formControlName="titleEn"
+            type="text"
+            class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+          />
+        </div>
+
+        <div *ngIf="_selectedSecondColumnLanguage === 'en'" class="mt-2">
+          <label class="text-gray-500 font-bold"
+            >{{ "CREATE_NEWSL_CONTENT" | translate }} (English)</label
+          >
+          <app-text-area formControlName="contentEn"></app-text-area>
+        </div>
+
+        <div *ngIf="_selectedSecondColumnLanguage === 'vi'" class="mt-2">
+          <label class="text-gray-500 font-bold"
+            >{{ "CREATE_NEWSL_CONTENT" | translate }} (Vietnamese)</label
+          >
+          <app-text-area formControlName="contentVi"></app-text-area>
+        </div>
+      </div>
+
+      <button
+        *ngIf="button"
+        (click)="addButton()"
+        class="text-white font-bold px-3 py-2 rounded-full bg-[#F8AA00] mt-3"
+      >
+        {{ "ADDMORE" | translate }}
+      </button>
+
+      <div class="flex flex-col my-4">
+        <app-input
+          [label]="'SCHEDULAR' | translate"
+          inputId="date"
+          formControlName="date"
+          type="date"
+          class="w-72"
+          [min]="tomorrow"
+        ></app-input>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4">
+        <div class="my-4">
+          <app-select
+            [label]="'HOUR' | translate"
+            selectId="hour"
+            [options]="hours"
+            formControlName="hour"
+          ></app-select>
+        </div>
+
+        <div class="my-4">
+          <app-select
+            [label]="'MINUTE' | translate"
+            selectId="min"
+            [options]="minutes"
+            formControlName="minute"
+          ></app-select>
+        </div>
+
+        <div class="my-4">
+          <app-select
+            [label]="'PERIOD' | translate"
+            selectId="period"
+            [options]="periods"
+            formControlName="period"
+          ></app-select>
+        </div>
+      </div>
+
+      <div class="mt-2 grid grid-cols-2 gap-5">
+        <div>
+          <app-select
+            [label]="'ROUTE_TYPE_S' | translate"
+            selectId="routeType"
+            [options]="routeType"
+            formControlName="routeType"
+            (change)="onRouteTypeChange($event)"
+          ></app-select>
+        </div>
+
+        <div
+          *ngIf="
+            selectedRouteType === 'EXTERNAL_LINK' ||
+            selectedRouteType === 'DEEPLINK'
+          "
+        >
+          <app-input
+            [label]="'ROUTE_TO' | translate"
+            inputId="routeTo"
+            formControlName="routeTo"
+            type="text"
+          ></app-input>
+        </div>
+      </div>
+
+      <div class="mt-2 flex justify-between space-x-2">
+        <div class="flex space-x-4">
+          <div>
+            <h2 class="block text-sm font-bold text-gray-500">
+              {{ "FILE" | translate }}
+            </h2>
+            <div (click)="fileUploadfront.click()">
+              <button
+                class="px-4 py-2 bg-[#235884] rounded-lg flex items-center text-white"
+              >
+                <span class="material-icons mr-2">upload</span>
+                {{ "UPLOAD_FILESB" | translate }}
+              </button>
+            </div>
+
+            <input
+              #fileUploadfront
+              class="hidden"
+              type="file"
+              (change)="onChangeFrontImg($event)"
+              multiple
+            />
+          </div>
+
+          <div>
+            <h2 class="block text-sm font-bold text-gray-500">
+              {{ "DOWNLOAD_EXCEL" | translate }}
+            </h2>
+            <button
+              (click)="formatExcel()"
+              class="px-4 py-2 bg-[#235884] rounded-lg flex items-center text-white"
+            >
+              <span class="material-icons mr-2">download</span>
+              {{ "DOWNLOAD_EXCEL_FILE" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <div *ngIf="frontImgs.length > 0" class="overflow-x-auto mt-3">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr class="border-b text-gray-600 text-sm text-center">
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "NO" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "FILE_NAME" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "ACTION_L" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="border-b text-gray-600 text-sm text-center font-light"
+            >
+              <tr *ngFor="let img of frontImgs; let i = index">
+                <td class="px-6 border-b border-l font-bold py-3">
+                  {{ i + 1 }}
+                </td>
+                <td class="px-6 border-b border-l font-bold py-3">
+                  {{ img.fileFront.name }}
+                </td>
+                <td class="px-6 border-b border-l font-bold py-3">
+                  <span
+                    class="cursor-pointer"
+                    (click)="removeSingleFileFront(i)"
+                  >
+                    <span class="material-icons">delete</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-center mt-6 space-x-5">
+      <button
+        (click)="closeCreate()"
+        class="px-4 py-2 bg-gray-400 text-white rounded-full flex items-center"
+      >
+        {{ "CLOSE" | translate }}
+      </button>
+      <button
+        [disabled]="!createForm.valid"
+        (click)="create()"
+        class="px-4 py-2 bg-yellow-400 text-white rounded-full flex items-center"
+      >
+        {{ "CREATE" | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #updateModal>
+  <div class="py-12 px-6 overflow-y-auto max-h-screen">
+    <form [formGroup]="createForm">
+      <h1 class="font-bold text-xl flex justify-center">
+        {{ "UPDATE_MESSAGE_TEMPLATE" | translate }}
+      </h1>
+
+      <div class="flex flex-col mt-6">
+        <app-select
+          [label]="'TYPE' | translate"
+          selectId="type"
+          [options]="icon"
+          formControlName="type"
+          controlName="type"
+          class="w-72"
+        ></app-select>
+      </div>
+
+      <h2 class="text-lg font-bold mt-4">{{ "MESSAGE" | translate }}</h2>
+
+      <div *ngIf="_selectedLanguage === 'vi'" class="mt-2">
+        <label for="titleVi" class="text-gray-500 font-bold">
+          {{ "NOTI_TITLE" | translate }}
+        </label>
+        <input
+          formControlName="titleVi"
+          type="text"
+          class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+        />
+      </div>
+
+      <div *ngIf="_selectedLanguage === 'vi'" class="mt-2">
+        <label class="text-gray-500 font-bold">{{
+          "NOTI_CONTENT" | translate
+        }}</label>
+        <app-text-area formControlName="contentVi"></app-text-area>
+      </div>
+
+      <div class="border-t mt-3">
+        <div *ngIf="_selectedSecondColumnLanguage === 'en'" class="mt-2">
+          <label for="titleEn" class="text-gray-500 font-bold">
+            {{ "NEWSL_TITLE" | translate }} (English)
+          </label>
+          <input
+            formControlName="titleEn"
+            type="text"
+            class="w-full border border-gray-300 bg-white rounded-md px-3 py-2"
+          />
+        </div>
+
+        <div *ngIf="_selectedSecondColumnLanguage === 'en'" class="mt-2">
+          <label class="text-gray-500 font-bold"
+            >{{ "CREATE_NEWSL_CONTENT" | translate }} (English)</label
+          >
+          <app-text-area formControlName="contentEn"></app-text-area>
+        </div>
+      </div>
+
+      <div class="flex flex-col my-4">
+        <app-input
+          [label]="'SCHEDULAR' | translate"
+          inputId="date"
+          formControlName="date"
+          type="date"
+          class="w-72"
+          [min]="tomorrow"
+        ></app-input>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4">
+        <div class="my-4">
+          <app-select
+            [label]="'HOUR' | translate"
+            selectId="hour"
+            [options]="hours"
+            formControlName="hour"
+          ></app-select>
+        </div>
+
+        <div class="my-4">
+          <app-select
+            [label]="'MINUTE' | translate"
+            selectId="min"
+            [options]="minutes"
+            formControlName="minute"
+          ></app-select>
+        </div>
+
+        <div class="my-4">
+          <app-select
+            [label]="'PERIOD' | translate"
+            selectId="period"
+            [options]="periods"
+            formControlName="period"
+          ></app-select>
+        </div>
+      </div>
+
+      <div class="mt-2 grid grid-cols-2 gap-5">
+        <div>
+          <app-select
+            [label]="'ROUTE_TYPE_S' | translate"
+            selectId="routeType"
+            [options]="routeType"
+            formControlName="routeType"
+            (change)="onRouteTypeChange($event)"
+          ></app-select>
+        </div>
+
+        <div
+          *ngIf="
+            selectedRouteType === 'EXTERNAL_LINK' ||
+            selectedRouteType === 'DEEPLINK'
+          "
+        >
+          <app-input
+            [label]="'ROUTE_TO' | translate"
+            inputId="routeTo"
+            formControlName="routeTo"
+            type="text"
+          ></app-input>
+        </div>
+      </div>
+
+      <div
+        *ngIf="editImgs.length === 0"
+        class="mt-2 flex justify-between space-x-2"
+      >
+        <div>
+          <h2 class="block text-sm font-bold text-gray-500">
+            {{ "FILE" | translate }}
+          </h2>
+          <div (click)="fileUploadfront.click()">
+            <button
+              class="px-4 py-2 bg-[#235884] rounded-lg flex items-center text-white"
+            >
+              <span class="material-icons mr-2">upload</span>
+              {{ "UPLOAD_FILESB" | translate }}
+            </button>
+          </div>
+
+          <input
+            #fileUploadfront
+            class="hidden"
+            type="file"
+            (change)="onChangeFrontImg($event)"
+            multiple
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <div *ngIf="frontImgs.length > 0" class="overflow-x-auto mt-3">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr class="border-b text-gray-600 text-sm text-center">
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "NO" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "FILE_NAME" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "ACTION_L" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="border-b text-gray-600 text-sm text-center font-light"
+            >
+              <tr *ngFor="let img of frontImgs; let i = index">
+                <td class="px-6 border-b border-l font-bold py-3">
+                  {{ i + 1 }}
+                </td>
+                <td class="px-6 border-b border-l font-bold py-3">
+                  {{ img.fileFront.name }}
+                </td>
+                <td class="px-6 border-b border-l font-bold py-3">
+                  <span
+                    class="cursor-pointer"
+                    (click)="removeSingleFileFront(i)"
+                  >
+                    <span class="material-icons">delete</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="editImgs.length > 0" class="overflow-x-auto mt-3">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr class="border-b text-gray-600 text-sm text-center">
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "NO" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "FILE_NAME" | translate }}
+                </th>
+                <th class="px-4 py-2 border-b border-l font-bold">
+                  {{ "ACTION_L" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="border-b text-gray-600 text-sm text-center font-light"
+            >
+              <tr *ngFor="let img of editImgs; let i = index">
+                <td class="px-6 border-b border-l font-bold py-3">
+                  {{ i + 1 }}
+                </td>
+                <td
+                  (click)="downloadFile(img.fileId)"
+                  class="px-6 border-b border-l font-bold py-3 cursor-pointer"
+                >
+                  {{ img.filename }}
+                </td>
+                <td class="px-6 border-b border-l font-bold py-3">
+                  <span
+                    class="cursor-pointer"
+                    (click)="removeSingleFileEdit(i)"
+                  >
+                    <span class="material-icons">delete</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-6 space-x-5">
+        <button
+          (click)="closeCreate()"
+          class="px-4 py-2 bg-gray-400 text-white rounded-full flex items-center"
+        >
+          {{ "CLOSE" | translate }}
+        </button>
+        <button
+          (click)="update()"
+          class="px-4 py-2 bg-yellow-400 text-white rounded-full flex items-center"
+        >
+          {{ "UPDATE" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
