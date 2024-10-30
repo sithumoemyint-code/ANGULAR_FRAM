@@ -4,21 +4,27 @@
   <form [formGroup]="createForm">
     <div class="mt-5 flex flex-col">
       <div class="mb-7">
-        <app-admin-img-upload formControlName="upload" (imageSelected)="onImageSelected($event)"
-          [file]="'excel'"></app-admin-img-upload>
+        <app-admin-img-upload
+          formControlName="upload"
+          (imageSelected)="onImageSelected($event)"
+          [file]="'excel'"
+        ></app-admin-img-upload>
       </div>
 
       <div class="mt-10 flex justify-center space-x-5">
-        <button (click)="closeCreate()"
-          class="px-3 py-2 rounded-full bg-white text-[#444444] font-bold focus:outline-none">
+        <button
+          (click)="closeCreate()"
+          class="px-3 py-2 rounded-full bg-white text-[#444444] font-bold focus:outline-none"
+        >
           Cancel
         </button>
-        <button (click)="createData()"
-          class="px-5 py-2 rounded-full bg-[#FD6D1A] text-white font-bold focus:outline-none">
+        <button
+          (click)="createData()"
+          class="px-5 py-2 rounded-full bg-[#FD6D1A] text-white font-bold focus:outline-none"
+        >
           Create
         </button>
       </div>
     </div>
   </form>
-
 </div>

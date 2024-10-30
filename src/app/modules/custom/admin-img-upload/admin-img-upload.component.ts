@@ -1,91 +1,110 @@
-import { CommonModule } from '@angular/common'
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output, SimpleChanges } from '@angular/core'
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors } from '@angular/forms'
-import { MatIconModule } from '@angular/material/icon'
-import { TranslateModule } from '@ngx-translate/core'
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  ValidationErrors,
+} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
-type InputType =
-  | 'image'
-  | 'excel'
+type InputType = 'image' | 'excel';
 
 @Component({
   selector: 'app-admin-img-upload',
   templateUrl: './admin-img-upload.component.html',
   styleUrls: ['./admin-img-upload.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    TranslateModule
-  ],
+  imports: [CommonModule, MatIconModule, ReactiveFormsModule, TranslateModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AdminImgUploadComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
-
 })
 export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
-  @Input() control!: FormControl
-  @Input() isImageRequire!: boolean
-  @Output() imageSelected = new EventEmitter<File>()
-  @Input() file: InputType = 'image'
+  @Input() control!: FormControl;
+  @Input() isImageRequire!: boolean;
+  @Output() imageSelected = new EventEmitter<File>();
+  @Input() file: InputType = 'image';
 
-  @Input() customErrorMessages: Record<string, string> = {}
-  @Input() errors: Record<string, ValidationErrors> | null = {}
-  @Input() customErrorMessage: Record<string, string> = {}
+  @Input() customErrorMessages: Record<string, string> = {};
+  @Input() errors: Record<string, ValidationErrors> | null = {};
+  @Input() customErrorMessage: Record<string, string> = {};
 
-  selectedImage: string | ArrayBuffer | null = null
-  private onChange = (file: File | null) => { }
-  private onTouched = () => { }
+  selectedImage: string | ArrayBuffer | null = null;
+  private onChange = (file: File | null) => {};
+  private onTouched = () => {};
+  fileName: string | null = null;
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onFileSelected(event: Event) {
     if (this.file === 'image') {
-      const input = event.target as HTMLInputElement
+      const input = event.target as HTMLInputElement;
       if (input.files && input.files[0]) {
-        const file = input.files[0]
-        const reader = new FileReader()
+        const file = input.files[0];
+        const reader = new FileReader();
 
         reader.onload = () => {
-          this.selectedImage = reader.result
-        }
+          this.selectedImage = reader.result;
+        };
 
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
 
-        this.onChange(file) // Notify Angular forms about the file change
-        this.onTouched() // Notify Angular forms that the input was touched
-        this.imageSelected.emit(file)
+        this.onChange(file); // Notify Angular forms about the file change
+        this.onTouched(); // Notify Angular forms that the input was touched
+        this.imageSelected.emit(file);
       }
     } else if (this.file === 'excel') {
-      console.log('good to go  hello world.')
-    }
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        const file = input.files[0];
+        const fileType = file.name.split('.').pop()?.toLowerCase();
 
+        if (fileType === 'xls' || fileType === 'xlsx') {
+          this.fileName = file.name;
+        } else {
+          alert('Please upload an Excel file (.xls or .xlsx)');
+          input.value = '';
+        }
+      }
+    }
+  }
+
+  removeFile() {
+    this.fileName = null;
   }
 
   triggerFileUpload() {
-    const fileInput = document.getElementById('upload') as HTMLInputElement
-    fileInput.click()
+    const fileInput = document.getElementById('upload') as HTMLInputElement;
+    fileInput.click();
   }
 
   // ControlValueAccessor interface methods
   writeValue(value: File | null): void {
-    if (typeof value === 'string') this.selectedImage = value
-    else this.selectedImage = null
+    if (typeof value === 'string') this.selectedImage = value;
+    else this.selectedImage = null;
   }
 
   registerOnChange(fn: (file: File | null) => void): void {
-    this.onChange = fn
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn
+    this.onTouched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
@@ -94,7 +113,7 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
 
   errorMessages: Record<string, string> = {
     required: 'This field is required',
-  }
+  };
 
   ngOnChanges(changes: SimpleChanges): void {
     // const { customErrorMessages } = changes
@@ -104,6 +123,5 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
     //     ...customErrorMessages.currentValue,
     //   }
     // }
-
   }
 }

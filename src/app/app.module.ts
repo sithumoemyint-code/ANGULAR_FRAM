@@ -79,4 +79,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent],
   exports: [CustomInputComponent],
 })
-export class AppModule {}
+export class AppModule { }

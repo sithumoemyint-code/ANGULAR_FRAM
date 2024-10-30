@@ -5,39 +5,31 @@
     </div>
 
     <div class="flex flex-row space-x-10">
-      <div class="p-1">
-        <button
-          class="px-3 py-2 focus:outline-none border border-gray-400 rounded-xl text-[#7C7C7C]"
+      <div class="p-1 flex items-center">
+        <button class="px-3 py-2 focus:outline-none border border-[#E4E4E4] shadow-md rounded-xl text-[#7C7C7C]"
           [ngClass]="{ 'bg-[#F8F49B] font-bold': activeButton === 'Pending' }"
-          (click)="showDataSource(dataSourcePending, 'Pending')"
-        >
+          (click)="showDataSource(dataSourcePending, 'Pending')">
           Pending
         </button>
       </div>
-      <div class="p-1">
-        <button
-          class="px-3 py-2 focus:outline-none border border-gray-400 rounded-xl text-[#7C7C7C]"
+      <div class="p-1 flex items-center">
+        <button class="px-3 py-2 focus:outline-none border border-[#E4E4E4] shadow-md rounded-xl text-[#7C7C7C]"
           [ngClass]="{ 'bg-[#A1CDFF] font-bold': activeButton === 'Revoke' }"
-          (click)="showDataSource(dataSourceRevoke, 'Revoke')"
-        >
+          (click)="showDataSource(dataSourceRevoke, 'Revoke')">
           Revoke
         </button>
       </div>
-      <div class="p-1">
-        <button
-          class="px-3 py-2 focus:outline-none border border-gray-400 rounded-xl text-[#7C7C7C]"
+      <div class="p-1 flex items-center">
+        <button class="px-3 py-2 focus:outline-none border border-[#E4E4E4] shadow-md rounded-xl text-[#7C7C7C]"
           [ngClass]="{ 'bg-[#EBC1FF] font-bold': activeButton === 'Reuse' }"
-          (click)="showDataSource(dataSourceReuse, 'Reuse')"
-        >
+          (click)="showDataSource(dataSourceReuse, 'Reuse')">
           Reuse
         </button>
       </div>
     </div>
 
     <div class="p-1 flex justify-end">
-      <button
-        class="px-3 py-2 bg-[#4485FF] text-white font-bold rounded-full focus:outline-none flex items-center"
-      >
+      <button class="px-3 py-2 bg-[#4485FF] text-white font-bold rounded-full focus:outline-none flex items-center">
         Download File
         <mat-icon class="ml-2">download</mat-icon>
       </button>
@@ -59,35 +51,26 @@
 
       <tbody>
         <tr *ngFor="let item of currentDataSource" class="bg-white">
-          <td class="px-4 py-2 text-center">{{ item.no }}</td>
-          <td class="px-4 py-2 text-center">{{ item.account }}</td>
-          <td class="px-4 py-2 text-center">{{ item.totalMoney }}</td>
-          <td class="px-4 py-2 text-center">{{ item.d2dVmy }}</td>
+          <td class="px-4 py-3 text-center">{{ item.no }}</td>
+          <td class="px-4 py-3 text-center">{{ item.account }}</td>
+          <td class="px-4 py-3 text-center">{{ item.totalMoney }}</td>
+          <td class="px-4 py-3 text-center">{{ item.d2dVmy }}</td>
 
-          <td class="px-4 py-2 text-center">
-            <button
-              class="cursor-default px-3 py-2 text-center rounded-xl font-bold"
-              [ngClass]="{
+          <td class="px-4 py-3 text-center">
+            <button class="cursor-default px-3 py-3 text-center rounded-xl font-bold" [ngClass]="{
                 'bg-[#F8F49B] text-[#766E19]': item.status === 'Pending',
                 'bg-[#A1CDFF] text-[#166292]': item.status === 'Revoke',
                 'bg-[#EBC1FF] text-[#B934F8]': item.status === 'Reuse'
-              }"
-            >
+              }">
               {{ item.status }}
             </button>
           </td>
 
-          <td class="px-4 py-2 items-center flex justify-center space-x-2">
-            <button
-              (click)="showDetail()"
-              class="text-gray-500 hover:text-gray-700"
-            >
+          <td class="px-4 py-3 items-center flex justify-center space-x-2">
+            <button (click)="showDetail()" class="text-gray-500 hover:text-gray-700">
               <mat-icon>info</mat-icon>
             </button>
-            <button
-              (click)="openEdit()"
-              class="text-gray-500 hover:text-gray-700"
-            >
+            <button (click)="openEdit()" class="text-gray-500 hover:text-gray-700">
               <mat-icon>edit</mat-icon>
             </button>
           </td>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { StatisticChildGetSetService } from '../statistic/components/statistic-child/statistic-child-get-set.service';
 
 @Component({
   selector: 'app-customer',
@@ -10,5 +11,4 @@ import { RouterOutlet } from '@angular/router';
 
 })
 export class CustomerComponent {
-
 }

@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
 
     this.form = this.fb.group({
       vmycode: ['', [Validators.required]],
-      browser: [this.browser],
+      requestId: [new Date().toISOString(), [Validators.required]],
+      requestTime: [new Date().toISOString(), [Validators.required]],
     });
 
     this.otp = this.fb.group({
@@ -65,6 +66,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    // let params = this.form.value;
+
+    // this._loginServiceService.loginConfirm(params).subscribe((data: any) => {
+    //   console.log(data);
+    // });
+
     if (this.form.status === 'VALID') {
       this.loading = true;
       const data = this.form.value;

@@ -10,13 +10,21 @@ import { AdminImgUploadComponent } from 'src/app/modules/custom/admin-img-upload
   templateUrl: './create-data.component.html',
   styleUrls: ['./create-data.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatIconModule, AdminImgUploadComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    AdminImgUploadComponent,
+    ReactiveFormsModule,
+  ],
 })
 export class CreateDataComponent implements OnInit {
-  createForm!: FormGroup
+  createForm!: FormGroup;
   fileName: string | null = null;
 
-  constructor(private _dialogRef: MatDialogRef<CreateDataComponent>, private fb: FormBuilder) { }
+  constructor(
+    private _dialogRef: MatDialogRef<CreateDataComponent>,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
@@ -24,23 +32,7 @@ export class CreateDataComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      const fileType = file.name.split('.').pop()?.toLowerCase();
-
-      if (fileType === 'xls' || fileType === 'xlsx') {
-        this.fileName = file.name;
-      } else {
-        alert('Please upload an Excel file (.xls or .xlsx)');
-        input.value = '';
-      }
-    }
-  }
-
-  onImageSelected(event: any) {
-  }
+  onImageSelected(event: any) {}
 
   removeFile(): void {
     this.fileName = null;
@@ -51,6 +43,6 @@ export class CreateDataComponent implements OnInit {
   }
 
   createData() {
-    console.log(this.createForm.value, ' create form')
+    console.log(this.createForm.value, ' create form');
   }
 }
