@@ -1,72 +1,108 @@
-<div class="background-container">
-  <div class="pt-5 flex justify-end px-10">
-    <div></div>
-    <div class="flex justify-end items-center switch">
-      <input
-        id="language-toggle"
-        class="check-toggle check-toggle-round-flat"
-        type="checkbox"
-        [checked]="currentLang === 'en'"
-        (change)="switchLanguage()"
-      />
-      <label for="language-toggle"></label>
-      <span class="on">VI</span>
-      <span class="off">EN</span>
-    </div>
-  </div>
-
-  <div class="flex items-center justify-center flex-col">
+<div class="bg-[#2A2F4F]">
+  <div
+    class="flex items-center justify-center flex-col h-screen"
+    *ngIf="!isRequestedOtp"
+  >
     <img
-      src="/assets/image/Vector.png"
-      width="6%"
-      height="6%"
+      src="assets/image/FTTH_logo.png"
       alt=""
-      class="mt-10"
+      class="w-[123px] h-[89.51px]"
     />
     <p class="text-white text-2xl font-bold mt-8 mb-5">
-      {{ "GIFTLIFE_CONTENT" | translate }}
+      Tool update status FTTH account Reuse/Revoke
     </p>
 
     <div class="w-[550px] rounded-2xl bg-white mt-2 px-28">
-      <p class="pt-8 text-xl font-bold text-center">
-        {{ "LOGIN" | translate }}
-      </p>
-      <p
-        *ngIf="showErrorMessage !== ''"
-        class="text-[#E40105] text-sm text-center py-4"
-      >
-        {{ showErrorMessage }}
-      </p>
+      <p class="pt-8 text-xl font-bold text-center pb-4">Login</p>
+
       <form [formGroup]="form" (submit)="onSubmit()" novalidate class="mb-8">
         <app-custom-input
-          formControlName="username"
-          [placeholder]="'ENTER_USERNAME' | translate"
+          formControlName="vmycode"
+          placeholder="Enter your VMY code"
           type="text"
-          [label]="'USERNAME' | translate"
-          [errorMessage]="'LOGIN_REQUIRE_FIELD' | translate"
         ></app-custom-input>
-
-        <app-custom-input
-          formControlName="password"
-          [placeholder]="'ENTER_YOUR_PASSWORD' | translate"
-          type="password"
-          [hideTypeAttribute]="true"
-          [label]="'PASSWORD' | translate"
-          [errorMessage]="'ERROR_MESSAGES.REQUIRED' | translate"
-        ></app-custom-input>
+        <p
+          *ngIf="showErrorMessage"
+          class="text-[#E40105] text-sm text-center py-1"
+        >
+          {{ showErrorMessage }}
+        </p>
         <button
           type="submit"
           class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
           [ngClass]="
             !isFormValid() || loading ? 'bg-[#999]' : 'bg-[#F8AA00] text-white'
           "
-          [disabled]="!isFormValid() || loading"
+          [disabled]="form.value.vmycode === ''"
         >
           <span *ngIf="loading"
             ><mat-spinner [diameter]="20"></mat-spinner
           ></span>
-          {{ "BTN_LOGIN" | translate }}
+          Continue
         </button>
+      </form>
+    </div>
+  </div>
+
+  <div
+    class="flex items-center justify-center flex-col h-screen"
+    *ngIf="isRequestedOtp"
+  >
+    <img
+      src="assets/image/FTTH_logo.png"
+      alt=""
+      class="w-[123px] h-[89.51px]"
+    />
+    <p class="text-white text-2xl font-bold mt-8 mb-5">
+      Tool update status FTTH account Reuse/Revoke
+    </p>
+
+    <div class="w-[550px] rounded-2xl bg-white mt-2 px-28">
+      <p class="pt-8 text-xl font-bold text-center pb-4">Login</p>
+      <p class="py-2 text-md text-center">
+        We will send OTP to your phone number.
+      </p>
+
+      <form [formGroup]="otp" (submit)="login()" novalidate class="mb-8">
+        <app-custom-input
+          formControlName="otp"
+          placeholder="OTP"
+          type="text"
+        ></app-custom-input>
+        <p class="underline text-orange-500 text-center cursor-pointer">
+          Resend OTP
+        </p>
+        <p
+          *ngIf="showErrorMessage"
+          class="text-[#E40105] text-sm text-center py-1"
+        >
+          {{ showErrorMessage }}
+        </p>
+        <div class="flex justify-center items-center space-x-6">
+          <button
+            (click)="cancel()"
+            type="button"
+            class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
+          >
+            <span *ngIf="loading"
+              ><mat-spinner [diameter]="20"></mat-spinner
+            ></span>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
+            [ngClass]="
+              !isOtpValid() || loading ? 'bg-[#999]' : 'bg-[#F8AA00] text-white'
+            "
+            [disabled]="!isOtpValid() || loading"
+          >
+            <span *ngIf="loading"
+              ><mat-spinner [diameter]="20"></mat-spinner
+            ></span>
+            Login
+          </button>
+        </div>
       </form>
     </div>
   </div>

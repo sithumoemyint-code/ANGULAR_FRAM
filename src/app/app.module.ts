@@ -17,11 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxEditorModule } from 'ngx-editor';
 import { PaginationComponent } from './modules/custom/pagination/pagination.component';
-import { CronGeneratorComponent } from './modules/admin/pages/notification/components/notification/components/cron-generator/cron-generator.component';
 import { CustomMenuComponent } from './modules/custom/custom-menu/custom-menu.component';
 import { ButtonComponent } from './modules/custom/button/button.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { RichTextComponent } from './modules/custom/rich-text/rich-text.component';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -40,11 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     CustomInputComponent,
     PaginationComponent,
-    CronGeneratorComponent,
     CustomMenuComponent,
     ButtonComponent,
     PageNotFoundComponent,
-    RichTextComponent,
   ],
   imports: [
     BrowserModule,

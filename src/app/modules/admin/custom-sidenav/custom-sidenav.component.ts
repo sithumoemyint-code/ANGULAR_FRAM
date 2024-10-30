@@ -23,7 +23,7 @@ export class CustomSidenavComponent implements OnInit {
   public menuItems: MenuItem[] = [];
   public menuItem = signal<MenuItem[]>([]);
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.getPermissionMenuList();

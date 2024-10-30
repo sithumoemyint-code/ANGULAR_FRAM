@@ -8,17 +8,17 @@ export type MenuItem = {
 
 export const menuItem: MenuItem[] = [
   {
-    icon: 'newspaper',
+    icon: 'query_stats',
     label: 'Statistic',
     route: 'app-statistic',
   },
   {
-    icon: 'newspaper',
+    icon: 'account_circle',
     label: 'Customer',
     route: 'app-customer',
   },
   {
-    icon: 'newspaper',
+    icon: 'folder_open',
     label: 'Import Data',
     route: 'app-import-data',
   },

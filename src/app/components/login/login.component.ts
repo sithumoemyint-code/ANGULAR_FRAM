@@ -14,10 +14,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  otp!: FormGroup;
   loading: boolean = false;
   browser!: string;
   showErrorMessage!: string;
-  currentLang = 'vi';
+  currentLang = 'en';
+  isRequestedOtp: boolean = false;
 
   constructor(
     private renderer: Renderer2,
@@ -39,17 +41,13 @@ export class LoginComponent implements OnInit {
     });
     this.browser = this.browserDetectionService.getBrowserInfo();
 
-    const backgroundUrl = 'url(/assets/image/Gradient.png)';
-    const container = this.el.nativeElement.querySelector(
-      '.background-container'
-    );
-
-    this.renderer.setStyle(container, 'backgroundImage', backgroundUrl);
-
     this.form = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      vmycode: ['', [Validators.required]],
       browser: [this.browser],
+    });
+
+    this.otp = this.fb.group({
+      otp: ['', [Validators.required]],
     });
 
     this.pageReload();
@@ -70,8 +68,23 @@ export class LoginComponent implements OnInit {
     if (this.form.status === 'VALID') {
       this.loading = true;
       const data = this.form.value;
+      if (data.vmycode === 'vmy123123') {
+        this.showErrorMessage = '';
+        this.loading = false;
+        this.isRequestedOtp = true;
+      } else {
+        this.loading = false;
+        this.showErrorMessage = 'Your VMY doesn’t exist.';
+      }
+    }
+  }
 
-      if (data.username === 'admin' && data.password === '123') {
+  login() {
+    if (this.otp.status === 'VALID') {
+      this.showErrorMessage = '';
+      this.loading = true;
+      const data = this.otp.value;
+      if (data.otp === '123') {
         this.authService.saveTokens(
           '87834uu43iuwr89uf8ae237ei23u2id392803ioiu2398'
         );
@@ -79,74 +92,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['admin/app-statistic']);
       } else {
         this.loading = false;
-
-        this.showErrorMessage = 'Message error show';
+        this.showErrorMessage = 'Wrong OTP.';
       }
-
-      // this._loginServiceService.loginUser(data).subscribe({
-      //   next: (response: any) => {
-      //     if (response.errorCode === '000') {
-      //       const groupedPermissions = Object.values(
-      //         response.result.subPermissions.reduce((acc: any, item: any) => {
-      //           const { permissionId, name } = item.permission;
-
-      //           // If the permission is not already in the accumulator, add it
-      //           if (!acc[permissionId]) {
-      //             acc[permissionId] = {
-      //               name,
-      //               permissionId,
-      //               type: [],
-      //               subPermissionCode: [],
-      //             };
-      //           }
-
-      //           // Push the type and subPermissionCode if they are not already present
-      //           if (!acc[permissionId].type.includes(item.type))
-      //             acc[permissionId].type.push(item.type);
-      //           if (
-      //             !acc[permissionId].subPermissionCode.includes(
-      //               item.subPermissionCode
-      //             )
-      //           )
-      //             acc[permissionId].subPermissionCode.push(
-      //               item.subPermissionCode
-      //             );
-      //           return acc;
-      //         }, {})
-      //       );
-      //       let username = this.form.value.username;
-      //       if (username.startsWith('84'))
-      //         username = '0' + username.substring(2);
-      //       this.cookieService.set('username', username);
-
-      //       const jsonGroupPermission = JSON.stringify(groupedPermissions);
-      //       this.cookieService.set('groupPermission', jsonGroupPermission);
-
-      //       this.showErrorMessage = '';
-      //       this.authService.saveTokens(response.result.accessToken);
-      //       this.loading = false;
-      //       this.router.navigate(['admin/app-statistic']);
-      //     } else if (response.errorCode === '218') {
-      //       this.loading = false;
-      //       this.showErrorMessage = response.message;
-      //     } else if (response.errorCode === '210') {
-      //       this.loading = false;
-      //       this.showErrorMessage = response.message;
-      //     } else if (response.errorCode === '219') {
-      //       this.loading = false;
-      //       this.showErrorMessage = response.message;
-      //     } else {
-      //       this.loading = false;
-      //       this.showErrorMessage = response.message || 'Something went wrong.';
-      //     }
-      //   },
-      //   error: (error: any) => {
-      //     this.loading = false;
-      //     if (error.error.errorCode === '208')
-      //       this.showErrorMessage = error.error.message;
-      //     else this.showErrorMessage = 'Something went wrong.';
-      //   },
-      // });
     }
   }
 
@@ -154,9 +101,16 @@ export class LoginComponent implements OnInit {
     return this.form.valid;
   }
 
-  switchLanguage() {
-    const newLang = this.currentLang === 'vi' ? 'en' : 'vi';
-    this.languageService.switchLanguage(newLang);
-    this.currentLang = newLang;
+  isOtpValid(): boolean {
+    return this.otp.valid;
+  }
+
+  cancel() {
+    this.isRequestedOtp = false;
+    this.showErrorMessage = '';
+    this.form.value.vmycode = '';
+    this.isFormValid();
+
+    window.location.reload();
   }
 }

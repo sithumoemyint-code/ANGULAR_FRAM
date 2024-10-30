@@ -1,24 +1,21 @@
-import { Injectable } from '@angular/core'
-import { Router } from '@angular/router'
-import { CookieService } from 'ngx-cookie-service'
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private router: Router,
-    private cookieService: CookieService,
-  ) { }
+  constructor(private router: Router, private cookieService: CookieService) {}
 
-  saveTokens(accessToken: string) {
-    this.cookieService.set('accessToken', accessToken)
+  saveTokens(accessTokenONS: string) {
+    this.cookieService.set('accessTokenONS', accessTokenONS);
   }
 
   logOut() {
-    this.cookieService.delete('accessToken')
-    this.cookieService.delete('groupPermission')
-    this.cookieService.delete('username')
-    return this.router.navigate(['login'])
+    this.cookieService.delete('accessTokenONS');
+    this.cookieService.delete('groupPermission');
+    this.cookieService.delete('username');
+    return this.router.navigate(['login']);
   }
 }

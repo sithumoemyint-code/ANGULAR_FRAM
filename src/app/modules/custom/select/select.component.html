@@ -11,6 +11,9 @@
     [id]="selectId"
     [formControl]="control"
     [ngClass]="{ 'invalid-border': control.touched && control.invalid }"
+    [ngClass]="{
+      'placeholder-option': control.value === null || control.value === ''
+    }"
   >
     <option value="" disabled selected *ngIf="placeholder !== ''">
       {{ placeholder }}

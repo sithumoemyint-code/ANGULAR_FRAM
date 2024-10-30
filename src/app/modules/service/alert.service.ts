@@ -5,6 +5,8 @@ import { SuccessAndFailDialogComponent } from '../custom/model/success-and-fail-
 import { ConfirmComponent } from '../custom/model/confirm/confirm.component';
 import { ConfirmPasswordComponent } from '../custom/model/confirm-password/confirm-password.component';
 import { PasswordDialogComponent } from '../custom/model/password-dialog/password-dialog.component';
+import { DeleteComponent } from '../custom/model/delete/delete.component';
+import { ConfirmSuccessFailComponent } from '../custom/model/confirm-success-fail/confirm-success-fail.component';
 
 @Injectable({
   providedIn: 'root',
@@ -56,5 +58,33 @@ export class AlertService {
         type: type,
       },
     });
+  }
+
+  deleteNotification(title: string, des: string, type: string) {
+    const _modal = this.dialog.open(DeleteComponent, {
+      width: '35%',
+      disableClose: false,
+      data: {
+        title: title,
+        des: des,
+        type: type,
+      },
+    });
+
+    return _modal.componentInstance._create.asObservable();
+  }
+
+  confirmSuccessFail(title: string, des: string, type: string) {
+    const _modal = this.dialog.open(ConfirmSuccessFailComponent, {
+      width: '35%',
+      disableClose: false,
+      data: {
+        title: title,
+        des: des,
+        type: type,
+      },
+    });
+
+    return _modal.componentInstance._create.asObservable();
   }
 }

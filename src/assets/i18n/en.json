@@ -495,7 +495,7 @@
   "USERNAME": "Username",
   "PASSWORD": "Password",
   "LOGIN": "Login",
-  "LOGIN_REQUIRE_FIELD": "This field is required. Please provide a valid username.",
+  "LOGIN_REQUIRE_FIELD": "Your VMY doesn’t exist.",
   "BTN_LOGIN": " Log in",
 
   "DETAIL_NEWS_POST": "Detail News Post",

@@ -1,0 +1,49 @@
+<div class="p-8">
+  <div class="flex justify-center">
+    <img
+      [src]="
+        data.type === 'SURE'
+          ? 'assets/icons/sure.png'
+          : data.type === 'SUCCESS'
+          ? 'assets/icons/success-ons.png'
+          : 'assets/icons/fail.png'
+      "
+      width="80px"
+      height="80px"
+      alt=""
+    />
+  </div>
+  <p class="font-bold text-3xl text-black text-center pt-4">
+    {{ data.title }}
+  </p>
+  <p class="text-[#292929] font-medium text-lg pt-2 text-center">
+    {{ data.des }}
+  </p>
+  <div
+    *ngIf="data.type === 'SURE'; else confirmTemplate"
+    class="flex justify-center gap-4 pt-8"
+  >
+    <button
+      (click)="close()"
+      class="px-4 py-2 text-[#292929] rounded-3xl ml-4 flex gap-2"
+    >
+      Cancel
+    </button>
+    <button
+      (click)="create()"
+      class="px-4 py-2 text-white rounded-3xl ml-4 flex gap-2 bg-[#FD6D1A]"
+    >
+      Confirm
+    </button>
+  </div>
+  <ng-template #confirmTemplate>
+    <div class="flex justify-center pt-8">
+      <button
+        (click)="close()"
+        class="px-4 py-2 text-white rounded-3xl ml-4 bg-[#FD6D1A]"
+      >
+        Close
+      </button>
+    </div>
+  </ng-template>
+</div>

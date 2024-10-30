@@ -4,6 +4,10 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModu
 import { MatIconModule } from '@angular/material/icon'
 import { TranslateModule } from '@ngx-translate/core'
 
+type InputType =
+  | 'image'
+  | 'excel'
+
 @Component({
   selector: 'app-admin-img-upload',
   templateUrl: './admin-img-upload.component.html',
@@ -26,37 +30,43 @@ import { TranslateModule } from '@ngx-translate/core'
 })
 export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
   @Input() control!: FormControl
-  @Input() isImageRequire!: boolean 
+  @Input() isImageRequire!: boolean
   @Output() imageSelected = new EventEmitter<File>()
+  @Input() file: InputType = 'image'
 
   @Input() customErrorMessages: Record<string, string> = {}
   @Input() errors: Record<string, ValidationErrors> | null = {}
   @Input() customErrorMessage: Record<string, string> = {}
 
   selectedImage: string | ArrayBuffer | null = null
-  private onChange = (file: File | null) => {}
-  private onTouched = () => {}
+  private onChange = (file: File | null) => { }
+  private onTouched = () => { }
 
   ngOnInit(): void {
-    
+
   }
 
   onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement
-    if (input.files && input.files[0]) {
-      const file = input.files[0]
-      const reader = new FileReader()
+    if (this.file === 'image') {
+      const input = event.target as HTMLInputElement
+      if (input.files && input.files[0]) {
+        const file = input.files[0]
+        const reader = new FileReader()
 
-      reader.onload = () => {
-        this.selectedImage = reader.result
+        reader.onload = () => {
+          this.selectedImage = reader.result
+        }
+
+        reader.readAsDataURL(file)
+
+        this.onChange(file) // Notify Angular forms about the file change
+        this.onTouched() // Notify Angular forms that the input was touched
+        this.imageSelected.emit(file)
       }
-
-      reader.readAsDataURL(file)
-
-      this.onChange(file) // Notify Angular forms about the file change
-      this.onTouched() // Notify Angular forms that the input was touched
-      this.imageSelected.emit(file)
+    } else if (this.file === 'excel') {
+      console.log('good to go  hello world.')
     }
+
   }
 
   triggerFileUpload() {
@@ -67,7 +77,7 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
   // ControlValueAccessor interface methods
   writeValue(value: File | null): void {
     if (typeof value === 'string') this.selectedImage = value
-    else this.selectedImage = null 
+    else this.selectedImage = null
   }
 
   registerOnChange(fn: (file: File | null) => void): void {
@@ -94,6 +104,6 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
     //     ...customErrorMessages.currentValue,
     //   }
     // }
-    
+
   }
 }

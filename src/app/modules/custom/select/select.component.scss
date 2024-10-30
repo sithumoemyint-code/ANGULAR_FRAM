@@ -18,30 +18,35 @@
   //   border-radius: 10px;
   //   transition: box-shadow 0.3s ease;
   //   outline: none;
-  // }  
+  // }
 
-    select {
-      width: 100%;
-      padding: 9px 30px 9px 10px;
-      font-size: 1rem;
-      border: 1px solid #454F6380;
-      border-radius: 10px;
-      transition: box-shadow 0.3s ease;
-      outline: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-    background: url("/assets/image/icon/downarrow.png") no-repeat calc(100% - 10px) center;
-      background-size: 18px;
-      cursor: pointer;
-    }
-  
-    .invalid-border {
-      border-color: red;
-    }
+  select {
+    width: 100%;
+    padding: 9px 30px 9px 10px;
+    font-size: 1rem;
+    border: 1px solid #454f6380;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("/assets/image/icon/downarrow.png") no-repeat
+      calc(100% - 10px) center;
+    background-size: 18px;
+    cursor: pointer;
+  }
 
   .invalid-border {
-    border-color: rgb(255, 0, 0); 
+    border-color: red;
+  }
+
+  .placeholder-option {
+    color: gray;
+  }
+
+  .invalid-border {
+    border-color: rgb(255, 0, 0);
   }
 }
 
