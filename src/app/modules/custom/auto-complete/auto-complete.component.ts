@@ -3,6 +3,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auto-complete',
@@ -22,15 +23,19 @@ export class AutoCompleteComponent implements OnInit {
   @Input() suggestions: { value: string; label: string; }[] = [];
   @Output() selectedSuggestion = new EventEmitter<any>();
 
-  currentIndex: number = -1
-
+  currentIndex: number = -1;
   searchControl = new FormControl('');
   showSuggestions: boolean = false;
   filteredSuggestions: string[] = [];
+  private valueChangesSubscription!: Subscription
 
   ngOnInit(): void {
-    this.searchControl.valueChanges
-      .pipe(debounceTime(300))
+    this.subscribeToValueChanges();
+  }
+
+  private subscribeToValueChanges() {
+    this.valueChangesSubscription = this.searchControl.valueChanges
+      .pipe(debounceTime(200))
       .subscribe((value) => {
         this.filterSuggestions(value || '');
         this.currentIndex = -1;
@@ -40,24 +45,23 @@ export class AutoCompleteComponent implements OnInit {
   private filterSuggestions(value: string) {
     this.filteredSuggestions = this.suggestions
       .filter((item) => item.value.toLowerCase().includes(value.toLowerCase()))
-      .map((item) => {
-        const formattedPhoneNumber = item.value.replace(/^84/, '0');
-        return `${item.value} - ${formattedPhoneNumber}`;
-      });
+      .map((item) => item.value);
     this.showSuggestions = this.filteredSuggestions.length > 0;
   }
 
   onSelectSuggestion(suggestion: string) {
-    console.log(suggestion, ' suggestion ')
-    const [fullName] = suggestion.split(' - ');
-    const selected = this.suggestions.find((item) => item.value.toLowerCase() === fullName.toLowerCase());
+    const selected = this.suggestions.find((item) => item.value.toLowerCase() === suggestion.toLowerCase());
 
     if (selected) {
       this.selectedSuggestion.emit(selected);
       this.searchControl.setValue(suggestion);
     }
+
     this.filteredSuggestions = [];
     this.showSuggestions = false;
+
+    if (this.valueChangesSubscription) this.valueChangesSubscription.unsubscribe();
+    this.subscribeToValueChanges();
   }
 
   hideSuggestions() {
@@ -66,20 +70,24 @@ export class AutoCompleteComponent implements OnInit {
 
   onKeydown(event: KeyboardEvent) {
     if (event.key === 'ArrowDown') {
-      event.preventDefault(); // Prevent the default action
+      event.preventDefault();
       if (this.currentIndex < this.filteredSuggestions.length - 1) {
         this.currentIndex++;
       }
     } else if (event.key === 'ArrowUp') {
-      event.preventDefault(); // Prevent the default action
+      event.preventDefault();
       if (this.currentIndex > 0) {
         this.currentIndex--;
       }
     } else if (event.key === 'Enter') {
-      event.preventDefault(); // Prevent the default action
+      event.preventDefault();
       if (this.currentIndex >= 0 && this.currentIndex < this.filteredSuggestions.length) {
         this.onSelectSuggestion(this.filteredSuggestions[this.currentIndex]);
       }
     }
+  }
+
+  onFocus() {
+    if (this.valueChangesSubscription.closed) this.subscribeToValueChanges();
   }
 }

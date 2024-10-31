@@ -7,7 +7,7 @@
     <div class="relative">
       <input type="text"
         class="appearance-none border border-[#454F6380] rounded-lg w-full py-3.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline shadow-md"
-        [formControl]="searchControl" (focus)="showSuggestions = true" (blur)="hideSuggestions()"
+        [formControl]="searchControl" (focus)="showSuggestions = true; onFocus()" (blur)="hideSuggestions()"
         (keydown)="onKeydown($event)" [placeholder]="placeholder" [readonly]="suggestions.length > 0 ? false : true" />
       <mat-icon class="absolute right-2 top-3">keyboard_arrow_down</mat-icon>
     </div>
