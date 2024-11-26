@@ -1,23 +1,25 @@
 <div class="bg-[#2A2F4F]">
   <div
-    class="flex items-center justify-center flex-col h-screen"
+    class="flex items-center justify-center flex-col h-screen mx-3 md:m-0"
     *ngIf="!isRequestedOtp"
   >
     <img
       src="assets/image/FTTH_logo.png"
       alt=""
-      class="w-[123px] h-[89.51px]"
+      class="md:w-[123px] w-[100px]"
     />
-    <p class="text-white text-2xl font-bold mt-8 mb-5">
+    <p class="text-white text-xl md:text-2xl font-bold mt-8 mb-5 text-center">
       Tool update status FTTH account Reuse/Revoke
     </p>
 
-    <div class="w-[550px] rounded-2xl bg-white mt-2 px-28">
-      <p class="pt-8 text-xl font-bold text-center pb-4">Login</p>
+    <div
+      class="sm:w-[450px] md:w-[550px] rounded-2xl bg-white mt-2 px-10 md:px-28 md:mx-0 w-[310px]"
+    >
+      <p class="pt-8 text-xl md:text-2xl font-bold text-center pb-4">Login</p>
 
       <form [formGroup]="form" (submit)="onSubmit()" novalidate class="mb-8">
         <app-custom-input
-          formControlName="vmycode"
+          formControlName="vmyCode"
           placeholder="Enter your VMY code"
           type="text"
         ></app-custom-input>
@@ -33,7 +35,7 @@
           [ngClass]="
             !isFormValid() || loading ? 'bg-[#999]' : 'bg-[#F8AA00] text-white'
           "
-          [disabled]="form.value.vmycode === ''"
+          [disabled]="form.value.vmyCode === ''"
         >
           <span *ngIf="loading"
             ><mat-spinner [diameter]="20"></mat-spinner
@@ -51,15 +53,17 @@
     <img
       src="assets/image/FTTH_logo.png"
       alt=""
-      class="w-[123px] h-[89.51px]"
+      class="md:w-[123px] w-[100px]"
     />
-    <p class="text-white text-2xl font-bold mt-8 mb-5">
+    <p class="text-white text-xl md:text-2xl font-bold mt-8 mb-5 text-center">
       Tool update status FTTH account Reuse/Revoke
     </p>
 
-    <div class="w-[550px] rounded-2xl bg-white mt-2 px-28">
-      <p class="pt-8 text-xl font-bold text-center pb-4">Login</p>
-      <p class="py-2 text-md text-center">
+    <div
+      class="sm:w-[450px] md:w-[550px] rounded-2xl bg-white mt-2 px-12 md:px-28 md:mx-0 w-[310px]"
+    >
+      <p class="pt-8 text-xl md:text-2xl font-bold text-center pb-4">Login</p>
+      <p class="py-2 text-sm md:text-md text-center">
         We will send OTP to your phone number.
       </p>
 
@@ -69,7 +73,10 @@
           placeholder="OTP"
           type="text"
         ></app-custom-input>
-        <p class="underline text-orange-500 text-center cursor-pointer">
+        <p
+          (click)="onSubmit()"
+          class="underline text-orange-500 text-center cursor-pointer text-sm md:text-md"
+        >
           Resend OTP
         </p>
         <p
@@ -84,22 +91,12 @@
             type="button"
             class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
           >
-            <span *ngIf="loading"
-              ><mat-spinner [diameter]="20"></mat-spinner
-            ></span>
             Cancel
           </button>
           <button
             type="submit"
-            class="px-3 py-2 w-full rounded-full font-bold mt-8 text-gray-700 flex gap-3 justify-center"
-            [ngClass]="
-              !isOtpValid() || loading ? 'bg-[#999]' : 'bg-[#F8AA00] text-white'
-            "
-            [disabled]="!isOtpValid() || loading"
+            class="px-3 py-2 w-full rounded-full font-bold mt-8 flex gap-3 justify-center bg-[#F8AA00] text-white"
           >
-            <span *ngIf="loading"
-              ><mat-spinner [diameter]="20"></mat-spinner
-            ></span>
             Login
           </button>
         </div>

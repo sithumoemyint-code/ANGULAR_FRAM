@@ -19,7 +19,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
+  height: 0px;
 }
 
 /* Track */
@@ -59,6 +59,7 @@ body {
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
+
 // .custom-modalbox > mat-dialog-container {
 //   background-color: white;
 //   border-radius: 16px;

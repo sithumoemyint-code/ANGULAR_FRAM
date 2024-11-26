@@ -1,7 +1,9 @@
 <div class="dvs-form-control" *ngIf="control">
   <label
     [for]="inputId"
-    [ngClass]="labelClass !== '' ? labelClass : 'text-[#4E535D] text-sm mb-1'"
+    [ngClass]="
+      labelClass !== '' ? labelClass : 'text-[#4E535D]text-md font-semibold'
+    "
     *ngIf="label"
     [class.required]="isRequired"
   >

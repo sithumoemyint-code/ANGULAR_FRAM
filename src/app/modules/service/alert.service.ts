@@ -61,8 +61,15 @@ export class AlertService {
   }
 
   deleteNotification(title: string, des: string, type: string) {
+    const screenWidth = window.innerWidth;
+    let dialogWidth = '35%';
+    if (screenWidth <= 430) {
+      dialogWidth = '90%';
+    } else if (screenWidth <= 1024) {
+      dialogWidth = '50%';
+    }
     const _modal = this.dialog.open(DeleteComponent, {
-      width: '35%',
+      width: dialogWidth,
       disableClose: false,
       data: {
         title: title,
@@ -75,8 +82,15 @@ export class AlertService {
   }
 
   confirmSuccessFail(title: string, des: string, type: string) {
+    const screenWidth = window.innerWidth;
+    let dialogWidth = '35%';
+    if (screenWidth <= 430) {
+      dialogWidth = '90%';
+    } else if (screenWidth <= 1024) {
+      dialogWidth = '60%';
+    }
     const _modal = this.dialog.open(ConfirmSuccessFailComponent, {
-      width: '35%',
+      width: dialogWidth,
       disableClose: false,
       data: {
         title: title,

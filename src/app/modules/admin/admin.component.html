@@ -1,51 +1,48 @@
-<!-- <mat-toolbar class="mat-elevation-z3 flex justify-between ">
-  <button mat-icon-button (click)="collapsed.set(!collapsed())">
-    <mat-icon>menu</mat-icon>
-  </button>
-
-  <div class="flex items-center">
-    <button mat-icon-button [matMenuTriggerFor]="logout">
-      <span class="material-icons">account_circle</span>
-    </button>
-    <div>
-      <span class="text-base">{{ username }}</span>
-    </div>
-  </div>
-
-  <mat-menu #logout="matMenu">
-    <button mat-menu-item (click)="logOut()">
-      <div
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-        "
-      >
-        <span class="material-icons" style="margin-right: 8px">logout</span>
-        Logout
-      </div>
-    </button>
-  </mat-menu>
-</mat-toolbar>
-
-<mat-sidenav-container>
-  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-    <app-custom-sidenav [collapsed]="collapsed()" />
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="sidenavMode()" [opened]="isMobile ? sidenavOpened() : !collapsed()" class="sidenav"
+    [style.width]="sidenavWidth()" (openedChange)="isMobile ? onSidenavToggle($event) : null">
+    <app-custom-sidenav [collapsed]="collapsed()" (closeSidenav)="isMobile ? onSidenavToggle(false) : null" />
   </mat-sidenav>
-  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+
+  <mat-sidenav-content class="content" [style.margin-left]="isMobile ? null : sidenavWidth()">
+    <mat-toolbar class="mat-elevation-z3 flex justify-between toolbar">
+      <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon style="color: #235884">menu</mat-icon>
+      </button>
+      <div *ngIf="!isMobile">
+        <span class="text-base font-bold">{{ role }}</span>
+      </div>
+      <div class="flex items-center mt-0.5">
+        <div class="flex flex-col items-center">
+          <span class="text-base font-bold">{{ code }}</span>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="logout">
+          <span class="material-icons" style="color: #376e9a">account_circle</span>
+        </button>
+      </div>
+
+      <mat-menu #logout="matMenu">
+        <button mat-menu-item (click)="logOut()">
+          <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                  ">
+            <span class="material-icons" style="margin-right: 8px">logout</span>
+            Logout
+          </div>
+        </button>
+      </mat-menu>
+
+
+    </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container> -->
+</mat-sidenav-container>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #sidenav
-    opened
-    mode="side"
-    class="sidenav"
-    [style.width]="sidenavWidth()"
-  >
+<!-- <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav opened mode="side" class="sidenav" [style.width]="sidenavWidth()">
     <app-custom-sidenav [collapsed]="collapsed()" />
   </mat-sidenav>
 
@@ -55,28 +52,27 @@
         <mat-icon style="color: #235884">menu</mat-icon>
       </button>
 
-      <div class="flex items-center">
+      <div *ngIf="!isMobile">
+        <span class="text-base font-bold">{{ role }}</span>
+      </div>
+
+      <div class="flex items-center mt-0.5">
         <div class="flex flex-col items-center">
           <span class="text-base font-bold">{{ code }}</span>
-          <span class="text-base font-bold">{{ userName }}</span>
         </div>
         <button mat-icon-button [matMenuTriggerFor]="logout">
-          <span class="material-icons" style="color: #376e9a"
-            >account_circle</span
-          >
+          <span class="material-icons" style="color: #376e9a">account_circle</span>
         </button>
       </div>
 
       <mat-menu #logout="matMenu">
         <button mat-menu-item (click)="logOut()">
-          <div
-            style="
+          <div style="
               display: flex;
               align-items: center;
               justify-content: center;
               width: 100%;
-            "
-          >
+            ">
             <span class="material-icons" style="margin-right: 8px">logout</span>
             Logout
           </div>
@@ -86,4 +82,4 @@
 
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

@@ -2,69 +2,128 @@
   <div class="flex justify-end p-2">
     <mat-icon (click)="closeDetail()" class="cursor-pointer">close</mat-icon>
   </div>
-  <div class="py-5 px-10">
+  <div class="py-5 sm:px-10 px-2">
     <h1 class="flex justify-center font-bold text-xl">Customer Details</h1>
     <div class="container mx-auto">
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>FTTH Account</p>
-        <p>ayy_gftth_htetmhm1</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">FTTH Account</p>
+        <p class="w-4/6 text-right">{{ detail?.ftthAccount }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Contract ID</p>
-        <p>5000945008</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Contract ID</p>
+        <p class="w-4/6 text-right">{{ detail?.contractId }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Customer Address</p>
-        <p class="max-w-xs text-end">
-          Myo Ma Ward, Ngathaingchaung Town, Yegyi, Ayeyarwady
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Customer Address</p>
+        <p class="w-4/6 text-right max-w-xs">
+          {{ detail?.customerAddress }}
         </p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Contract NO 1</p>
-        <p>09691247302</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Contract NO 1</p>
+        <p class="w-4/6 text-right">
+          <a href="tel:{{ detail?.contactNo1 }}">{{ detail?.contactNo1 }}</a>
+        </p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Contract NO 2</p>
-        <p>09691247302</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Contract NO 2</p>
+        <a href="tel:{{ detail?.contactNo2 }}">{{ detail?.contactNo2 }}</a>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Total Money</p>
-        <p>1000</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Total Money</p>
+        <p class="w-4/6 text-right">{{ detail?.totalMoney }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Branch</p>
-        <p>AYY</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Branch</p>
+        <p class="w-4/6 text-right">{{ detail?.branch }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Site Code</p>
-        <p>AYY0861</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Site Code</p>
+        <p class="w-4/6 text-right">{{ detail?.siteCode }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Site Code & SN Code</p>
-        <p>AYY0861-DN01-SN09</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Site Code & SN Code</p>
+        <p class="w-4/6 text-right">{{ detail?.siteCodeAndSNCode }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>D2D Name</p>
-        <p>Wai Yan Kyaw</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">D2D Name</p>
+        <p class="w-4/6 text-right">{{ detail?.d2dName }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>FBB Leader Name</p>
-        <p>Thant Zin Aung</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">FBB Leader Name</p>
+        <p class="w-4/6 text-right">{{ detail?.fbbLeaderName }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Township</p>
-        <p>Yegyi</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Township</p>
+        <p class="w-4/6 text-right">{{ detail?.township }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>BC Name</p>
-        <p>AYY0303-Yegyi BC</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">BC Name</p>
+        <p class="w-4/6 text-right">{{ detail?.bcName }}</p>
       </div>
-      <div class="flex justify-between p-1 mb-3 font-medium">
-        <p>Status</p>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">ONT Serial</p>
+        <p class="w-4/6 text-right">{{ detail?.ontSerial }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Debt</p>
+        <p class="w-4/6 text-right">{{ detail?.debt }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-2 font-medium sm:text-base text-sm"
+      >
+        <p class="w-2/6">Status</p>
+        <div class="w-4/6 text-right">
+          <button
+            class="px-3 py-2 cursor-default rounded-full focus:outline-none"
+            [ngClass]="{
+                      'bg-[#F8F49B] text-[#766E19]': detail?.status === 'PENDING',
+                      'bg-[#A1CDFF] text-[#166292]': detail?.status === 'REVOKE',
+                      'bg-[#EBC1FF] text-[#B934F8]': detail?.status === 'REUSE',
+                      'bg-[#CBF895] text-[#378A26]': detail?.status === 'RECEIVED_ONU',
+                    }"
+          >
+            {{ detail?.status }}
+          </button>
+        </div>
+      </div>
+
+      <div class="sm:hidden mt-4 mb-20 mx-3 flex justify-center">
         <button
-          class="px-3 py-2 cursor-default rounded-full bg-[#EBC1FF] text-[#B934F8] focus:outline-none"
+          class="px-3 py-2 rounded-full bg-red-500 text-white font-bold focus:outline-none"
+          (click)="closeDetail()"
         >
-          Reuse
+          Close
         </button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, computed, Input, OnInit, signal } from '@angular/core';
+import { Component, computed, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
 
 export type MenuItem = {
   icon: string;
@@ -14,6 +14,7 @@ export type MenuItem = {
 })
 export class SubMenuComponent implements OnInit {
   @Input() item!: MenuItem;
+  @Output() closeSidenav = new EventEmitter<void>();
   sideNavCollapsed = signal(false);
   nestedMenuOpen = signal(false);
 
@@ -21,14 +22,19 @@ export class SubMenuComponent implements OnInit {
     this.sideNavCollapsed.set(val);
   }
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   profilePicSize = computed(() => (this.sideNavCollapsed() ? '38' : '50'));
 
   toggleNested(item: MenuItem) {
+
+    this.closeSidenav.emit();
     if (!item.subItems) return;
     this.nestedMenuOpen.set(!this.nestedMenuOpen());
+    // Emit event to close sidenav
   }
 }

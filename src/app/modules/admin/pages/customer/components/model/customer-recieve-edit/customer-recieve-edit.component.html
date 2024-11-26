@@ -1,0 +1,137 @@
+<div class="max-h-screen overflow-y-auto">
+  <div class="flex justify-end p-2">
+    <mat-icon (click)="closeEdit()" class="cursor-pointer">close</mat-icon>
+  </div>
+  <div class="py-5 sm:px-10 px-2">
+    <h1 class="flex justify-center font-bold text-xl">Customer Edit</h1>
+    <div class="container mx-auto">
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>FTTH Account</p>
+        <p>{{ detail?.ftthAccount }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Contract ID</p>
+        <p>{{ detail?.contractId }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Customer Address</p>
+        <p class="max-w-xs text-end">
+          {{ detail?.customerAddress }}
+        </p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Contract NO 1</p>
+        <p>{{ detail?.contactNo1 }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Contract NO 2</p>
+        <p>{{ detail?.contactNo2 }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Total Money</p>
+        <p>{{ detail?.totalMoney }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Branch</p>
+        <p>{{ detail?.branch }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Site Code</p>
+        <p>{{ detail?.siteCode }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Site Code & SN Code</p>
+        <p>{{ detail?.siteCodeAndSNCode }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>D2D Name</p>
+        <p>{{ detail?.d2dName }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>FBB Leader Name</p>
+        <p>{{ detail?.fbbLeaderName }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Township</p>
+        <p>{{ detail?.township }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>BC Name</p>
+        <p>{{ detail?.bcName }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>ONT Serial</p>
+        <p>{{ detail?.ontSerial }}</p>
+      </div>
+      <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Debt</p>
+        <p>{{ detail?.debt }}</p>
+      </div>
+      <!-- <div
+        class="flex justify-between p-1 mb-3 font-medium sm:text-base text-sm"
+      >
+        <p>Status</p>
+        <mat-radio-group [(ngModel)]="selectedOption" (change)="getStatus()">
+          <mat-radio-button
+            *ngFor="let option of options"
+            [value]="option"
+            color="primary"
+          >
+            {{ option }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div> -->
+
+      <div class="mt-5 flex justify-end space-x-3">
+        <button
+          (click)="closeEdit()"
+          class="px-3 py-2 rounded-full bg-white text-[#444444] font-bold focus:outline-none"
+        >
+          Cancel
+        </button>
+        <!-- <button
+          (click)="update()"
+          class="px-3 py-2 rounded-full bg-[#FD6D1A] text-white font-bold focus:outline-none"
+        >
+          Update
+        </button> -->
+        <button
+          (click)="update()"
+          class="px-3 py-2 rounded-full bg-[#8cee78] font-bold focus:outline-none text-sm md:text-md"
+        >
+          Recieved ONU
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

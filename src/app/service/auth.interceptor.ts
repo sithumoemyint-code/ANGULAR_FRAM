@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private cookieService: CookieService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   intercept(
     request: HttpRequest<unknown>,
@@ -29,7 +29,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) this.handle401Error();
+        if (error.status === 401) {
+          this.cookieService.delete('accessTokenONS');
+          this.cookieService.delete('groupPermission');
+          this.cookieService.delete('username');
+          this.cookieService.delete('vmyCode');
+          this.cookieService.delete('role');
+          this.handle401Error();
+        }
         return throwError(error);
       })
     );

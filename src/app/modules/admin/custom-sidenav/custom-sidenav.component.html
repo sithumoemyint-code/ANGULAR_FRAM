@@ -1,46 +1,14 @@
-<!-- <mat-nav-list class="bg-[#0F172A] h-full overflow-x-hidden">
-  <div
-    class="sidenav-header flex gap-3"
-    [ngClass]="sideNavCollapsed() ? 'p-2' : 'p-6'"
-  >
+<mat-nav-list class="bg-[#2A2F4F] h-full flex flex-col overflow-hidden">
+  <div class="sidenav-header flex justify-center gap-3" [ngClass]="sideNavCollapsed() ? 'py-9' : 'p-6'"
+    style="flex-shrink: 0">
     <div>
-      <img src="/assets/image/logo.png" alt="" />
-    </div>
-
-    <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-      <p class="text-[#235884] font-bold text-2xl">GIFTlife</p>
-      <p class="text-[#164C7A] font-normal text-lg">Unlock your GIFTential</p>
+      <img src="assets/image/FTTH_logo.png" alt="" class="w-[90px]" />
     </div>
   </div>
-  <div *ngFor="let item of menuItem()">
-    <app-sub-menu [item]="item" [collapsed]="sideNavCollapsed()"></app-sub-menu>
-  </div>
-</mat-nav-list> -->
-<mat-nav-list class="bg-[#0F172A] h-full flex flex-col overflow-hidden">
-  <div
-    class="sidenav-header flex justify-center gap-3"
-    [ngClass]="sideNavCollapsed() ? 'p-2' : 'p-6'"
-    style="flex-shrink: 0"
-  >
-    <div>
-      <img src="assets/image/FTTH_logo.png" alt="" class="w-[90px] h-[65px]" />
-    </div>
 
-    <!-- <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-      <p class="text-[#235884] font-bold text-2xl">GIFTlife</p>
-      <p class="text-[#164C7A] font-normal text-lg">Unlock your GIFTential</p>
-    </div> -->
-  </div>
-
-  <div
-    class="overflow-y-auto flex-grow pb-10"
-    style="max-height: calc(100vh - 100px)"
-  >
+  <div class="overflow-y-auto flex-grow pb-10" style="max-height: calc(100vh - 100px)">
     <div *ngFor="let item of menuItem()">
-      <app-sub-menu
-        [item]="item"
-        [collapsed]="sideNavCollapsed()"
-      ></app-sub-menu>
+      <app-sub-menu [item]="item" [collapsed]="sideNavCollapsed()" (closeSidenav)="collapseSidenav()"></app-sub-menu>
     </div>
   </div>
 </mat-nav-list>

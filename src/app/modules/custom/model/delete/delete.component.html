@@ -4,6 +4,8 @@
       [src]="
         data.type === 'SURE'
           ? 'assets/icons/delete-sure.png'
+          : data.type === 'FAIL'
+          ? 'assets/icons/delete-fail.png'
           : 'assets/icons/delete-success.png'
       "
       width="80px"
@@ -11,10 +13,10 @@
       alt=""
     />
   </div>
-  <p class="font-bold text-3xl text-black text-center pt-4">
+  <p class="font-bold text-xl md:text-3xl text-black text-center pt-4">
     {{ data.title }}
   </p>
-  <p class="text-[#292929] font-medium text-lg pt-2 text-center">
+  <p class="text-[#292929] font-medium text-md md:text-lg pt-2 text-center">
     {{ data.des }}
   </p>
   <div
@@ -23,13 +25,13 @@
   >
     <button
       (click)="close()"
-      class="px-4 py-2 text-[#292929] rounded-3xl ml-4 flex gap-2"
+      class="px-4 py-2 text-[#292929] rounded-3xl ml-4 flex gap-2 text-sm md:text-lg"
     >
       Cancel
     </button>
     <button
       (click)="create()"
-      class="px-4 py-2 text-white rounded-3xl ml-4 flex gap-2 bg-[#FD6D1A]"
+      class="px-4 py-2 text-white rounded-3xl ml-4 flex gap-2 bg-[#FD6D1A] text-sm md:text-lg"
     >
       Confirm
     </button>

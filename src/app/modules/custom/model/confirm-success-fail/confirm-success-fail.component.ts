@@ -18,9 +18,9 @@ export class ConfirmSuccessFailComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ConfirmSuccessFailComponent>
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   create() {
     this.loading = true;

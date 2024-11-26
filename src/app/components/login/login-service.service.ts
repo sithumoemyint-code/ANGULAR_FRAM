@@ -7,10 +7,15 @@ import { SERVICE_URLS } from 'src/assets/app.config';
 })
 export class LoginServiceService {
   private readonly _login = SERVICE_URLS.LOGIN;
+  private readonly _confirmLogin = SERVICE_URLS.CONFIRM_LOGIN;
 
   constructor(private http: HttpClient) {}
 
-  loginConfirm(params: any) {
+  login(params: any) {
     return this.http.post(this._login, params);
+  }
+
+  confirmLogin(params: any) {
+    return this.http.post(this._confirmLogin, params);
   }
 }

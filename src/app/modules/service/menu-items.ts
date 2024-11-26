@@ -17,9 +17,4 @@ export const menuItem: MenuItem[] = [
     label: 'Customer',
     route: 'app-customer',
   },
-  {
-    icon: 'folder_open',
-    label: 'Import Data',
-    route: 'app-import-data',
-  },
 ];

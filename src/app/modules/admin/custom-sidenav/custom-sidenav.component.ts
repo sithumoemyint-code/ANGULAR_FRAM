@@ -1,4 +1,12 @@
-import { Component, computed, Input, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { menuItem } from '../../service/menu-items';
 
 export type MenuItem = {
@@ -16,14 +24,14 @@ export type MenuItem = {
 })
 export class CustomSidenavComponent implements OnInit {
   sideNavCollapsed = signal(false);
+  @Output() closeSidenav = new EventEmitter<void>();
+
   @Input() set collapsed(val: boolean) {
     this.sideNavCollapsed.set(val);
   }
 
   public menuItems: MenuItem[] = [];
   public menuItem = signal<MenuItem[]>([]);
-
-  constructor() { }
 
   ngOnInit(): void {
     this.getPermissionMenuList();
@@ -34,4 +42,9 @@ export class CustomSidenavComponent implements OnInit {
   }
 
   profilePicSize = computed(() => (this.sideNavCollapsed() ? '38' : '50'));
+
+  collapseSidenav(): void {
+    // Collapse the sidenav
+    this.closeSidenav.emit();
+  }
 }

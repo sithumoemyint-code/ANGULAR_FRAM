@@ -21,6 +21,8 @@ export class AutoCompleteComponent implements OnInit {
   @Input() label: string = 'Select';
   @Input() placeholder: string = 'Type to search...';
   @Input() suggestions: { value: string; label: string; }[] = [];
+  @Input() banInput: boolean = false
+  @Input() dataRefill: string = ''
   @Output() selectedSuggestion = new EventEmitter<any>();
 
   currentIndex: number = -1;
@@ -31,6 +33,12 @@ export class AutoCompleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToValueChanges();
+    this.onSelectSuggestion(this.dataRefill)
+  }
+
+  handleShowSuggestion() {
+    this.filterSuggestions();
+
   }
 
   private subscribeToValueChanges() {
@@ -42,7 +50,7 @@ export class AutoCompleteComponent implements OnInit {
       });
   }
 
-  private filterSuggestions(value: string) {
+  private filterSuggestions(value: string = '') {
     this.filteredSuggestions = this.suggestions
       .filter((item) => item.value.toLowerCase().includes(value.toLowerCase()))
       .map((item) => item.value);
@@ -50,18 +58,23 @@ export class AutoCompleteComponent implements OnInit {
   }
 
   onSelectSuggestion(suggestion: string) {
-    const selected = this.suggestions.find((item) => item.value.toLowerCase() === suggestion.toLowerCase());
+    if (suggestion !== '') {
+      console.log(suggestion, ' san franciso')
+      const selected = this.suggestions.find((item) => item.value.toLowerCase() === suggestion.toLowerCase());
 
-    if (selected) {
-      this.selectedSuggestion.emit(selected);
-      this.searchControl.setValue(suggestion);
+      if (selected) {
+        this.selectedSuggestion.emit(selected);
+        this.searchControl.setValue(suggestion);
+      }
+
+      this.filteredSuggestions = [];
+      this.showSuggestions = false;
+
+      if (this.valueChangesSubscription)
+        this.valueChangesSubscription.unsubscribe();
+      this.subscribeToValueChanges();
     }
 
-    this.filteredSuggestions = [];
-    this.showSuggestions = false;
-
-    if (this.valueChangesSubscription) this.valueChangesSubscription.unsubscribe();
-    this.subscribeToValueChanges();
   }
 
   hideSuggestions() {

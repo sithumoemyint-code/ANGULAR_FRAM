@@ -1,20 +1,21 @@
 <div class="p-1">
   <div class="autocomplete-container">
-    <label class="text-[#4E535D] text-sm">
+    <label class="text-[#4E535D] text-md font-semibold">
       {{ label }}
     </label>
 
-    <div class="relative">
+    <div class="relative" (click)="handleShowSuggestion()">
       <input type="text"
-        class="appearance-none border border-[#454F6380] rounded-lg w-full py-3.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline shadow-md"
+        class="appearance-none border border-[#E4E4E4] shadow-sm rounded-[8px] w-full py-3.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         [formControl]="searchControl" (focus)="showSuggestions = true; onFocus()" (blur)="hideSuggestions()"
-        (keydown)="onKeydown($event)" [placeholder]="placeholder" [readonly]="suggestions.length > 0 ? false : true" />
+        (keydown)="onKeydown($event)" [placeholder]="placeholder" [readonly]="suggestions.length > 0 ? false : true"
+        [ngClass]="{ 'bg-[#EDEDED]': banInput }" />
       <mat-icon class="absolute right-2 top-3">keyboard_arrow_down</mat-icon>
     </div>
 
     <ul *ngIf="showSuggestions && filteredSuggestions.length > 0" class="suggestion-list">
       <li *ngFor="let suggestion of filteredSuggestions; let i = index" (mousedown)="onSelectSuggestion(suggestion)"
-        (mouseenter)="currentIndex = i" [ngClass]="{'highlighted': currentIndex === i}" class="suggestion-item"
+        (mouseenter)="currentIndex = i" [ngClass]="{ highlighted: currentIndex === i }" class="suggestion-item"
         class="suggestion-item">
         {{ suggestion }}
       </li>

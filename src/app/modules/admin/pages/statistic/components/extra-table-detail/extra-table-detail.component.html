@@ -1,0 +1,35 @@
+<div class="w-full">
+  <div class="flex justify-end p-2">
+    <mat-icon (click)="closeEdit()" class="cursor-pointer">close</mat-icon>
+  </div>
+  <div class="p-6">
+    <table class="shadow-lg">
+      <tr class="bg-[#E6E8F1] shadow-md">
+        <th *ngIf="conditionRole === 'BCM'">D2D</th>
+        <th *ngIf="conditionRole === 'HO'">BC</th>
+        <th *ngIf="conditionRole === 'BM'">FBB Leader</th>
+        <th>Total Customer</th>
+        <th>Pending</th>
+        <th>Reuse</th>
+        <th>Revoke</th>
+        <th>Received ONU</th>
+      </tr>
+      <tr *ngFor="let item of extraTableData">
+        <td>{{ item.d2dVMY }}</td>
+        <td>{{ item.total }}</td>
+        <td>{{ item.pending }}</td>
+        <td>{{ item.reuse }}</td>
+        <td>{{ item.revoke }}</td>
+        <td>{{ item.received }}</td>
+      </tr>
+    </table>
+    <div class="mt-5 flex justify-end space-x-3">
+      <button
+        (click)="closeEdit()"
+        class="px-3 py-2 rounded-full bg-[#FD6D1A] text-white font-semibold focus:outline-none"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

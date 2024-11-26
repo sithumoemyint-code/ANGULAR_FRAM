@@ -13,10 +13,10 @@ export class CustomInputComponent implements OnInit {
   @Input() hideTypeAttribute: boolean = false
   @Input() errorMessage: string = ''
   @Output() blur: EventEmitter<void> = new EventEmitter<void>()
-  
+
   disabled!: boolean
-  onChange: (value: any) => void = () => {}
-  onTouched: () => void = () => {}
+  onChange: (value: any) => void = () => { }
+  onTouched: () => void = () => { }
 
   constructor(@Self() public controlDir: NgControl) {
     controlDir.valueAccessor = this

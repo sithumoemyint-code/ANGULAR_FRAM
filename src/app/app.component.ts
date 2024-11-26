@@ -8,9 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'my-angular-app';
-  // currentLang = 'vi'; 
 
-  constructor( private translate: TranslateService){
-    // translate.setDefaultLang(this.currentLang)
+  constructor() {
   }
 }

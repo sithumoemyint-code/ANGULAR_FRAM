@@ -1,12 +1,11 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { BrowserDetectionService } from './browser-detection.service';
 import { LoginServiceService } from './login-service.service';
 import { CookieService } from 'ngx-cookie-service';
-import { LanguageService } from 'src/app/modules/service/language.service';
-import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,35 +19,31 @@ export class LoginComponent implements OnInit {
   showErrorMessage!: string;
   currentLang = 'en';
   isRequestedOtp: boolean = false;
+  transId: string = '';
 
   constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private browserDetectionService: BrowserDetectionService,
     private _loginServiceService: LoginServiceService,
-    private cookieService: CookieService,
-    private languageService: LanguageService,
-    private translate: TranslateService
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
-    this.languageService.currentLang$.subscribe((lang) => {
-      this.currentLang = lang;
-      this.translate.use(this.currentLang);
-    });
     this.browser = this.browserDetectionService.getBrowserInfo();
 
     this.form = this.fb.group({
-      vmycode: ['', [Validators.required]],
+      vmyCode: ['', [Validators.required]],
       requestId: [new Date().toISOString(), [Validators.required]],
       requestTime: [new Date().toISOString(), [Validators.required]],
     });
 
     this.otp = this.fb.group({
+      otpTransId: [''],
       otp: ['', [Validators.required]],
+      requestId: [new Date().toISOString()],
+      requestTime: [new Date().toISOString()],
     });
 
     this.pageReload();
@@ -65,43 +60,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    // let params = this.form.value;
-
-    // this._loginServiceService.loginConfirm(params).subscribe((data: any) => {
-    //   console.log(data);
-    // });
-
-    if (this.form.status === 'VALID') {
-      this.loading = true;
-      const data = this.form.value;
-      if (data.vmycode === 'vmy123123') {
-        this.showErrorMessage = '';
-        this.loading = false;
-        this.isRequestedOtp = true;
-      } else {
-        this.loading = false;
-        this.showErrorMessage = 'Your VMY doesn’t exist.';
-      }
-    }
+  onSubmit(value: string = '') {
+    this.loading = true;
+    let params = this.form.value;
+    this.isRequestedOtp = true;
   }
 
   login() {
-    if (this.otp.status === 'VALID') {
-      this.showErrorMessage = '';
-      this.loading = true;
-      const data = this.otp.value;
-      if (data.otp === '123') {
-        this.authService.saveTokens(
-          '87834uu43iuwr89uf8ae237ei23u2id392803ioiu2398'
-        );
-        this.loading = false;
-        this.router.navigate(['admin/app-statistic']);
-      } else {
-        this.loading = false;
-        this.showErrorMessage = 'Wrong OTP.';
-      }
-    }
+    this.authService.saveTokens('ksajflkasjdfklasjd');
+    this.cookieService.set('vmyCode', 'VMY123123');
+    this.cookieService.set('role', 'HO');
+    this.router.navigate(['admin/app-statistic']);
   }
 
   isFormValid(): boolean {

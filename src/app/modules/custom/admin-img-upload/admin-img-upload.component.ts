@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Input,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -35,11 +37,12 @@ type InputType = 'image' | 'excel';
   ],
 })
 export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
   @Input() control!: FormControl;
   @Input() isImageRequire!: boolean;
-  @Output() imageSelected = new EventEmitter<File>();
+  @Output() imageSelected = new EventEmitter<File | null>();
   @Input() file: InputType = 'image';
-
+  @Output() fileRemoved = new EventEmitter<string>();
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() errors: Record<string, ValidationErrors> | null = {};
   @Input() customErrorMessage: Record<string, string> = {};
@@ -64,8 +67,8 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
 
         reader.readAsDataURL(file);
 
-        this.onChange(file); // Notify Angular forms about the file change
-        this.onTouched(); // Notify Angular forms that the input was touched
+        this.onChange(file);
+        this.onTouched();
         this.imageSelected.emit(file);
       }
     } else if (this.file === 'excel') {
@@ -76,6 +79,8 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
 
         if (fileType === 'xls' || fileType === 'xlsx') {
           this.fileName = file.name;
+          this.onChange(file);
+          this.imageSelected.emit(file);
         } else {
           alert('Please upload an Excel file (.xls or .xlsx)');
           input.value = '';
@@ -85,7 +90,12 @@ export class AdminImgUploadComponent implements ControlValueAccessor, OnInit {
   }
 
   removeFile() {
-    this.fileName = null;
+    this.fileName = '';
+    this.selectedImage = null;
+    if (this.fileInput) {
+      this.fileInput.nativeElement.value = '';
+    }
+    this.fileRemoved.emit('success');
   }
 
   triggerFileUpload() {
